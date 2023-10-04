@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+// Route::get('/', function () {
+//     try {
+//         DB::connection()->getPdo();
+//         if (!Schema::hasTable('application_settings'))
+//             return redirect('/install');
+//     } catch (Exception $e) {
+//         return redirect('/install');
+//     }
+//     return redirect('dashboard');
+// });
+
+Auth::routes(['register' => false]);
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [
+        'uses' => 'App\Http\Controllers\DashboardController@index',
+        'as' => 'dashboard'
+    ]);
 });
