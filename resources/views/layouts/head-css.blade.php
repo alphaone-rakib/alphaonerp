@@ -9,4 +9,6 @@
 <link href="{{ URL::asset('assets/css/app.min.css') }}"  rel="stylesheet" type="text/css" />
 <!-- custom Css-->
 <link href="{{ URL::asset('assets/css/custom.min.css') }}"  rel="stylesheet" type="text/css" />
+<!-- alphaonerp css-->
+<link href="{{ URL::asset('assets/css/alphaonerp.css') }}"  rel="stylesheet" type="text/css" />
 {{-- @yield('css') --}}
