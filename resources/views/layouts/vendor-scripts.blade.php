@@ -4,5 +4,8 @@
 <script src="{{ URL::asset('assets/libs/feather-icons/feather-icons.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/plugins/lord-icon-2.1.0.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/plugins.min.js') }}"></script>
+<script src="{{ URL::asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
+
+<script src="{{ URL::asset('assets/flatpickr/flatpickr.js') }}"></script>
 @yield('script')
 @yield('script-bottom')

@@ -37,6 +37,17 @@ Auth::routes(['register' => false]);
 
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/application-settings', [
+        'uses' => 'App\Http\Controllers\ApplicationSettingController@index',
+        'as' => 'application-settings'
+    ]);
+
+    Route::post('/application-settings/update', [
+        'uses' => 'App\Http\Controllers\ApplicationSettingController@update',
+        'as' => 'application-settings.update'
+    ]);
+
     Route::get('/dashboard', [
         'uses' => 'App\Http\Controllers\DashboardController@index',
         'as' => 'dashboard'
