@@ -17,5 +17,7 @@
 <link href="{{ URL::asset('assets/select2/select2.css') }}"  rel="stylesheet" type="text/css" />
 <!-- select2 css-->
 <link href="{{ URL::asset('assets/flatpickr/flatpickr.min.css') }}"  rel="stylesheet" type="text/css" />
+<!-- toastr css-->
+<link href="{{ URL::asset('assets/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css">
 
 {{-- @yield('css') --}}

@@ -14,40 +14,8 @@ class ApplicationSettingController extends Controller
     {
         $timezone = $this->timeZones();
         $getLang = $this->getLang();
-        $items = ApplicationSetting::find(1);
-        return view('setting.application-setting', compact('items', 'timezone', 'getLang'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(ApplicationSetting $applicationSetting)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ApplicationSetting $applicationSetting)
-    {
-        //
+        $data = ApplicationSetting::find(1);
+        return view('setting.application-setting', compact('data', 'timezone', 'getLang'));
     }
 
     /**
@@ -55,7 +23,41 @@ class ApplicationSettingController extends Controller
      */
     public function update(Request $request, ApplicationSetting $applicationSetting)
     {
-        //
+        $request->validate([
+            'item_name' => ['required', 'string', 'max:255'],
+            'item_short_name' => ['required', 'string', 'max:255'],
+            'company_name' => ['required', 'string', 'max:255'],
+            'company_email' => ['required', 'email', 'max:255'],
+            'time_zone' => ['required', 'string', 'max:255'],
+            'language' => ['required', 'string', 'max:255'],
+            'company_address' => ['required', 'string', 'max:255'],
+            'logo' => ['image', 'mimes:png', 'max:2048'],
+            'favicon' => ['image', 'mimes:png', 'max:2048']
+        ]);
+
+        ApplicationSetting::updateOrCreate(['id' => "1"], [
+            'item_name' => $request->item_name,
+            'item_short_name' => $request->item_short_name,
+            'company_name' => $request->company_name,
+            'company_address' => $request->company_address,
+            'company_email' => $request->company_email,
+            'language' => $request->language,
+            'time_zone' => $request->time_zone,
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $logo_text = $request->logo;
+            $logo_text_new_name = 'logo-text.png';
+            $logo_text->move('img/', $logo_text_new_name);
+        }
+
+        if ($request->hasFile('favicon')) {
+            $favicon = $request->favicon;
+            $favicon_new_name = 'favicon.png';
+            $favicon->move('img/', $favicon_new_name);
+        }
+
+        return redirect()->route('application-settings')->withSuccess(trans('common.application settings has updated'));
     }
 
     /**
