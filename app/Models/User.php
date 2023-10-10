@@ -54,4 +54,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Has many relation with complains
+     *
+     * @return mixed
+     */
+    public function companies()
+    {
+        return $this->morphToMany(Company::class, 'user', 'user_companies', 'user_id', 'company_id');
+    }
 }

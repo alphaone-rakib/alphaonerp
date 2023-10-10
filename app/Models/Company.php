@@ -14,6 +14,11 @@ class Company extends Model
         'enabled'
     ];
 
+    public function users()
+    {
+        return $this->morphedByMany(User::class, 'user', 'user_companies', 'company_id', 'user_id');
+    }
+
     public function settings()
     {
         return $this->hasMany(Setting::class);
