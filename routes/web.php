@@ -52,4 +52,13 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => 'App\Http\Controllers\DashboardController@index',
         'as' => 'dashboard'
     ]);
+
+    Route::get('/currency/code', [App\Http\Controllers\CompanyController::class, 'code'])->name('currency.code');
+
+    Route::get('/company/selectedStateData', [App\Http\Controllers\CompanyController::class, 'selectedStateData'])->name('company.selectedStateData');
+    Route::get('/company/selectedCityData', [App\Http\Controllers\CompanyController::class, 'selectedCityData'])->name('company.selectedCityData');
+
+    Route::resources([
+        'company' => App\Http\Controllers\CompanyController::class,
+    ]);
 });

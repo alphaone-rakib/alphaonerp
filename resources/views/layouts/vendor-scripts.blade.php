@@ -7,6 +7,7 @@
 <script src="{{ URL::asset('assets/js/plugins.min.js') }}"></script>
 <script src="{{ URL::asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
 <script src="{{ URL::asset('assets/flatpickr/flatpickr.js') }}"></script>
+<script src="{{ URL::asset('assets/libs/choices.js/choices.js.min.js') }}"></script>
 <script src="{{ URL::asset('assets/toastr/toastr.min.js') }}"></script>
 
 <script>

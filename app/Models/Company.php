@@ -19,6 +19,11 @@ class Company extends Model
         return $this->morphedByMany(User::class, 'user', 'user_companies', 'company_id', 'user_id');
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function settings()
     {
         return $this->hasMany(Setting::class);
