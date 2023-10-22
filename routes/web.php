@@ -58,6 +58,51 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/company/selectedStateData', [App\Http\Controllers\CompanyController::class, 'selectedStateData'])->name('company.selectedStateData');
     Route::get('/company/selectedCityData', [App\Http\Controllers\CompanyController::class, 'selectedCityData'])->name('company.selectedCityData');
 
+    Route::put('/company/{id}/salesUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@salesUpdate',
+        'as' => 'company.salesUpdate'
+    ]);
+
+    Route::put('/company/{id}/purchaseUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@purchaseUpdate',
+        'as' => 'company.purchaseUpdate'
+    ]);
+
+    Route::put('/company/{id}/inventoryUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@inventoryUpdate',
+        'as' => 'company.inventoryUpdate'
+    ]);
+
+    Route::put('/company/{id}/logisticUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@logisticUpdate',
+        'as' => 'company.logisticUpdate'
+    ]);
+
+    Route::put('/company/{id}/productionUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@productionUpdate',
+        'as' => 'company.productionUpdate'
+    ]);
+
+    Route::put('/company/{id}/serviceUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@serviceUpdate',
+        'as' => 'company.serviceUpdate'
+    ]);
+
+    Route::put('/company/{id}/projectUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@projectUpdate',
+        'as' => 'company.projectUpdate'
+    ]);
+
+    Route::put('/company/{id}/humanResourceUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@humanResourceUpdate',
+        'as' => 'company.humanResourceUpdate'
+    ]);
+
+    Route::put('/company/{id}/financeUpdate', [
+        'uses' => 'App\Http\Controllers\CompanyController@financeUpdate',
+        'as' => 'company.financeUpdate'
+    ]);
+
     Route::resources([
         'company' => App\Http\Controllers\CompanyController::class,
     ]);

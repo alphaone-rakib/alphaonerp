@@ -24,6 +24,11 @@ class Company extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public function plants()
+    {
+        return $this->hasMany(Plant::class);
+    }
+
     public function settings()
     {
         return $this->hasMany(Setting::class);

@@ -16,7 +16,7 @@
                 <div class="card-body p-4">
                     <div class="text-center">
                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                            <img src="@if (Auth::user()->avatar != '') {{ URL::asset('images/' . Auth::user()->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }} @endif"
+                            <img src="@if ($company->company_logo != '') {{ URL::asset($company->company_logo) }}@else{{ URL::asset('assets/images/companies/img-7.png') }} @endif"
                                 class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow"
                                 alt="user-profile-image">
 
