@@ -58,7 +58,20 @@ class CompanyConfigurationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $company = Company::find($id);
+        $company->setSettings();
+        $getLang = $this->getLang();
+
+        $countryName = DB::table('countries')->where('id', $company->country)->first();
+        $stateName = DB::table('states')->where('id', $company->state)->first();
+        $cityName = DB::table('cities')->where('id', $company->city)->first();
+
+        $country = $countryName->name;
+        $state = $stateName->name;
+        $city = $cityName->name;
+        $lang = $getLang[$company->language];
+
+        return view('company-configuration.show', compact('company', 'country', 'state', 'city', 'getLang', 'lang'));
     }
 
     /**
