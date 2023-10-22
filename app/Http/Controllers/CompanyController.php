@@ -330,74 +330,8 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, Company $company)
-    {
-        $request->validate([
-            'name' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            'fax' => ['nullable', 'string'],
-            'url' => ['nullable', 'url'],
-            'country' => ['required', 'integer'],
-            'state' => ['required', 'integer'],
-            'city' => ['nullable', 'integer'],
-            'zip_code' => ['nullable', 'string'],
-            'company_address_one' => ['nullable', 'string'],
-            'company_address_two' => ['nullable', 'string'],
-        ]);
-
-        DB::beginTransaction();
-        try {
-            $company->name = $request->input('name');
-            $company->save();
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.phone')
-                ->update(['value' => $request->input('phone')]);
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.fax')
-                ->update(['value' => $request->input('fax')]);
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.url')
-                ->update(['value' => $request->input('url')]);
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.country')
-                ->update(['value' => $request->input('country')]);
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.state')
-                ->update(['value' => $request->input('state')]);
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.city')
-                ->update(['value' => $request->input('city')]);
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.zip_code')
-                ->update(['value' => $request->input('zip_code')]);
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.company_address_one')
-                ->update(['value' => $request->input('company_address_one')]);
-
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.company_address_two')
-                ->update(['value' => $request->input('company_address_two')]);
-
-            DB::commit();
-            return redirect()->route('company.index')->with('success', trans('Company Basic Information Updated Successfully'));
-        } catch (Exception $e) {
-            DB::rollback();
-            return redirect()->back()->with('error', $e);
-        }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function Crudupdate(Request $request, Company $company)
     {
         $request->validate([
             'name' => ['required', 'string'],
