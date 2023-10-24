@@ -350,7 +350,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="quote_form_messages"
-                                                    class="form-label">@lang('Days To Quote')</label>
+                                                    class="form-label">@lang('Quote Form Messages')</label>
                                                 <input id="quote_form_messages"
                                                     class="form-control @error('quote_form_messages') is-invalid @enderror"
                                                     type="text" name="quote_form_messages"
