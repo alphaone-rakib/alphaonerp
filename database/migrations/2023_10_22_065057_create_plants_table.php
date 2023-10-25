@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->bigInteger('plant_id')->unsigned();
-            $table->string('name');
+            $table->string('plant_id')->nullable();
+            $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->boolean('enabled')->default(1);
             $table->timestamps();
