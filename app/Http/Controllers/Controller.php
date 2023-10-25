@@ -23,7 +23,19 @@ class Controller extends BaseController
 
     public function getLang()
     {
-        return array ('en' => 'English', 'bn' => 'বাংলা', 'el' => 'Ελληνικά', 'pt' => 'Português', 'es' => 'Español', 'de' => 'Deutch', 'fr' => 'Français', 'nl' => 'Nederlands', 'it' => 'Italiano', 'vi' => 'Tiếng Việt', 'ru' => 'русский', 'tr' => 'Türkçe', 'ar' => 'عربي');
+        return array('en' => 'English', 'bn' => 'বাংলা', 'el' => 'Ελληνικά', 'pt' => 'Português', 'es' => 'Español', 'de' => 'Deutch', 'fr' => 'Français', 'nl' => 'Nederlands', 'it' => 'Italiano', 'vi' => 'Tiếng Việt', 'ru' => 'русский', 'tr' => 'Türkçe', 'ar' => 'عربي');
+    }
+
+    public function menusHref()
+    {
+        return array(
+            'javascript:void(0)' => 'No Location',
+            'company' => 'Company',
+            'company-configuration' => 'Company Configuration',
+            'plant' => 'Plant',
+            'menu' => 'Menu',
+            'application-settings' => 'Application Configuration',
+        );
     }
 
     /**

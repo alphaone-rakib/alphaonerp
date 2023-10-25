@@ -108,5 +108,6 @@ Route::group(['middleware' => ['auth']], function () {
         'company' => App\Http\Controllers\CompanyController::class,
         'company-configuration' => App\Http\Controllers\CompanyConfigurationController::class,
         'plant' => App\Http\Controllers\PlantController::class,
+        'menu' => App\Http\Controllers\MenuController::class,
     ]);
 });
