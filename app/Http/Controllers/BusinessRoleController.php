@@ -147,6 +147,8 @@ class BusinessRoleController extends Controller
      */
     public function destroy(BusinessRole $businessRole)
     {
-        //
+        $businessRole->menus()->detach();
+        $businessRole->delete();
+        return redirect()->route('business-role.index')->with('success', trans('Plant Deleted Successfully'));
     }
 }
