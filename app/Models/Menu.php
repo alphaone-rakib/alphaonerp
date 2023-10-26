@@ -26,4 +26,9 @@ class Menu extends Model
     {
         return $this->belongsTo(Menu::class, 'parent_id');
     }
+
+    public function businessRoles()
+    {
+        return $this->belongsToMany(BusinessRole::class, 'business_role_menu', 'menu_id', 'business_role_id');
+    }
 }

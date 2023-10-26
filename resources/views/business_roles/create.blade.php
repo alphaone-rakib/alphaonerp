@@ -59,133 +59,72 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title mb-0">Vertical</h4>
-                                    </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="verti-sitemap">
                                                     <ul class="list-unstyled mb-0">
                                                         <li class="p-0 parent-title"><a href="javascript: void(0);"
-                                                                class="fw-medium fs-14">Nancy Martino - Project Director</a>
+                                                                class="fw-medium fs-14">@lang('Authorized Menu')</a>
                                                         </li>
-                                                        <li>
-                                                            <div class="first-list">
-                                                                <div class="list-wrap">
-                                                                    <a href="javascript: void(0);" class="fw-medium text-primary">Erica
-                                                                        Kernan - Team Leader</a>
+                                                        @foreach($categories as $category)
+                                                        <div class="first-list">
+                                                            <div class="list-wrap">
+                                                                <div class="form-check form-check-primary">
+                                                                    <input id="{{$category->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" table_id="{{ $category->id }}" value="{{ $category->id }}" style="margin-left: -26px !important">
+                                                                    <label for="{{$category->id}}" class="form-label">{{$category->name}}</label>
                                                                 </div>
-                                                                <ul class="second-list list-unstyled">
-                                                                    <li>
-                                                                        <a href="javascript: void(0);">Jason McQuaid -
-                                                                            Member</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascript: void(0);">Elwood Arter -
-                                                                            Member</a>
-                                                                    </li>
-                                                                </ul>
                                                             </div>
-                                                            <div class="first-list">
-                                                                <div class="list-wrap">
-                                                                    <a href="javascript: void(0);" class="fw-medium text-primary">Mary
-                                                                        Jones
-                                                                        - Project Manager</a>
-                                                                </div>
-                                                                <ul class="second-list list-unstyled">
-                                                                    <li><a href="javascript: void(0);">Jordyn Jones -
-                                                                            Designer</a></li>
-                                                                    <li><a href="javascript: void(0);">Ashlee Haney -
-                                                                            Developer</a></li>
-                                                                    <li><a href="javascript: void(0);">Rashad Charles -
-                                                                            BackEnd Developer</a></li>
-                                                                    <li><a href="javascript: void(0);">Walter Newman -
-                                                                            Frontend Developer</a>
-                                                                    </li>
-                                                                    <li><a href="javascript: void(0);">Adam Moss -
-                                                                            Designer</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="first-list">
-                                                                <div class="list-wrap">
-                                                                    <a href="javascript: void(0);" class="fw-medium text-primary">Tilly
-                                                                        Kent
-                                                                        - Executive Manager</a>
-                                                                </div>
-                                                                <ul class="second-list list-unstyled">
-                                                                    <li>
-                                                                        <a href="javascript: void(0);">Tyler Porter -
-                                                                            Account Executive</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascript: void(0);">Alicia Thompson -
-                                                                            Sales Executive</a>
-                                                                        <ul class="third-list list-unstyled">
-                                                                            <li><a href="javascript: void(0);">Jack
-                                                                                    Coates -
-                                                                                    Member</a></li>
-                                                                            <li><a href="javascript: void(0);">Owen
-                                                                                    Jarvis -
-                                                                                    Member</a></li>
-                                                                            <li><a href="javascript: void(0);">Ashlee
-                                                                                    Haney
-                                                                                    - Member</a></li>
-                                                                            <li><a href="javascript: void(0);">Archie
-                                                                                    Cook -
-                                                                                    Member</a></li>
-                                                                        </ul>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
+                                                            @foreach($category->children as $child)
+                                                            <ul class="second-list list-unstyled">
+                                                                <li>
+                                                                    <div class="form-check form-check-secondary">
+                                                                        <input id="{{$child->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" table_id="{{ $category->id }}" value="{{ $child->id }}" style="margin-left: -26px !important">
+                                                                        <label for="{{$child->id}}" class="form-label">{{$child->name}}</label>
+                                                                    </div>
+                                                                    @foreach($child->children as $child2)
+                                                                    <ul class="third-list list-unstyled">
+                                                                        <li>
+                                                                            <div class="form-check form-check-info">
+                                                                                <input id="{{$child2->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child2->id }}" style="margin-left: -26px !important">
+                                                                                <label for="{{$child2->id}}" class="form-label">{{$child2->name}}</label>
+                                                                            </div>
+                                                                            @foreach($child2->children as $child3)
+                                                                            <ul class="third-list list-unstyled">
+                                                                                <li>
+                                                                                    <div class="form-check form-check-dark">
+                                                                                        <input id="{{$child3->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child3->id }}" style="margin-left: -26px !important">
+                                                                                        <label for="{{$child3->id}}" class="form-label">{{$child3->name}}</label>
+                                                                                    </div>
+                                                                                    @foreach($child3->children as $child4)
+                                                                                    <ul class="third-list list-unstyled">
+                                                                                        <li>
+                                                                                            <div class="form-check form-check-success">
+                                                                                                <input id="{{$child4->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child4->id }}" >
+                                                                                                <label for="{{$child4->id}}" class="form-label">{{$child4->name}}</label>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                    @endforeach
+                                                                                </li>
+                                                                            </ul>
+                                                                            @endforeach
+                                                                        </li>
+                                                                    </ul>
+                                                                    @endforeach
+                                                                </li>
+                                                            </ul>
+                                                            @endforeach
+                                                        </div>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--end row-->
                                     </div>
-                                    <!--end card-body-->
                                 </div>
-                                <!--end card-->
                             </div>
-                            <!--end col-->
                         </div>
-
-                            <div class="row">
-                              <div class="col-md-5">
-                                <select name="from[]" id="multiselect" class="form-control" size="8" multiple="multiple">
-                                  <option value="1">Item 1</option>
-                                  <option value="2">Item 5</option>
-                                  <option value="2">Item 2</option>
-                                  <option value="2">Item 4</option>
-                                  <option value="3">Item 3</option>
-                                </select>
-                              </div>
-                          
-                              <div class="col-md-2">
-                                <div class="row">
-                                    <button type="button" id="multiselect_rightAll" class="btn btn-block btn-soft-primary"><span class="mdi mdi-skip-forward"></span>
-                                    </span></button>
-                                </div>
-                                <div class="row">
-                                    <button type="button" id="multiselect_rightSelected" class="btn btn-block btn-soft-info"><span class="mdi mdi-menu-right"></span>
-                                    </button>
-                                </div>
-                                <div class="row">
-                                    <button type="button" id="multiselect_leftSelected" class="btn btn-block btn-soft-info"><span class="mdi mdi-menu-left"></span>
-                                    </button>
-                                </div>
-                                <div class="row">
-                                    <button type="button" id="multiselect_leftAll" class="btn btn-block btn-soft-primary"><span class="mdi mdi-skip-backward"></span>
-                                    </button>
-                                </div>
-                              </div>
-                          
-                              <div class="col-md-5">
-                                <select name="to[]" id="multiselect_to" class="form-control" size="8" multiple="multiple"></select>
-                              </div>
-                            </div>
                     </div>
                     <div class="card-footer">
                         <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg"/>
@@ -208,6 +147,7 @@
             $('.select2').select2();
 
             $('#multiselect').multiselect();
+
         });
     </script>
 @endsection

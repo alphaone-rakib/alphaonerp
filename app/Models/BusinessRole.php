@@ -14,8 +14,12 @@ class BusinessRole extends Model
         'company_id',
         'role_id',
         'name',
-        'menus_ids',
         'description',
         'enabled'
     ];
+
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'business_role_menu', 'business_role_id', 'menu_id');
+    }
 }

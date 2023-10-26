@@ -104,6 +104,8 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'company-configuration.financeUpdate'
     ]);
 
+    Route::get('/business-role/childMenuchecked', [App\Http\Controllers\BusinessRoleController::class, 'childMenuchecked'])->name('business-role.childMenuchecked');
+
     Route::resources([
         'company' => App\Http\Controllers\CompanyController::class,
         'company-configuration' => App\Http\Controllers\CompanyConfigurationController::class,

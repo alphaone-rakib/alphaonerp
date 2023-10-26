@@ -39,9 +39,26 @@ class BusinessRoleController extends Controller
      */
     public function create()
     {
-        $menus = $this->tree();
-        return view('business_roles.create', compact('menus'));
+        $categories = $this->tree();
+        // dd($categories);
+        return view('business_roles.create', compact('categories'));
     }
+
+    public function childMenuchecked(Request $request)
+    {
+        $tableId = $request->menuId;
+
+        $child = $this->selectedTree($tableId);
+        return response()->json($child);
+    }
+
+    // public function selectedTree($rootCategoryId)
+    // {
+    //     $allCategories = Menu::get();
+    //     $rootCategories = $allCategories->where('parent_id', $rootCategoryId);
+
+    //     self::selectedFormatTree($rootCategories, $allCategories);
+    // }
 
     public function tree()
     {
@@ -53,6 +70,17 @@ class BusinessRoleController extends Controller
 
         return $rootCategories;
     }
+
+    // private static function selectedFormatTree($categories, $allCategories)
+    // {
+    //     foreach ($categories as $category) {
+    //         $category->children = $allCategories->where('parent_id', $category->id)->values();
+
+    //         if ($category->children->isNotEmpty()) {
+    //             self::formatTree($category->children, $allCategories);
+    //         }
+    //     }
+    // }
 
     private static function formatTree($categories, $allCategories)
     {
@@ -70,7 +98,25 @@ class BusinessRoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'role_id' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'menus' => ['required', 'array'],
+        ]);
+
+        $businessRole = BusinessRole::create([
+            'user_id' => auth()->user()->id,
+            'role_id' => $request->input('role_id'),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'enabled' => 1
+        ]);
+
+        $businessRole->menus()->attach($request->input('menus'));
+
+        session()->flash('success', trans('Business Role Created Successfully'));
+        return redirect()->route('business-role.index');
     }
 
     /**
