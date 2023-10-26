@@ -91,6 +91,12 @@ class PlantController extends Controller
      */
     public function update(Request $request, Plant $plant)
     {
+        $request->validate([
+            'company_id' => ['required', 'string'],
+            'plant_id' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+        ]);
         $data = $request->only(['company_id', 'plant_id', 'name', 'description']);
         $plant->update($data);
         return redirect()->route('plant.index')->with('success', trans('Plant Updated Successfully'));

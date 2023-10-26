@@ -40,7 +40,6 @@ class BusinessRoleController extends Controller
     public function create()
     {
         $categories = $this->tree();
-        // dd($categories);
         return view('business_roles.create', compact('categories'));
     }
 
@@ -52,14 +51,6 @@ class BusinessRoleController extends Controller
         return response()->json($child);
     }
 
-    // public function selectedTree($rootCategoryId)
-    // {
-    //     $allCategories = Menu::get();
-    //     $rootCategories = $allCategories->where('parent_id', $rootCategoryId);
-
-    //     self::selectedFormatTree($rootCategories, $allCategories);
-    // }
-
     public function tree()
     {
         $allCategories = Menu::get();
@@ -70,17 +61,6 @@ class BusinessRoleController extends Controller
 
         return $rootCategories;
     }
-
-    // private static function selectedFormatTree($categories, $allCategories)
-    // {
-    //     foreach ($categories as $category) {
-    //         $category->children = $allCategories->where('parent_id', $category->id)->values();
-
-    //         if ($category->children->isNotEmpty()) {
-    //             self::formatTree($category->children, $allCategories);
-    //         }
-    //     }
-    // }
 
     private static function formatTree($categories, $allCategories)
     {
@@ -132,7 +112,13 @@ class BusinessRoleController extends Controller
      */
     public function edit(BusinessRole $businessRole)
     {
-        //
+        $menus = array();
+        foreach ($businessRole->menus as $menu) {
+            $menus[] = $menu->id;
+        }
+
+        $categories = $this->tree();
+        return view('business_roles.edit', compact('categories', 'businessRole', 'menus'));
     }
 
     /**
@@ -140,7 +126,20 @@ class BusinessRoleController extends Controller
      */
     public function update(Request $request, BusinessRole $businessRole)
     {
-        //
+        $request->validate([
+            'role_id' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'menus' => ['required', 'array'],
+            'enabled' => ['nullable', 'in:0,1']
+        ]);
+
+        $data = $request->only(['role_id', 'name', 'description', 'enabled']);
+        $businessRole->update($data);
+        $businessRole->menus()->sync($request->input('menus'));
+
+        session()->flash('success', trans('Business Role Edit Successfully'));
+        return redirect()->route('business-role.index');
     }
 
     /**
