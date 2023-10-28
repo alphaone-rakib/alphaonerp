@@ -55,13 +55,18 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    /**
-     * Has many relation with complains
-     *
-     * @return mixed
-     */
+    public function getNameAttribute()
+    {
+        return ucfirst($this->f_name) . ' ' . ucfirst($this->m_name) . ' ' . ucfirst($this->l_name);
+    }
+
     public function companies()
     {
         return $this->morphToMany(Company::class, 'user', 'user_companies', 'user_id', 'company_id');
+    }
+
+    public function businessRoles()
+    {
+        return $this->belongsToMany(BusinessRole::class, 'business_role_user', 'user_id', 'business_role_id');
     }
 }

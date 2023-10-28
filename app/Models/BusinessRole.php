@@ -22,4 +22,9 @@ class BusinessRole extends Model
     {
         return $this->belongsToMany(Menu::class, 'business_role_menu', 'business_role_id', 'menu_id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'business_role_user','business_role_id','user_id')
+    }
 }

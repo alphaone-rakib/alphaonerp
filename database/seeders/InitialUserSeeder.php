@@ -15,7 +15,9 @@ class InitialUserSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
-            'name' => 'Super Admin',
+            'f_name' => 'Mr.',
+            'm_name' => 'Super',
+            'l_name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
             'phone' => '01712340889',
