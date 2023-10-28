@@ -30,7 +30,6 @@ class PlantController extends Controller
         if ($request->name)
             $query->where('name', 'like', '%' . $request->name . '%');
 
-
         return $query;
     }
 

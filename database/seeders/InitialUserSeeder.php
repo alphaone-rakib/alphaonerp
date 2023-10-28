@@ -21,7 +21,7 @@ class InitialUserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
             'phone' => '01712340889',
-            'address' => 'Dhaka, BD',
+            'address_one' => 'Dhaka, BD',
             'status' => '1',
         ]);
         $adminRole = Role::where('name', 'Super Admin')->first();

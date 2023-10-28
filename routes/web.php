@@ -112,5 +112,6 @@ Route::group(['middleware' => ['auth']], function () {
         'plant' => App\Http\Controllers\PlantController::class,
         'menu' => App\Http\Controllers\MenuController::class,
         'business-role' => App\Http\Controllers\BusinessRoleController::class,
+        'user' => App\Http\Controllers\UserController::class,
     ]);
 });

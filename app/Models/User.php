@@ -20,12 +20,24 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'company_id',
+        'user_id',
+        'f_name',
+        'm_name',
+        'l_name',
         'email',
         'email_verified_at',
         'password',
         'phone',
-        'address',
+        'address_one',
+        'address_two',
+        'city',
+        'state',
+        'zip_code',
+        'country',
+        'office_phone',
+        'cell_phone',
+        'language',
         'photo',
         'company_id',
         'locale',
@@ -33,6 +45,8 @@ class User extends Authenticatable
         'gender',
         'blood_group',
         'status',
+        'enabled',
+        'locked',
     ];
 
     /**
