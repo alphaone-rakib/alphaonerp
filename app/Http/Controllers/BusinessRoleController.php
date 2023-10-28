@@ -104,7 +104,14 @@ class BusinessRoleController extends Controller
      */
     public function show(BusinessRole $businessRole)
     {
-        //
+        $menus = array();
+        foreach ($businessRole->menus as $menu) {
+            $menus[] = $menu->id;
+        }
+
+        $categories = $this->tree();
+
+        return view('business_roles.show', compact('categories', 'businessRole', 'menus'));
     }
 
     /**
