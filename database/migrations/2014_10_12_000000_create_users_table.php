@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('f_name')->nullable();
             $table->string('m_name')->nullable();
             $table->string('l_name')->nullable();
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->enum('blood_group', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])->nullable();
-            $table->enum('status', ['0', '1'])->default('0');
+            $table->enum('status', ['0', '1'])->default(1);
             $table->boolean('enabled')->default(1);
             $table->boolean('locked')->default(0);
             $table->rememberToken();

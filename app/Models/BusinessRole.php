@@ -25,6 +25,6 @@ class BusinessRole extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class,'business_role_user','business_role_id','user_id')
+        return $this->belongsToMany(User::class, 'business_role_user', 'business_role_id', 'user_id');
     }
 }

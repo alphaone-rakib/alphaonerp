@@ -15,6 +15,7 @@ class InitialUserSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
+            'f_name' => '1-Admin',
             'f_name' => 'Mr.',
             'm_name' => 'Super',
             'l_name' => 'Admin',

@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/company/selectedStateData', [App\Http\Controllers\CompanyController::class, 'selectedStateData'])->name('company.selectedStateData');
     Route::get('/company/selectedCityData', [App\Http\Controllers\CompanyController::class, 'selectedCityData'])->name('company.selectedCityData');
+    Route::get('/user/forgetPassword', [App\Http\Controllers\UserController::class, 'forgetPassword'])->name('user.forgetPassword');
 
     Route::put('/company-configuration/{id}/salesUpdate', [
         'uses' => 'App\Http\Controllers\CompanyConfigurationController@salesUpdate',
@@ -105,6 +106,11 @@ Route::group(['middleware' => ['auth']], function () {
     ]);
 
     Route::get('/business-role/childMenuchecked', [App\Http\Controllers\BusinessRoleController::class, 'childMenuchecked'])->name('business-role.childMenuchecked');
+
+    Route::put('/user/{id}/assignBusinessProfile', [
+        'uses' => 'App\Http\Controllers\UserController@assignBusinessProfile',
+        'as' => 'user.assignBusinessProfile'
+    ]);
 
     Route::resources([
         'company' => App\Http\Controllers\CompanyController::class,

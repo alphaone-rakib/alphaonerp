@@ -34,6 +34,8 @@ class Controller extends BaseController
             'company-configuration' => 'Company Configuration',
             'plant' => 'Plant',
             'menu' => 'Menu',
+            'user' => 'Users',
+            'business-role' => 'Business Role',
             'application-settings' => 'Application Configuration',
         );
     }

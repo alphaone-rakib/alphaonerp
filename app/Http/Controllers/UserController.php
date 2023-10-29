@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BusinessRole;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        $data = $this->filter($request)->paginate(10)->withQueryString();
+        return view('users.index', compact('data'));
     }
 
     private function filter(Request $request)
@@ -44,7 +46,47 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'user_id' => ['required', 'string'],
+            'f_name' => ['required', 'string'],
+            'm_name' => ['required', 'string'],
+            'l_name' => ['required', 'string'],
+            'address_one' => ['nullable', 'string'],
+            'address_two' => ['nullable', 'string'],
+            'country' => ['required', 'string'],
+            'state' => ['required', 'string'],
+            'city' => ['nullable', 'string'],
+            'zip_code' => ['nullable', 'string'],
+            'office_phone' => ['nullable', 'string'],
+            'cell_phone' => ['nullable', 'string'],
+            'email' => ['required', 'string'],
+            'password' => ['required', 'same:password_confirmation'],
+            'language' => ['required', 'string'],
+            'enabled' => ['required', 'in:0,1'],
+            'locked' => ['required', 'in:0,1']
+        ]);
+
+        $input = array();
+        $input['user_id'] = $request->user_id;
+        $input['f_name'] = $request->f_name;
+        $input['m_name'] = $request->m_name;
+        $input['l_name'] = $request->l_name;
+        $input['address_one'] = $request->address_one;
+        $input['address_two'] = $request->address_two;
+        $input['country'] = $request->country;
+        $input['state'] = $request->state;
+        $input['city'] = $request->city;
+        $input['zip_code'] = $request->zip_code;
+        $input['office_phone'] = $request->office_phone;
+        $input['cell_phone'] = $request->cell_phone;
+        $input['email'] = $request->email;
+        $input['password'] = bcrypt($request->password);
+        $input['language'] = $request->language;
+        $input['enabled'] = $request->enabled;
+        $input['locked'] = $request->locked;
+        $user = User::create($input);
+
+        return redirect()->route('user.index')->with('success', trans('User Created Successfully'));
     }
 
     /**
@@ -60,7 +102,18 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $countriesList = DB::table('countries')->pluck('name', 'id');
+        $user = User::find($id);
+
+        $countryName = DB::table('countries')->where('id', $user->country)->first();
+        $stateName = DB::table('states')->where('id', $user->state)->first();
+        $cityName = DB::table('cities')->where('id', $user->city)->first();
+
+        $getLang = $this->getLang();
+
+        $roleNames = BusinessRole::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
+
+        return view('users.edit', compact('user', 'countryName', 'stateName', 'cityName', 'countriesList', 'getLang', 'roleNames'));
     }
 
     /**
@@ -68,7 +121,34 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'user_id' => ['required', 'string'],
+            'f_name' => ['required', 'string'],
+            'm_name' => ['required', 'string'],
+            'l_name' => ['required', 'string'],
+            'address_one' => ['nullable', 'string'],
+            'address_two' => ['nullable', 'string'],
+            'country' => ['required', 'string'],
+            'state' => ['required', 'string'],
+            'city' => ['nullable', 'string'],
+            'zip_code' => ['nullable', 'string'],
+            'office_phone' => ['nullable', 'string'],
+            'cell_phone' => ['nullable', 'string'],
+            'email' => ['required', 'string'],
+            'language' => ['required', 'string']
+        ]);
+        $user = User::find($id);
+        $data = $request->only(['user_id', 'f_name', 'm_name', 'l_name', 'address_one', 'address_two', 'country', 'state', 'city', 'zip_code', 'office_phone', 'cell_phone', 'email', 'language']);
+        $user->update($data);
+        return redirect()->route('user.index')->with('success', trans('User Updated Successfully'));
+    }
+
+    public function assignBusinessProfile(Request $request, string $id)
+    {
+
+        $user = User::find($id);
+        $user->businessRoles()->sync($request->input('assign_business_role'));
+        return redirect()->route('user.index')->with('success', trans('User Assign Business Role Updated Successfully'));
     }
 
     /**
@@ -76,6 +156,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('user.index')->with('success', trans('User Deleted Successfully'));
     }
 }
