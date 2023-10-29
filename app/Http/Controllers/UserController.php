@@ -113,7 +113,12 @@ class UserController extends Controller
 
         $roleNames = BusinessRole::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
 
-        return view('users.edit', compact('user', 'countryName', 'stateName', 'cityName', 'countriesList', 'getLang', 'roleNames'));
+        $roles = array();
+        foreach ($user->businessRoles as $key => $value) {
+            $roles[] = $value->id;
+        }
+
+        return view('users.edit', compact('user', 'countryName', 'stateName', 'cityName', 'countriesList', 'getLang', 'roleNames', 'roles'));
     }
 
     /**

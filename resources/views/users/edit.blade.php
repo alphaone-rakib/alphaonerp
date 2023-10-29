@@ -258,7 +258,7 @@
                                             <p class="text-muted">Select One or More Business Profile To The User</p>
                                             <select required multiple="multiple" name="assign_business_role[]" id="multiselect-header">
                                                 @foreach($roleNames as $key => $value)
-                                                    <option value="{{ $key }}" >{{ $value }}</option>
+                                                    <option value="{{ $key }}" @if(in_array($key, $roles)) selected @endif>{{ $value }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
