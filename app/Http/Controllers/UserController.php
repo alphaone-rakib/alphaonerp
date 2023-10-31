@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\BusinessRole;
+use App\Models\Company;
+use App\Models\Plant;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -118,7 +120,19 @@ class UserController extends Controller
             $roles[] = $value->id;
         }
 
-        return view('users.edit', compact('user', 'countryName', 'stateName', 'cityName', 'countriesList', 'getLang', 'roleNames', 'roles'));
+        $companyNames = Company::with('plants')->where('enabled', 1)->orderBy('name')->get();
+
+        $selectedCompany = array();
+        $selectedPlant = array();
+        foreach ($user->companies as $company) {
+            $selectedCompany[] = $company->id;
+        }
+        foreach ($user->plants as $plant) {
+            $selectedPlant[] = $plant->id;
+        }
+
+
+        return view('users.edit', compact('selectedCompany', 'selectedPlant', 'user', 'countryName', 'stateName', 'cityName', 'countriesList', 'getLang', 'roleNames', 'roles', 'companyNames'));
     }
 
     /**
@@ -150,10 +164,39 @@ class UserController extends Controller
 
     public function assignBusinessProfile(Request $request, string $id)
     {
-
+        $request->validate([
+            'assign_business_role' => ['required', 'array']
+        ]);
         $user = User::find($id);
         $user->businessRoles()->sync($request->input('assign_business_role'));
         return redirect()->route('user.index')->with('success', trans('User Assign Business Role Updated Successfully'));
+    }
+
+    public function assignCompany(Request $request, string $id)
+    {
+        // dd($request->all());
+        $request->validate([
+            'company' => ['required', 'array'],
+            'plants' => ['required', 'array']
+        ]);
+
+        $plantCompany = array();
+        $requestCompany = array();
+
+        foreach ($request->plants as $plant) {
+            $cPlant = Plant::find($plant);
+            $plantCompany[] = $cPlant->company->id;
+        }
+        foreach ($request->company as $com) {
+            $requestCompany[] = intval($com);
+        }
+
+        $company = array_unique(array_merge($plantCompany, $requestCompany));
+
+        $user = User::find($id);
+        $user->companies()->sync($company);
+        $user->plants()->sync($request->plants);
+        return redirect()->route('user.index')->with('success', trans('User Assign Company Updated Successfully'));
     }
 
     /**

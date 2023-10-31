@@ -83,4 +83,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(BusinessRole::class, 'business_role_user', 'user_id', 'business_role_id');
     }
+
+    public function plants()
+    {
+        return $this->belongsToMany(Plant::class, 'plant_user', 'user_id', 'plant_id');
+    }
 }

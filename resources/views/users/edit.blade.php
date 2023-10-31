@@ -261,10 +261,133 @@
                                                     <option value="{{ $key }}" @if(in_array($key, $roles)) selected @endif>{{ $value }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('assign_business_role')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-2"></div>
                                 </div>
+                                <div class="card-body">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-lg-10">
+                                            <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
+                                            <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        </div>
+                                        <div class="col-lg-1"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="company_tab" role="tabpanel">
+                            <form class="form-material form-horizontal" action="{{ route('user.assignCompany', $user->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-8">
+                                        <div class="verti-sitemap">
+                                            <ul class="list-unstyled mb-0">
+                                                <li class="p-0 parent-title">
+                                                    <a href="javascript: void(0);" class="fw-medium fs-14">@lang('Assign Company & Plant')</a>
+                                                </li>
+                                                @foreach($companyNames as $company)
+                                                <div class="first-list">
+                                                    <div class="list-wrap">
+                                                        <div class="form-check form-check-primary">
+                                                            <input id="{{"c_".$company->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="company[]" table_id="{{ $company->id }}" value="{{ $company->id }}" @if(in_array($company->id, $selectedCompany)) checked @endif style="margin-left: -26px !important">
+                                                            <label for="{{"c_".$company->id}}" class="form-label">{{ucfirst($company->name)." ( Company )"}}</label>
+                                                        </div>
+                                                    </div>
+                                                    @foreach($company->plants as $child)
+                                                    <ul class="second-list list-unstyled">
+                                                        <li>
+                                                            <div class="form-check form-check-secondary">
+                                                                <input id="{{"p_".$child->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="plants[]" table_id="{{ $child->id }}" value="{{ $child->id }}" @if(in_array($child->id, $selectedPlant)) checked @endif style="margin-left: -26px !important">
+                                                                <label for="{{"p_".$child->id}}" class="form-label">{{ucfirst($child->name)." ( Plant )"}}</label>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    @endforeach
+                                                </div>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-lg-10">
+                                            <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
+                                            <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        </div>
+                                        <div class="col-lg-1"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="account_action_tab" role="tabpanel">
+                            <form class="form-material form-horizontal" action="{{ route('user.accountAction', $user->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-8">
+                                        <div class="mb-3">
+                                            <label for="enabled" class="form-label">@lang('Enabled Account') <b
+                                                    class="ambitious-crimson">*</b></label>
+                                            <select id="enabled" class="form-control @error('enabled') is-invalid @enderror" select2 name="enabled" required>
+                                                <option value="1"
+                                                    {{ old('enabled',$user->enabled) === 1 ? 'selected' : '' }}> @lang('Enable')
+                                                </option>
+                                                <option value="0"
+                                                    {{ old('enabled',$user->enabled) === 0 ? 'selected' : '' }}> @lang('Disable')
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-8">
+                                        <div class="mb-3">
+                                            <label for="locked" class="form-label">@lang('Locked') <b class="ambitious-crimson">*</b></label>
+                                            <select id="locked" class="form-control @error('locked') is-invalid @enderror" select2 name="locked" required>
+                                                <option value="1" {{ old('locked',$user->locked) == 1 ? 'selected' : '' }}>
+                                                    @lang('Locaked')
+                                                </option>
+                                                <option value="0"
+                                                    {{ old('locked',$user->locked) == 0 ? 'selected' : '' }}>
+                                                    @lang('Unlocked')
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-8">
+                                        <div class="mb-3">
+                                            <label for="forget-password" class="form-label"><a class="btn btn-outline btn-soft-info shadow-none" href="#">@lang('Reset Password')</a></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2"></div>
+                                </div>
+
+                                
+                                {{-- <a href="{{ route('forget.password.get') }}">Reset Password</a> --}}
+                                                
+
+
                                 <div class="card-body">
                                     <br>
                                     <div class="row">

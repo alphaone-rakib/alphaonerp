@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +17,11 @@ use Illuminate\Support\Facades\Schema;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -110,6 +117,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/user/{id}/assignBusinessProfile', [
         'uses' => 'App\Http\Controllers\UserController@assignBusinessProfile',
         'as' => 'user.assignBusinessProfile'
+    ]);
+
+    Route::put('/user/{id}/assignCompany', [
+        'uses' => 'App\Http\Controllers\UserController@assignCompany',
+        'as' => 'user.assignCompany'
+    ]);
+
+    Route::put('/user/{id}/accountAction', [
+        'uses' => 'App\Http\Controllers\UserController@accountAction',
+        'as' => 'user.accountAction'
     ]);
 
     Route::resources([
