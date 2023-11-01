@@ -229,37 +229,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="enabled" class="form-label">@lang('Enabled') <b
-                                            class="ambitious-crimson">*</b></label>
-                                    <select id="enabled" class="form-control @error('enabled') is-invalid @enderror"
-                                        select2 name="enabled" required>
-                                        <option value="1"
-                                            {{ old('enabled') === 1 ? 'selected' : '' }}>
-                                            @lang('Enable')</option>
-                                        <option value="0"
-                                            {{ old('enabled') === 0 ? 'selected' : '' }}>
-                                            @lang('Disable')</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="locked" class="form-label">@lang('Locked') <b class="ambitious-crimson">*</b></label>
-                                    <select id="locked" class="form-control @error('locked') is-invalid @enderror" select2 name="locked" required>
-                                        <option value="1" {{ old('locked') == 1 ? 'selected' : '' }}>
-                                            @lang('Locaked')
-                                        </option>
-                                        <option value="0"
-                                            {{ old('locked') == 0 ? 'selected' : '' }}>
-                                            @lang('Unlocked')
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-footer">
                         <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg"/>

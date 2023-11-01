@@ -63,9 +63,7 @@ class UserController extends Controller
             'cell_phone' => ['nullable', 'string'],
             'email' => ['required', 'string'],
             'password' => ['required', 'same:password_confirmation'],
-            'language' => ['required', 'string'],
-            'enabled' => ['required', 'in:0,1'],
-            'locked' => ['required', 'in:0,1']
+            'language' => ['required', 'string']
         ]);
 
         $input = array();
@@ -84,8 +82,8 @@ class UserController extends Controller
         $input['email'] = $request->email;
         $input['password'] = bcrypt($request->password);
         $input['language'] = $request->language;
-        $input['enabled'] = $request->enabled;
-        $input['locked'] = $request->locked;
+        $input['enabled'] = 1;
+        $input['locked'] = 1;
         $user = User::create($input);
 
         return redirect()->route('user.index')->with('success', trans('User Created Successfully'));

@@ -46,9 +46,11 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="user_tab" role="tabpanel">
-                            <form class="form-material form-horizontal" action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="user_tab" role="tabpanel">
+                        <form class="form-material form-horizontal" action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            <div class="card-body">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -239,15 +241,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
-                                    <a href="{{ route('dashboard') }}"
-                                        class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="business_tab" role="tabpanel">
-                            <form class="form-material form-horizontal" action="{{ route('user.assignBusinessProfile', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            </div>
+                            <div class="card-footer">
+                                <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
+                                <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="business_tab" role="tabpanel">
+                        <form class="form-material form-horizontal" action="{{ route('user.assignBusinessProfile', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            <div class="card-body">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -270,21 +273,20 @@
                                     </div>
                                     <div class="col-lg-2"></div>
                                 </div>
-                                <div class="card-body">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-10">
-                                            <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
-                                            <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
-                                        </div>
-                                        <div class="col-lg-1"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
+                                        <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="company_tab" role="tabpanel">
-                            <form class="form-material form-horizontal" action="{{ route('user.assignCompany', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="company_tab" role="tabpanel">
+                        <form class="form-material form-horizontal" action="{{ route('user.assignCompany', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            <div class="card-body">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -319,21 +321,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-10">
-                                            <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
-                                            <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
-                                        </div>
-                                        <div class="col-lg-1"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
+                                        <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="account_action_tab" role="tabpanel">
-                            <form class="form-material form-horizontal" action="{{ route('user.accountAction', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="account_action_tab" role="tabpanel">
+                        <form class="form-material form-horizontal" action="{{ route('user.accountAction', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            <div class="card-body">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -372,35 +373,25 @@
                                     </div>
                                     <div class="col-lg-2"></div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-8">
                                         <div class="mb-3">
-                                            <label for="forget-password" class="form-label"><a class="btn btn-outline btn-soft-info shadow-none" href="#">@lang('Reset Password')</a></label>
+                                            <label for="forget-password" class="form-label"><a class="btn btn-outline btn-soft-info shadow-none" href="{{ route('forget.password.get') }}">@lang('Reset Password')</a></label>
                                         </div>
                                     </div>
                                     <div class="col-lg-2"></div>
                                 </div>
-
-                                
-                                {{-- <a href="{{ route('forget.password.get') }}">Reset Password</a> --}}
-                                                
-
-
-                                <div class="card-body">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-1"></div>
-                                        <div class="col-lg-10">
-                                            <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
-                                            <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
-                                        </div>
-                                        <div class="col-lg-1"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
+                                        <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
