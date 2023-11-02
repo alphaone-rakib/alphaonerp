@@ -94,7 +94,24 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+        $countryName = DB::table('countries')->where('id', $user->country)->first();
+        $stateName = DB::table('states')->where('id', $user->state)->first();
+        $cityName = DB::table('cities')->where('id', $user->city)->first();
+        $getLang = $this->getLang();
+
+        $companyNames = Company::with('plants')->where('enabled', 1)->orderBy('name')->get();
+
+        $selectedCompany = array();
+        $selectedPlant = array();
+        foreach ($user->companies as $company) {
+            $selectedCompany[] = $company->id;
+        }
+        foreach ($user->plants as $plant) {
+            $selectedPlant[] = $plant->id;
+        }
+
+        return view('users.show', compact('user', 'countryName', 'stateName', 'cityName', 'getLang', 'companyNames', 'selectedCompany', 'selectedPlant'));
     }
 
     /**

@@ -4,7 +4,6 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('assets/libs/multi.js/multi.js.min.css') }}">
-    {{-- <link rel="stylesheet" href="{{ URL::asset('assets/libs/@tarekraafat/@tarekraafat.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ URL::asset('assets/dropify/dist/css/dropify.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 @endsection
@@ -400,7 +399,6 @@
     @endsection
 @section('script')
     <script src="{{ URL::asset('assets/libs/multi.js/multi.js.min.js') }}"></script>
-    {{-- <script src="{{ URL::asset('assets/libs/@tarekraafat/@tarekraafat.min.js') }}"></script> --}}
     <script src="{{ URL::asset('assets/js/pages/form-advanced.init.js') }}"></script>
     <script src="{{ URL::asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

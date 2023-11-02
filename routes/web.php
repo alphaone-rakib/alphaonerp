@@ -23,9 +23,9 @@ Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPa
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return redirect('dashboard');
+});
 
 
 
@@ -44,6 +44,29 @@ Auth::routes(['register' => false]);
 
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/profile/setting', [
+        'uses' => 'App\Http\Controllers\ProfileController@setting',
+        'as' => 'profile.setting'
+    ]);
+
+    Route::post('/profile/updateSetting', [
+        'uses' => 'App\Http\Controllers\ProfileController@updateSetting',
+        'as' => 'profile.updateSetting'
+    ]);
+    Route::get('/profile/password', [
+        'uses' => 'App\Http\Controllers\ProfileController@password',
+        'as' => 'profile.password'
+    ]);
+
+    Route::post('/profile/updatePassword', [
+        'uses' => 'App\Http\Controllers\ProfileController@updatePassword',
+        'as' => 'profile.updatePassword'
+    ]);
+    Route::get('/profile/view', [
+        'uses' => 'App\Http\Controllers\ProfileController@view',
+        'as' => 'profile.view'
+    ]);
 
     Route::get('/application-settings', [
         'uses' => 'App\Http\Controllers\ApplicationSettingController@index',
