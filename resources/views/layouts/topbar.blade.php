@@ -163,15 +163,15 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <h6 class="dropdown-header">@lang('Welcome') {{Auth::user()->m_name}} !</h6>
-                        <a class="dropdown-item" href="pages-profile">
+                        <a class="dropdown-item" href="{{ route('profile.view') }}">
                             <i class="mdi mdi-account-circle-outline text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle">@lang('My Profile')</span>
                         </a>
-                        <a class="dropdown-item" href="pages-profile">
+                        <a class="dropdown-item" href="{{ route('profile.setting') }}">
                             <i class="mdi mdi-account-cog-outline text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle">@lang('Account Setting')</span>
                         </a>
-                        <a class="dropdown-item" href="pages-profile">
+                        <a class="dropdown-item" href="{{ route('profile.password') }}">
                             <i class="mdi mdi-key-outline text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle">@lang('Change Password')</span>
                         </a>

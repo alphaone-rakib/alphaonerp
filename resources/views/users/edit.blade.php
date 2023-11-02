@@ -376,7 +376,7 @@
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-8">
                                         <div class="mb-3">
-                                            <label for="forget-password" class="form-label"><a class="btn btn-outline btn-soft-info shadow-none" href="{{ route('forget.password.get') }}">@lang('Reset Password')</a></label>
+                                            <label for="forget-password" class="form-label"><a class="btn btn-outline btn-soft-info shadow-none" href="#">@lang('Reset Password')</a></label>
                                         </div>
                                     </div>
                                     <div class="col-lg-2"></div>
@@ -409,8 +409,8 @@
 
             var countryId = $("#country").val();
 
-            let selectState = {{ $user->state }};
-            let selectCity = {{ $user->city }};
+            let selectState = {{ $user->state ? $user->state : '2336' }};
+            let selectCity = {{ $user->city ? $user->city : '48615' }};
             if (countryId) {
                 $.ajax({
                     url: '{{ url('company/selectedStateData') }}',
