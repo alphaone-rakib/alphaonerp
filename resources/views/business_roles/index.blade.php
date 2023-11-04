@@ -70,7 +70,7 @@
                                     <th>@lang('Role Id')</th>
                                     <th>@lang('Role Name')</th>
                                     <th>@lang('Status')</th>
-                                    <th width='20%'>@lang('Settings')</th>
+                                    <th width='25%'>@lang('Settings')</th>
                                 </tr>
                             </thead>
                             <tbody>

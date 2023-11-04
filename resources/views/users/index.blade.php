@@ -71,7 +71,7 @@
                                     <th>@lang('User Name')</th>
                                     <th>@lang('Business Role')</th>
                                     <th>@lang('Status')</th>
-                                    <th width='20%'>@lang('Settings')</th>
+                                    <th width='25%'>@lang('Settings')</th>
                                 </tr>
                             </thead>
                             <tbody>

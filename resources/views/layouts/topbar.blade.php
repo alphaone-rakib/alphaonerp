@@ -45,10 +45,10 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         @foreach ($getLang as $key => $value)
-                            <a href="{{ route('lang.index', ['language' => $key]) }}" class="dropdown-item notify-item language py-2" data-lang="{{ $key }}" title="{{ $value }}">
-                                <img src="{{ URL::asset('/assets/flag-icons-3.1.0/flags/1x1/'.$flag[$key].'.svg') }}" alt="user-image" class="me-2 rounded" height="18">
-                                <span class="align-middle">{{$value}}</span>
-                            </a>
+                        <a href="{{ route('lang.index', ['language' => $key]) }}" class="dropdown-item notify-item language py-2" data-lang="{{ $key }}" title="{{ $value }}">
+                            <img src="{{ URL::asset('/assets/flag-icons-3.1.0/flags/1x1/'.$flag[$key].'.svg') }}" alt="user-image" class="me-2 rounded" height="18">
+                            <span class="align-middle">{{$value}}</span>
+                        </a>
                         @endforeach
                     </div>
                 </div>
