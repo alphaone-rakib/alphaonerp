@@ -37,33 +37,21 @@
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @switch(Session::get('lang'))
-                        @case('ru')
-                            <img src="{{ URL::asset('/assets/images/flags/russia.svg') }}" class="rounded " alt="Header Language"
-                                height="18">
-                        @break
-                        @case('it')
-                            <img src="{{ URL::asset('/assets/images/flags/italy.svg') }}" class="rounded " alt="Header Language"
-                                height="18">
-                        @break
-                        @case('sp')
-                            <img src="{{ URL::asset('/assets/images/flags/spain.svg') }}" class="rounded " alt="Header Language"
-                                height="18">
-                        @break
-                        @case('ch')
-                            <img src="{{ URL::asset('/assets/images/flags/china.svg') }}" class="rounded " alt="Header Language"
-                                height="18">
-                        @break
-                        @case('fr')
-                            <img src="{{ URL::asset('/assets/images/flags/french.svg') }}" class="rounded " alt="Header Language"
-                                height="18">
-                        @break
-                        @case('gr')
-                            <img src="{{ URL::asset('/assets/images/flags/germany.svg') }}" class="rounded " alt="Header Language"
-                                height="18">
-                        @break
-                        @default
-                            <img src="{{ URL::asset('/assets/images/flags/us.svg') }}" class="rounded " alt="Header Language" height="18">
-                    @endswitch
+                            @case('sp')
+                                <img src="{{ URL::asset('/assets/images/flags/spain.svg') }}" class="rounded " alt="Header Language"
+                                    height="18">
+                            @break
+                            @case('fr')
+                                <img src="{{ URL::asset('/assets/images/flags/french.svg') }}" class="rounded " alt="Header Language"
+                                    height="18">
+                            @break
+                            @case('gr')
+                                <img src="{{ URL::asset('/assets/images/flags/germany.svg') }}" class="rounded " alt="Header Language"
+                                    height="18">
+                            @break
+                            @default
+                                <img src="{{ URL::asset('/assets/images/flags/us.svg') }}" class="rounded " alt="Header Language" height="18">
+                        @endswitch
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
 

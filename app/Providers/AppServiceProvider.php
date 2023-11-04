@@ -29,6 +29,22 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $application = (Schema::hasTable('application_settings')) ? ApplicationSetting::first() : NULL;
 
+            $getLang = array(
+                'en' => 'English',
+                'bn' => 'বাংলা',
+                'el' => 'Ελληνικά',
+                'pt' => 'Português',
+                'es' => 'Español',
+                'de' => 'Deutch',
+                'fr' => 'Français',
+                'nl' => 'Nederlands',
+                'it' => 'Italiano',
+                'vi' => 'Tiếng Việt',
+                'ru' => 'русский',
+                'tr' => 'Türkçe',
+                'ar' => 'عربي'
+            );
+
             $user = [];
             $items = [];
             $items_reminder = [];
