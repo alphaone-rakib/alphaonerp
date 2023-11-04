@@ -18,6 +18,11 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 |
 */
 
+Route::get('/lang', [
+    'uses' => 'App\Http\Controllers\HomeController@lang',
+    'as' => 'lang.index'
+]);
+
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');

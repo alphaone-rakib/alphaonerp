@@ -19,5 +19,7 @@
 <link href="{{ URL::asset('assets/flatpickr/flatpickr.min.css') }}"  rel="stylesheet" type="text/css" />
 <!-- toastr css-->
 <link href="{{ URL::asset('assets/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css">
+<!-- flag -->
+<link href="{{ URL::asset('assets/plugins/flag-icons-3.1.0/css/flag-icon.css') }}" rel="stylesheet" type="text/css">
 
 {{-- @yield('css') --}}

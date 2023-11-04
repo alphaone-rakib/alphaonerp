@@ -31,78 +31,25 @@
                     </span>
                 </button>
             </div>
-
+            @php
+                $locale = App::getLocale();
+            @endphp
             <div class="d-flex align-items-center">
                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
-                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @switch(Session::get('lang'))
-                            @case('sp')
-                                <img src="{{ URL::asset('/assets/images/flags/spain.svg') }}" class="rounded " alt="Header Language"
-                                    height="18">
-                            @break
-                            @case('fr')
-                                <img src="{{ URL::asset('/assets/images/flags/french.svg') }}" class="rounded " alt="Header Language"
-                                    height="18">
-                            @break
-                            @case('gr')
-                                <img src="{{ URL::asset('/assets/images/flags/germany.svg') }}" class="rounded " alt="Header Language"
-                                    height="18">
-                            @break
-                            @default
-                                <img src="{{ URL::asset('/assets/images/flags/us.svg') }}" class="rounded " alt="Header Language" height="18">
-                        @endswitch
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @foreach ($getLang as $key => $value)
+                            @if($locale == $key)
+                                <img src="{{ URL::asset('/assets/flag-icons-3.1.0/flags/1x1/'.$flag[$key].'.svg') }}" class="rounded " alt="Header Language" height="18">
+                            @endif
+                        @endforeach
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
-
-                        <!-- item-->
-                        <a href="{{ url('index/en') }}" class="dropdown-item notify-item language py-2" data-lang="en"
-                            title="English">
-                            <img src="{{ URL::asset('assets/images/flags/us.svg') }}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">English</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="{{ url('index/sp') }}" class="dropdown-item notify-item language" data-lang="sp"
-                            title="Spanish">
-                            <img src="{{ URL::asset('assets/images/flags/spain.svg') }}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">Española</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="{{ url('index/gr') }}" class="dropdown-item notify-item language" data-lang="gr"
-                            title="German">
-                            <img src="{{ URL::asset('assets/images/flags/germany.svg') }}" alt="user-image" class="me-2 rounded"
-                                height="18"> <span class="align-middle">Deutsche</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="{{ url('index/it') }}" class="dropdown-item notify-item language" data-lang="it"
-                            title="Italian">
-                            <img src="{{ URL::asset('assets/images/flags/italy.svg') }}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">Italiana</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="{{ url('index/ru') }}" class="dropdown-item notify-item language" data-lang="ru"
-                            title="Russian">
-                            <img src="{{ URL::asset('assets/images/flags/russia.svg') }}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">русский</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="{{ url('index/ch') }}" class="dropdown-item notify-item language" data-lang="ch"
-                            title="Chinese">
-                            <img src="{{ URL::asset('assets/images/flags/china.svg') }}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">中国人</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="{{ url('index/fr') }}" class="dropdown-item notify-item language" data-lang="fr"
-                            title="French">
-                            <img src="{{ URL::asset('assets/images/flags/french.svg') }}" alt="user-image" class="me-2 rounded" height="18">
-                            <span class="align-middle">français</span>
-                        </a>
+                        @foreach ($getLang as $key => $value)
+                            <a href="{{ route('lang.index', ['language' => $key]) }}" class="dropdown-item notify-item language py-2" data-lang="{{ $key }}" title="{{ $value }}">
+                                <img src="{{ URL::asset('/assets/flag-icons-3.1.0/flags/1x1/'.$flag[$key].'.svg') }}" alt="user-image" class="me-2 rounded" height="18">
+                                <span class="align-middle">{{$value}}</span>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
 

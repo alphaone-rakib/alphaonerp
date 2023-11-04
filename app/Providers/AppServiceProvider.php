@@ -31,18 +31,16 @@ class AppServiceProvider extends ServiceProvider
 
             $getLang = array(
                 'en' => 'English',
-                'bn' => 'বাংলা',
-                'el' => 'Ελληνικά',
-                'pt' => 'Português',
                 'es' => 'Español',
                 'de' => 'Deutch',
-                'fr' => 'Français',
-                'nl' => 'Nederlands',
-                'it' => 'Italiano',
-                'vi' => 'Tiếng Việt',
-                'ru' => 'русский',
-                'tr' => 'Türkçe',
-                'ar' => 'عربي'
+                'bn' => 'বাংলা',
+            );
+
+            $flag = array(
+                "en" => "us",
+                "es" => "es",
+                "de" => "de",
+                "bn" => "bd",
             );
 
             $user = [];
@@ -111,7 +109,9 @@ class AppServiceProvider extends ServiceProvider
                 $company_full_name["0"] = "No Company Imported";
             }
 
-            $view->with('applicationSetting', $application);
+            $view->with('applicationSetting', $application)
+                ->with('getLang', $getLang)
+                ->with('flag', $flag);
         });
     }
 }
