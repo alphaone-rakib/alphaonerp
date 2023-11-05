@@ -130,7 +130,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="company_address_one" class="form-label">@lang('Address One')</label>
-                                    <textarea id="company_address_one" class="form-control" name="company_address_one" rows="3" placeholder="@lang('common.enter your address')"></textarea>
+                                    <textarea id="company_address_one" class="form-control" name="company_address_one" rows="3" placeholder="@lang('enter your address')"></textarea>
                                     @error('company_address_two')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -139,7 +139,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="company_address_two" class="form-label">@lang('Address Two')</label>
-                                    <textarea id="company_address_two" class="form-control" name="company_address_two" rows="3" placeholder="@lang('common.enter your address')"></textarea>
+                                    <textarea id="company_address_two" class="form-control" name="company_address_two" rows="3" placeholder="@lang('enter your address')"></textarea>
                                     @error('company_address_two')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -368,12 +368,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="language" class="form-label">@lang('common.default language') <b class="ambitious-crimson">*</b></label>
+                                    <label for="language" class="form-label">@lang('default language') <b class="ambitious-crimson">*</b></label>
                                     <select id="language" class="form-control @error('company_email') is-invalid @enderror" select2 name="language" required>
                                         @php
                                             $defaultLang = env('LOCALE_LANG', 'en');
                                         @endphp
-                                        <option value="">@lang('common.select language')</option>
+                                        <option value="">@lang('select language')</option>
                                         @foreach($getLang as $key => $value)
                                             <option value="{{ $key }}" {{ old('language', $defaultLang) == $key ? 'selected' : '' }} >{{ $value }}</option>
                                         @endforeach
@@ -388,8 +388,8 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg"/>
-                        <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                        <input type="submit" value="@lang('submit')" class="btn btn-info btn-lg"/>
+                        <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('cancel')</a>
                     </div>
                 </div>
             </form>

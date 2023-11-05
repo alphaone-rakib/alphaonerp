@@ -1,9 +1,9 @@
 @extends('layouts.master')
-@section('title') @lang('translation.starter')  @endsection
+@section('title') @lang('Starter')  @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Pages @endslot
-@slot('title') Starter  @endslot
+@slot('li_1') @lang('Pages') @endslot
+@slot('title') @lang('Starter')  @endslot
 @endcomponent
 @endsection
 @section('script')
