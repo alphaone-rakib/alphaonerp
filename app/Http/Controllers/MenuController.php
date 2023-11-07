@@ -13,8 +13,8 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $data = $this->filter($request)->paginate(10)->withQueryString();
-        $menus = Menu::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
-        return view('menus.index', compact('data', 'menus'));
+        $menuItems = Menu::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
+        return view('menus.index', compact('data', 'menuItems'));
     }
 
     private function filter(Request $request)
@@ -35,9 +35,10 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $menus = Menu::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
+        $menuItems = Menu::where('enabled', 1)->orderBy('name')->get();
+        // dd($menus);
         $menusHref = $this->menusHref();
-        return view('menus.create', compact('menus', 'menusHref'));
+        return view('menus.create', compact('menuItems', 'menusHref'));
     }
 
     /**
@@ -45,6 +46,7 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => ['required', 'string'],
             'parent_id' => ['nullable', 'string'],
@@ -71,8 +73,8 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         $menusHref = $this->menusHref();
-        $menus = Menu::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
-        return view('menus.edit', compact('menus', 'menu', 'menusHref'));
+        $menuItems = Menu::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
+        return view('menus.edit', compact('menuItems', 'menu', 'menusHref'));
     }
 
     /**

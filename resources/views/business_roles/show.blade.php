@@ -49,29 +49,29 @@
                                 <ul class="list-unstyled mb-0">
                                     <li class="p-0 parent-title"><a href="javascript: void(0);" class="fw-medium fs-14">@lang('Authorized Menu')</a></li>
                                     @foreach($categories as $category)
-                                    @if(in_array($category->id, $menus))
+                                    @if(in_array($category->id, $menuItems))
                                     <li>
                                         <div class="first-list">
                                             <div class="list-wrap">
                                                 <a href="javascript: void(0);" class="fw-medium text-primary">{{$category->name}}</a>
                                             </div>
                                             @foreach($category->children as $child)
-                                            @if(in_array($child->id, $menus))
+                                            @if(in_array($child->id, $menuItems))
                                             <ul class="second-list list-unstyled">
                                                 <li>
                                                     <a href="javascript: void(0);">{{$child->name}}</a>
                                                     @foreach($child->children as $child2)
-                                                    @if(in_array($child2->id, $menus))
+                                                    @if(in_array($child2->id, $menuItems))
                                                     <ul class="third-list list-unstyled">
                                                         <li>
                                                             <a href="javascript: void(0);">{{$child2->name}}</a>
                                                             @foreach($child2->children as $child3)
-                                                            @if(in_array($child3->id, $menus))
+                                                            @if(in_array($child3->id, $menuItems))
                                                             <ul class="third-list list-unstyled">
                                                                 <li>
                                                                     <a href="javascript: void(0);">{{$child3->name}}</a>
                                                                     @foreach($child3->children as $child4)
-                                                                    @if(in_array($child4->id, $menus))
+                                                                    @if(in_array($child4->id, $menuItems))
                                                                     <ul class="third-list list-unstyled">
                                                                         <li>
                                                                             <a href="javascript: void(0);">{{$child4->name}}</a>

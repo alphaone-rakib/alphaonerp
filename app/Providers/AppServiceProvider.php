@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\ApplicationSetting;
 use App\Models\Company;
+use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,26 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    private static function formatTree($categories, $allCategories)
+    {
+        foreach ($categories as $category) {
+            $category->children = $allCategories->where('parent_id', $category->id)->values();
+
+            if ($category->children->isNotEmpty()) {
+                self::formatTree($category->children, $allCategories);
+            }
+        }
+    }
+
+    public function tree()
+    {
+        $allCategories = Menu::get();
+        $rootCategories = $allCategories->whereNull('parent_id');
+        self::formatTree($rootCategories, $allCategories);
+
+        return $rootCategories;
+    }
+
     /**
      * Bootstrap any application services.
      */
@@ -28,6 +49,15 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         view()->composer('*', function ($view) {
             $application = (Schema::hasTable('application_settings')) ? ApplicationSetting::first() : NULL;
+
+            $mdiIcon = array(
+                "dashboard" => "mdi mdi-view-dashboard-outline",
+                "plant" => "mdi mdi-layers-outline",
+                "user" => "mdi mdi-account-outline",
+                "company" => "mdi mdi-cube-outline",
+                "plant" => "mdi mdi-layers-outline",
+                "cog" => "mdi mdi-cog",
+            );
 
             $getLang = array(
                 'en' => 'English',
@@ -49,7 +79,21 @@ class AppServiceProvider extends ServiceProvider
             $notifications = 0;
             $company_full_name = "No Company Imported";
             $activeCompany = [];
+            $menuPermission = array();
+            $menus = (object)[];
             if (Auth::check()) {
+
+                foreach (auth()->user()->businessRoles as $role) {
+                    foreach ($role->menus as $menu) {
+                        $menuPermission[] = $menu->id;
+                    }
+                }
+                $menuPermission = array_unique($menuPermission);
+
+                $menus = $this->tree();
+
+                // dd($menuPermission);
+
                 $companies = auth()->user()->companies()->with(['settings'])->get();
                 $firstCompanies = $companies->first();
 
@@ -110,7 +154,10 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('applicationSetting', $application)
+                ->with('mdiIcon', $mdiIcon)
                 ->with('getLang', $getLang)
+                ->with('menus', $menus)
+                ->with('menuPermission', $menuPermission)
                 ->with('flag', $flag);
         });
     }

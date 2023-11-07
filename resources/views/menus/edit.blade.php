@@ -39,7 +39,7 @@
                                     <label for="parent_id" class="form-label">@lang('Parent Menu')</label>
                                     <select id="parent_id" class="form-control @error('parent_id') is-invalid @enderror select2" name="parent_id">
                                         <option value="">@lang('Select Parent Menu')</option>
-                                        @foreach($menus as $key => $value)
+                                        @foreach($menuItems as $key => $value)
                                         <option value="{{ $key }}" {{ old('parent_id',$menu->parent_id) == $key ? 'selected' : '' }}>{{ $value }}</option>
                                         @endforeach
                                     </select>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="card-footer">
                         <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg"/>
-                        <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
                     </div>
                 </div>
             </form>

@@ -85,7 +85,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard', [
         'uses' => 'App\Http\Controllers\DashboardController@index',
-        'as' => 'dashboard'
+        'as' => 'dashboard.index'
     ]);
 
     Route::get('/currency/code', [App\Http\Controllers\CompanyController::class, 'code'])->name('currency.code');

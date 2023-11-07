@@ -14,8 +14,8 @@ class BusinessRoleController extends Controller
     public function index(Request $request)
     {
         $data = $this->filter($request)->paginate(10)->withQueryString();
-        $menus = Menu::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
-        return view('business_roles.index', compact('data', 'menus'));
+        $menuItems = Menu::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
+        return view('business_roles.index', compact('data', 'menuItems'));
     }
 
     private function filter(Request $request)
@@ -104,14 +104,14 @@ class BusinessRoleController extends Controller
      */
     public function show(BusinessRole $businessRole)
     {
-        $menus = array();
+        $menuItems = array();
         foreach ($businessRole->menus as $menu) {
-            $menus[] = $menu->id;
+            $menuItems[] = $menu->id;
         }
 
         $categories = $this->tree();
 
-        return view('business_roles.show', compact('categories', 'businessRole', 'menus'));
+        return view('business_roles.show', compact('categories', 'businessRole', 'menuItems'));
     }
 
     /**
@@ -119,13 +119,15 @@ class BusinessRoleController extends Controller
      */
     public function edit(BusinessRole $businessRole)
     {
-        $menus = array();
+        $menuItems = array();
         foreach ($businessRole->menus as $menu) {
-            $menus[] = $menu->id;
+            $menuItems[] = $menu->id;
         }
 
+
         $categories = $this->tree();
-        return view('business_roles.edit', compact('categories', 'businessRole', 'menus'));
+        // dd($categories->id);
+        return view('business_roles.edit', compact('categories', 'businessRole', 'menuItems'));
     }
 
     /**

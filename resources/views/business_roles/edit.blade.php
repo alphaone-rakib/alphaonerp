@@ -72,7 +72,7 @@
                                                         <div class="first-list">
                                                             <div class="list-wrap">
                                                                 <div class="form-check form-check-primary">
-                                                                    <input id="{{$category->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" table_id="{{ $category->id }}" value="{{ $category->id }}" style="margin-left: -26px !important" @if(in_array($category->id, $menus)) checked @endif>
+                                                                    <input id="{{$category->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" table_id="{{ $category->id }}" value="{{ $category->id }}" style="margin-left: -26px !important" @if(in_array($category->id, $menuItems)) checked @endif>
                                                                     <label for="{{$category->id}}" class="form-label">{{$category->name}}</label>
                                                                 </div>
                                                             </div>
@@ -80,28 +80,28 @@
                                                             <ul class="second-list list-unstyled">
                                                                 <li>
                                                                     <div class="form-check form-check-secondary">
-                                                                        <input id="{{$child->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" table_id="{{ $category->id }}" value="{{ $child->id }}" style="margin-left: -26px !important"  @if(in_array($category->id, $menus)) checked @endif>
+                                                                        <input id="{{$child->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" table_id="{{ $category->id }}" value="{{ $child->id }}" style="margin-left: -26px !important"  @if(in_array($category->id, $menuItems)) checked @endif>
                                                                         <label for="{{$child->id}}" class="form-label">{{$child->name}}</label>
                                                                     </div>
                                                                     @foreach($child->children as $child2)
                                                                     <ul class="third-list list-unstyled">
                                                                         <li>
                                                                             <div class="form-check form-check-info">
-                                                                                <input id="{{$child2->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child2->id }}" style="margin-left: -26px !important"  @if(in_array($category->id, $menus)) checked @endif>
+                                                                                <input id="{{$child2->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child2->id }}" style="margin-left: -26px !important"  @if(in_array($category->id, $menuItems)) checked @endif>
                                                                                 <label for="{{$child2->id}}" class="form-label">{{$child2->name}}</label>
                                                                             </div>
                                                                             @foreach($child2->children as $child3)
                                                                             <ul class="third-list list-unstyled">
                                                                                 <li>
                                                                                     <div class="form-check form-check-dark">
-                                                                                        <input id="{{$child3->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child3->id }}" style="margin-left: -26px !important"  @if(in_array($category->id, $menus)) checked @endif>
+                                                                                        <input id="{{$child3->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child3->id }}" style="margin-left: -26px !important"  @if(in_array($category->id, $menuItems)) checked @endif>
                                                                                         <label for="{{$child3->id}}" class="form-label">{{$child3->name}}</label>
                                                                                     </div>
                                                                                     @foreach($child3->children as $child4)
                                                                                     <ul class="third-list list-unstyled">
                                                                                         <li>
                                                                                             <div class="form-check form-check-success">
-                                                                                                <input id="{{$child4->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child4->id }}"  @if(in_array($category->id, $menus)) checked @endif>
+                                                                                                <input id="{{$child4->id}}" class="form-check-input authorized_menu_click" type="checkbox" name="menus[]" value="{{ $child4->id }}"  @if(in_array($category->id, $menuItems)) checked @endif>
                                                                                                 <label for="{{$child4->id}}" class="form-label">{{$child4->name}}</label>
                                                                                             </div>
                                                                                         </li>
@@ -146,7 +146,7 @@
                     </div>
                     <div class="card-footer">
                         <input type="submit" value="@lang('submit')" class="btn btn-info btn-lg"/>
-                        <a href="{{ route('dashboard') }}" class="btn btn-warning btn-lg float-end">@lang('cancel')</a>
+                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('cancel')</a>
                     </div>
                 </div>
             </form>

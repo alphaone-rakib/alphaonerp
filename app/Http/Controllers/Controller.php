@@ -30,6 +30,7 @@ class Controller extends BaseController
     {
         return array(
             'javascript:void(0)' => 'No Location',
+            'dashboard' => 'Dashboard',
             'company' => 'Company',
             'company-configuration' => 'Company Configuration',
             'plant' => 'Plant',
