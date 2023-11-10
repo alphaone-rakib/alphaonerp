@@ -14,6 +14,8 @@ class Menu extends Model
         'name',
         'parent_id',
         'menu_href',
+        'menu_order',
+        'parent_menu_icon',
         'enabled'
     ];
 

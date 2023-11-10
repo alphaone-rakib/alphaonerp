@@ -41,6 +41,15 @@ class Controller extends BaseController
         );
     }
 
+    public function menuOrder()
+    {
+        $order = array();
+        for ($i = 1; $i <= 150; $i++) {
+            $order[$i] = $i;
+        }
+        return $order;
+    }
+
     /**
      * Method to get week data
      *

@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">@lang('Name') <b class="ambitious-crimson">*</b></label>
                                     <input id="name" class="form-control @error('Name') is-invalid @enderror" type="text" name="name" value="{{ old('name') }}" placeholder="@lang('Type Your Menu Name')" required>
@@ -29,6 +29,17 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="menu_order" class="form-label">@lang('Menu Order')</label>
+                                    <select id="menu_order" class="form-control @error('menu_order') is-invalid @enderror select2" name="menu_order">
+                                        <option value="">@lang('Select Menu Order')</option>
+                                        @foreach($menuOrders as $key => $value)
+                                        <option value="{{ $key }}" >{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -50,6 +61,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="icon_part">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        
+                                        <label for="parent_menu_icon" class="form-label">@lang('Parent Menu Icon') <b class="ambitious-crimson">*</b></label>
+                                        <select id="parent_menu_icon" class="form-control @error('parent_menu_icon') is-invalid @enderror select23" name="parent_menu_icon">
+                                            <option value="">@lang('Select Icon')</option>
+                                            @foreach($mdiIcon as $key => $value)
+                                            <option value="{{ $value }}" >{{ ucfirst($key) }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('parent_menu_icon')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
@@ -88,6 +121,54 @@
         $(document).ready(function() {
             "use strict";
             $('.select2').select2();
+
+            $('#parent_id').on('change', function(){
+                var parent_id = $(this).val();
+                if(parent_id == "") {
+                    $("#icon_part").show();
+                } else {
+                    $("#icon_part").hide();
+                }
+            });
+
+            function formatState (state) {
+                if (!state.id) {
+                    return state.text;
+                }
+                var baseUrl = "/assets/images/icon";
+                var $state = $(
+                    '<span><img src="' + baseUrl + '/' + state.element.value + '.png" class="img-flag" width="25" height="25" /> ' + state.text + '</span>'
+                );
+
+                $state.find("span").text(state.text);
+                $state.find("img").attr("src", baseUrl + "/" + state.element.value + ".png");
+
+                return $state;
+            };
+
+            function formatSelectState (state) {
+
+                if (!state.id) {
+                    return state.text;
+                }
+
+                var baseUrl = "/assets/images/icon";
+                var $state = $(
+                    '<span><img class="img-flag" width="25" height="25" /> <span></span></span>'
+                );
+
+                $state.find("span").text(state.text);
+                $state.find("img").attr("src", baseUrl + "/" + state.element.value + ".png");
+
+                return $state;
+
+            };
+
+            $('.select23').select2({
+                templateResult: formatState,
+                templateSelection: formatSelectState
+            });
+
         });
     </script>
 @endsection

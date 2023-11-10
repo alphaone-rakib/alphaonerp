@@ -51,12 +51,12 @@ class AppServiceProvider extends ServiceProvider
             $application = (Schema::hasTable('application_settings')) ? ApplicationSetting::first() : NULL;
 
             $mdiIcon = array(
-                "dashboard" => "mdi mdi-view-dashboard-outline",
-                "plant" => "mdi mdi-layers-outline",
-                "user" => "mdi mdi-account-outline",
-                "company" => "mdi mdi-cube-outline",
-                "plant" => "mdi mdi-layers-outline",
-                "cog" => "mdi mdi-cog",
+                "dashboard" => "mdi-view-dashboard-outline",
+                "plant" => "mdi-layers-outline",
+                "user" => "mdi-account-outline",
+                "company" => "mdi-cube-outline",
+                "plant" => "mdi-layers-outline",
+                "cog" => "mdi-cog",
             );
 
             $getLang = array(

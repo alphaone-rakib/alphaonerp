@@ -71,6 +71,7 @@
                                 <tr>
                                     <th>@lang('Id')</th>
                                     <th>@lang('Name')</th>
+                                    <th>@lang('Menu Order')</th>
                                     <th>@lang('Parent Menu')</th>
                                     <th>@lang('Menu Href')</th>
                                     <th>@lang('Status')</th>
@@ -82,6 +83,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td>{{ $item->menu_order }}</td>
                                     <td>{{ $item->parent ? $item->parent->name : 'N/A' }}</td>
                                     <td>
                                         @if($item->menu_href == "javascript:void(0)") 

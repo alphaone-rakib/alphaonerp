@@ -36,9 +36,13 @@ class MenuController extends Controller
     public function create()
     {
         $menuItems = Menu::where('enabled', 1)->orderBy('name')->get();
-        // dd($menus);
+        $menuOrders = $this->menuOrder();
         $menusHref = $this->menusHref();
-        return view('menus.create', compact('menuItems', 'menusHref'));
+
+
+        $reserveMenuOrder = Menu::orderBy('menu_order')->pluck('menu_order');
+        // dd($reserveMenuOrder);
+        return view('menus.create', compact('menuItems', 'menusHref', 'menuOrders'));
     }
 
     /**
@@ -51,10 +55,21 @@ class MenuController extends Controller
             'name' => ['required', 'string'],
             'parent_id' => ['nullable', 'string'],
             'menu_href' => ['nullable', 'string'],
-            'enabled' => ['nullable', 'in:0,1']
+            'menu_order' => ['nullable', 'string'],
+            'enabled' => ['nullable', 'in:0,1'],
         ]);
 
-        $data = $request->only(['name', 'parent_id', 'menu_href', 'enabled']);
+        if ($request->parent_id == "") {
+            $request->validate([
+                'parent_menu_icon' => ['required', 'string'],
+            ]);
+        } else {
+            $request->validate([
+                'parent_menu_icon' => ['nullable', 'string'],
+            ]);
+        }
+
+        $data = $request->only(['name', 'parent_id', 'menu_href', 'menu_order', 'parent_menu_icon', 'enabled']);
         Menu::create($data);
         return redirect()->route('menu.index')->with('success', 'Menu created successfully');
     }
