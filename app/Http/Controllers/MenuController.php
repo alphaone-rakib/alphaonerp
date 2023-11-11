@@ -39,10 +39,10 @@ class MenuController extends Controller
         $menuOrders = $this->menuOrder();
         $menusHref = $this->menusHref();
 
+        $reserveMenuOrder = Menu::orderBy('menu_order')->pluck('menu_order')->toArray();
 
-        $reserveMenuOrder = Menu::orderBy('menu_order')->pluck('menu_order');
-        // dd($reserveMenuOrder);
-        return view('menus.create', compact('menuItems', 'menusHref', 'menuOrders'));
+        $freeMenuOrder = array_diff($menuOrders, $reserveMenuOrder);
+        return view('menus.create', compact('menuItems', 'menusHref', 'menuOrders', 'freeMenuOrder'));
     }
 
     /**
@@ -50,7 +50,6 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'name' => ['required', 'string'],
             'parent_id' => ['nullable', 'string'],
@@ -87,9 +86,15 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        $menusHref = $this->menusHref();
         $menuItems = Menu::where('enabled', 1)->orderBy('name')->pluck('name', 'id');
-        return view('menus.edit', compact('menuItems', 'menu', 'menusHref'));
+        $menuOrders = $this->menuOrder();
+        $menusHref = $this->menusHref();
+
+        $reserveMenuOrder = Menu::orderBy('menu_order')->whereNotIn('menu_order', [$menu->menu_order])->pluck('menu_order')->toArray();
+
+        $freeMenuOrder = array_diff($menuOrders, $reserveMenuOrder);
+
+        return view('menus.edit', compact('menuItems', 'menu', 'menusHref', 'menuOrders', 'freeMenuOrder'));
     }
 
     /**
@@ -101,10 +106,21 @@ class MenuController extends Controller
             'name' => ['required', 'string'],
             'parent_id' => ['nullable', 'string'],
             'menu_href' => ['nullable', 'string'],
-            'enabled' => ['nullable', 'in:0,1']
+            'menu_order' => ['nullable', 'string'],
+            'enabled' => ['nullable', 'in:0,1'],
         ]);
 
-        $data = $request->only(['name', 'parent_id', 'menu_href', 'enabled']);
+        if ($request->parent_id == "") {
+            $request->validate([
+                'parent_menu_icon' => ['required', 'string'],
+            ]);
+        } else {
+            $request->validate([
+                'parent_menu_icon' => ['nullable', 'string'],
+            ]);
+        }
+
+        $data = $request->only(['name', 'parent_id', 'menu_href', 'menu_order', 'parent_menu_icon', 'enabled']);
         $menu->update($data);
         return redirect()->route('menu.index')->with('success', trans('Menu Updated Successfully'));
     }

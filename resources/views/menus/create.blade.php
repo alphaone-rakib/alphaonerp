@@ -36,7 +36,7 @@
                                     <label for="menu_order" class="form-label">@lang('Menu Order')</label>
                                     <select id="menu_order" class="form-control @error('menu_order') is-invalid @enderror select2" name="menu_order">
                                         <option value="">@lang('Select Menu Order')</option>
-                                        @foreach($menuOrders as $key => $value)
+                                        @foreach($freeMenuOrder as $key => $value)
                                         <option value="{{ $key }}" >{{ $value }}</option>
                                         @endforeach
                                     </select>
@@ -65,7 +65,6 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        
                                         <label for="parent_menu_icon" class="form-label">@lang('Parent Menu Icon') <b class="ambitious-crimson">*</b></label>
                                         <select id="parent_menu_icon" class="form-control @error('parent_menu_icon') is-invalid @enderror select23" name="parent_menu_icon">
                                             <option value="">@lang('Select Icon')</option>
@@ -86,7 +85,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="menu_href" class="form-label">@lang('Menu Href') <b class="ambitious-crimson">*</b></label>
+                                    <label for="menu_href" class="form-label">@lang('Menu Href') </label>
                                     <select id="menu_href" class="form-control @error('menu_href') is-invalid @enderror select2" name="menu_href" required>
                                         <option value="">@lang('Select Menu Location')</option>
                                         @foreach($menusHref as $key => $value)
