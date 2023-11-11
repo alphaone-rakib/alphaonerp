@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function tree()
     {
-        $allCategories = Menu::get();
+        $allCategories = Menu::orderBy('menu_order', 'ASC')->get();
         $rootCategories = $allCategories->whereNull('parent_id');
         self::formatTree($rootCategories, $allCategories);
 
@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
                 "user" => "mdi-account-outline",
                 "company" => "mdi-cube-outline",
                 "plant" => "mdi-layers-outline",
-                "cog" => "mdi-cog",
+                "settings" => "mdi-cog",
             );
 
             $getLang = array(
@@ -91,8 +91,6 @@ class AppServiceProvider extends ServiceProvider
                 $menuPermission = array_unique($menuPermission);
 
                 $menus = $this->tree();
-
-                // dd($menuPermission);
 
                 $companies = auth()->user()->companies()->with(['settings'])->get();
                 $firstCompanies = $companies->first();

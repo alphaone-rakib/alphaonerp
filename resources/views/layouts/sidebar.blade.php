@@ -149,73 +149,57 @@ $userId = auth()->user()->id;
                         </ul>
                     </div>
                 </li>
-
-                {{-- @foreach($menus as $category)
-
-                @if($category->menu_href != "javascript:void(0)")
-
-                    <li class="nav-item">
-                        <a class="nav-link menu-link @if($c == $category->menu_href) active @endif" href="{{ route($category->menu_href.".index") }}">
-                            <i class="{{$mdiIcon[$category->menu_href]}}"></i>
-                            <span>
-                                @lang($category->name)
-                            </span>
-                        </a>
-                    </li>
-                @else
-                    @php
-                        $activeMenu = array();
-                        $activeMenuStr = implode("_",$activeMenu);
-                    @endphp
-                    <li class="nav-item">
-                        <a class="nav-link menu-link @if(in_array($c, $activeMenu)) active @endif" data-bs-toggle="collapse" role="button" aria-expanded="false">
-                            <i class="mdi mdi-account-outline"></i>
-                            <span>
-                                @lang($category->name)
-                            </span>
-                        </a>
-                        @foreach($category->children as $child)
-                        @php
-                            $activeMenu[] = $child->menu_href;
-                        @endphp
-                        <div class="collapse menu-dropdown @if(in_array($c, $activeMenu)) show @endif">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a href="{{ route($child->menu_href.".index") }}" class="nav-link @if(in_array($c, $activeMenu)) active @endif">
-                                        @lang($child->name)
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        @endforeach
-                    </li>
-                    
-                @endif --}}
-
                 
-
-                {{-- @php
-                    dd($category);
-                @endphp --}}
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link menu-link " href="#" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
-                        <i class="mdi mdi-view-dashboard-outline"></i> <span>@lang($category->name)
-                        </span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarApps">
-                        <ul class="nav nav-sm flex-column">
-                            @foreach($category->children as $child)
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">@lang($child->name)
-                                </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </li> --}}
-
-                {{-- @endforeach --}}
+                @foreach($menus as $category)
+                @if(in_array($category->id, $menuPermission))
+                @php
+                    $activeMenu = array();
+                    $activeMenuStr = "";
+                @endphp
+                    @if($category->menu_href != "javascript:void(0)")
+                        <li class="nav-item">
+                            <a class="nav-link menu-link @if($c == $category->menu_href) active @endif" href="{{ route($category->menu_href.".index") }}">
+                                <i class="mdi {{$category['parent_menu_icon']}}"></i> <span>
+                                    @lang($category->name)
+                                </span>
+                            </a>
+                        </li>
+                    @else
+                        @php
+                            foreach($category->children as $child) {
+                                $activeMenu[] = $child->menu_href;
+                            }
+                            $activeMenuStr = implode("_",$activeMenu);
+                        @endphp
+                        <li class="nav-item">
+                            <a class="nav-link menu-link @if(in_array($c, $activeMenu)) active  @endif" href="#{{$activeMenuStr}}" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{$activeMenuStr}}">
+                                <i class="mdi {{$category['parent_menu_icon']}}"></i> <span>
+                                    @lang($category->name)
+                                </span>
+                            </a>
+                            <div class="collapse menu-dropdown @if(in_array($c, $activeMenu)) show @endif" id="{{$activeMenuStr}}">
+                                <ul class="nav nav-sm flex-column">
+                                    @foreach($category->children as $child)
+                                        @if(in_array($child->id, $menuPermission))
+                                            @php
+                                                $activeMenu[] = $child->menu_href;
+                                            @endphp
+                                            @if($child->menu_href != "javascript:void(0)")
+                                            <li class="nav-item">
+                                                <a href="{{ route($child->menu_href.".index") }}" class="nav-link @if($c == $child->menu_href) active @endif">
+                                                    @lang($child->name)
+                                                </a>
+                                            </li>
+                                            @endif
+                                            
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
+                @endif
+                @endforeach
 
             </ul>
         </div>
