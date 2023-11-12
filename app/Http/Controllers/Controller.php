@@ -38,6 +38,8 @@ class Controller extends BaseController
             'user' => 'Users',
             'business-role' => 'Business Role',
             'application-settings' => 'Application Configuration',
+            'fiscal-calendar' => 'Fiscal Calendar',
+            'fiscal-year' => 'Fiscal Year',
         );
     }
 

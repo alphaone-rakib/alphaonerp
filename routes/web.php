@@ -164,5 +164,7 @@ Route::group(['middleware' => ['auth']], function () {
         'menu' => App\Http\Controllers\MenuController::class,
         'business-role' => App\Http\Controllers\BusinessRoleController::class,
         'user' => App\Http\Controllers\UserController::class,
+        'fiscal-calendar' => App\Http\Controllers\FiscalCalendarController::class,
+        'fiscal-year' => App\Http\Controllers\FiscalYearController::class,
     ]);
 });

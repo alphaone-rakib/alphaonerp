@@ -57,6 +57,8 @@ class AppServiceProvider extends ServiceProvider
                 "company" => "mdi-cube-outline",
                 "plant" => "mdi-layers-outline",
                 "settings" => "mdi-cog",
+                "fiscal calendar" => "mdi-calendar-outline",
+                "fiscal year" => "mdi-calendar-blank",
             );
 
             $getLang = array(

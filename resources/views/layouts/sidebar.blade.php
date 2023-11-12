@@ -97,6 +97,14 @@ $userId = auth()->user()->id;
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('fiscal-calendar.index') }}" class="nav-link @if($c == 'fiscal-calendar') active @endif">@lang('Fiscal Calendar')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('fiscal-year.index') }}" class="nav-link @if($c == 'fiscal-year') active @endif">@lang('Fiscal Year')
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('application-settings.index') }}" class="nav-link @if($c == 'application-settings') active @endif">@lang('Application Settings')
                                 </a>
                             </li>
