@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/application-settings', [
         'uses' => 'App\Http\Controllers\ApplicationSettingController@index',
-        'as' => 'application-settings'
+        'as' => 'application-settings.index'
     ]);
 
     Route::post('/application-settings/update', [

@@ -4,9 +4,6 @@ $m = Request::segment(2);
 
 $userId = auth()->user()->id;
 
-// dd($menuPermission);
-// dd($menus);
-
 @endphp
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
@@ -48,6 +45,8 @@ $userId = auth()->user()->id;
                         </span>
                     </a>
                 </li>
+
+                @if(auth()->user()->id == "1")
 
                 <li class="nav-item">
                     <a class="nav-link menu-link @if($c == 'user') active @endif" href="{{ route('user.index') }}">
@@ -98,109 +97,146 @@ $userId = auth()->user()->id;
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('application-settings') }}" class="nav-link @if($c == 'application-settings') active @endif">@lang('Application Settings')
+                                <a href="{{ route('application-settings.index') }}" class="nav-link @if($c == 'application-settings') active @endif">@lang('Application Settings')
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarMultilevel" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
-                        <i class="mdi mdi-share-variant-outline"></i> <span>@lang('translation.multi-level')
-                        </span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
-                        <ul class="nav nav-sm flex-column">
+                @else
+                    @foreach($menus as $category)
+                    @if(in_array($category->id, $menuPermission))
+                        @php
+                            $activeMenu = array();
+                            $activeMenu_2nd = array();
+                            $activeMenu_3rd = array();
+                            $activeMenu_4th = array();
+                            $activeMenuStr = "";
+                        @endphp
+                        @if($category->menu_href != "javascript:void(0)")
                             <li class="nav-item">
-                                <a href="#" class="nav-link">@lang('translation.level-1.1')
+                                <a class="nav-link menu-link @if($c == $category->menu_href) active @endif" href="{{ route($category->menu_href.".index") }}">
+                                    <i class="mdi {{$category['parent_menu_icon']}}"></i> <span>
+                                        @lang($category->name)
+                                    </span>
                                 </a>
                             </li>
+                        @else
+                            @php
+                                foreach($category->children as $child) {
+                                    if(in_array($child->id, $menuPermission)) {
+                                        $activeMenu[] = $child->menu_href;
+                                        foreach($child->children as $child2) {
+                                            if(in_array($child2->id, $menuPermission)) {
+                                                $activeMenu[] = $child2->menu_href;
+                                                $activeMenu_2nd[] = $child2->menu_href;
+                                                foreach($child2->children as $child3) {
+                                                    if(in_array($child3->id, $menuPermission)) {
+                                                        $activeMenu[] = $child3->menu_href;
+                                                        $activeMenu_2nd[] = $child3->menu_href;
+                                                        $activeMenu_3rd[] = $child3->menu_href;
+                                                        foreach($child3->children as $child4) {
+                                                            if(in_array($child4->id, $menuPermission)) {
+                                                                $activeMenu[] = $child4->menu_href;
+                                                                $activeMenu_2nd[] = $child4->menu_href;
+                                                                $activeMenu_3rd[] = $child4->menu_href;
+                                                                $activeMenu_4th[] = $child4->menu_href;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                $activeMenuWithoutVoid = array_map(fn (string $value): string => $value == 'javascript:void(0)' ? 'blank' : $value, $activeMenu);
+                                $activeMenuStr = implode("_",$activeMenuWithoutVoid);
+                            @endphp
                             <li class="nav-item">
-                                <a href="#sidebarAccount" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAccount">@lang('translation.level-1.2')
-
+                                <a class="nav-link menu-link @if(in_array($c, $activeMenu)) active  @endif" href="#{{$activeMenuStr}}" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{$activeMenuStr}}">
+                                    <i class="mdi {{$category['parent_menu_icon']}}"></i> <span>
+                                        @lang($category->name)
+                                    </span>
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarAccount">
+                                <div class="collapse menu-dropdown @if(in_array($c, $activeMenu)) show @endif" id="{{$activeMenuStr}}">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">@lang('translation.level-2.1')
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#sidebarCrm" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCrm">@lang('translation.level-2.2')
-
-                                            </a>
-                                            <div class="collapse menu-dropdown" id="sidebarCrm">
-                                                <ul class="nav nav-sm flex-column">
-                                                    <li class="nav-item">
-                                                        <a href="#" class="nav-link">@lang('translation.level-3.1')
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="#" class="nav-link">@lang('translation.level-3.2')
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                        @foreach($category->children as $child)
+                                            @if(in_array($child->id, $menuPermission))
+                                                @if($child->menu_href != "javascript:void(0)")
+                                                <li class="nav-item">
+                                                    <a href="{{ route($child->menu_href.".index") }}" class="nav-link @if($c == $child->menu_href) active @endif">
+                                                        @lang($child->name)
+                                                    </a>
+                                                </li>
+                                                @else
+                                                <li class="nav-item">
+                                                    <a @if(in_array($c, $activeMenu_2nd)) active  @endif href="#{{$activeMenuStr}}_2nd" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{$activeMenuStr}}_2nd">
+                                                        @lang($child->name)
+                                                    </a>
+                                                    <div class="collapse menu-dropdown @if(in_array($c, $activeMenu_2nd)) show @endif" id="{{$activeMenuStr}}_2nd">
+                                                        <ul class="nav nav-sm flex-column">
+                                                            @foreach($child->children as $child2)
+                                                            @if(in_array($child2->id, $menuPermission))
+                                                                @if($child2->menu_href != "javascript:void(0)")
+                                                                    <li class="nav-item">
+                                                                        <a href="{{ route($child2->menu_href.".index") }}" class="nav-link @if($c == $child2->menu_href) active @endif">
+                                                                            @lang($child2->name)
+                                                                        </a>
+                                                                    </li>
+                                                                @else
+                                                                    <a @if(in_array($c, $activeMenu_3rd)) active  @endif href="#{{$activeMenuStr}}_3rd" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{$activeMenuStr}}_3rd">
+                                                                        @lang($child2->name)
+                                                                    </a>
+                                                                    <div class="collapse menu-dropdown @if(in_array($c, $activeMenu_3rd)) show @endif" id="{{$activeMenuStr}}_3rd">
+                                                                        <ul class="nav nav-sm flex-column">
+                                                                            @foreach($child2->children as $child3)
+                                                                                @if(in_array($child3->id, $menuPermission))
+                                                                                    @if($child3->menu_href != "javascript:void(0)")
+                                                                                        <li class="nav-item">
+                                                                                            <a href="{{ route($child3->menu_href.".index") }}" class="nav-link @if($c == $child3->menu_href) active @endif">
+                                                                                                @lang($child3->name)
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    @else
+                                                                                        <a @if(in_array($c, $activeMenu_4th)) active  @endif href="#{{$activeMenuStr}}_4th" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{$activeMenuStr}}_4th">
+                                                                                            @lang($child3->name)
+                                                                                        </a>
+                                                                                        <div class="collapse menu-dropdown @if(in_array($c, $activeMenu_4th)) show @endif" id="{{$activeMenuStr}}_4th">
+                                                                                            <ul class="nav nav-sm flex-column">
+                                                                                                @foreach($child3->children as $child4)
+                                                                                                    @if(in_array($child4->id, $menuPermission))
+                                                                                                        @if($child4->menu_href != "javascript:void(0)")
+                                                                                                            <li class="nav-item">
+                                                                                                                <a href="{{ route($child4->menu_href.".index") }}" class="nav-link @if($c == $child4->menu_href) active @endif">
+                                                                                                                    @lang($child4->name)
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                        @endif
+                                                                                                    @endif
+                                                                                                @endforeach
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
+                                                                @endif
+                                                            @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                @endif
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </div>
                             </li>
-                        </ul>
-                    </div>
-                </li>
-                
-                @foreach($menus as $category)
-                @if(in_array($category->id, $menuPermission))
-                @php
-                    $activeMenu = array();
-                    $activeMenuStr = "";
-                @endphp
-                    @if($category->menu_href != "javascript:void(0)")
-                        <li class="nav-item">
-                            <a class="nav-link menu-link @if($c == $category->menu_href) active @endif" href="{{ route($category->menu_href.".index") }}">
-                                <i class="mdi {{$category['parent_menu_icon']}}"></i> <span>
-                                    @lang($category->name)
-                                </span>
-                            </a>
-                        </li>
-                    @else
-                        @php
-                            foreach($category->children as $child) {
-                                $activeMenu[] = $child->menu_href;
-                            }
-                            $activeMenuStr = implode("_",$activeMenu);
-                        @endphp
-                        <li class="nav-item">
-                            <a class="nav-link menu-link @if(in_array($c, $activeMenu)) active  @endif" href="#{{$activeMenuStr}}" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{$activeMenuStr}}">
-                                <i class="mdi {{$category['parent_menu_icon']}}"></i> <span>
-                                    @lang($category->name)
-                                </span>
-                            </a>
-                            <div class="collapse menu-dropdown @if(in_array($c, $activeMenu)) show @endif" id="{{$activeMenuStr}}">
-                                <ul class="nav nav-sm flex-column">
-                                    @foreach($category->children as $child)
-                                        @if(in_array($child->id, $menuPermission))
-                                            @php
-                                                $activeMenu[] = $child->menu_href;
-                                            @endphp
-                                            @if($child->menu_href != "javascript:void(0)")
-                                            <li class="nav-item">
-                                                <a href="{{ route($child->menu_href.".index") }}" class="nav-link @if($c == $child->menu_href) active @endif">
-                                                    @lang($child->name)
-                                                </a>
-                                            </li>
-                                            @endif
-                                            
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </li>
+                        @endif
                     @endif
+                    @endforeach 
                 @endif
-                @endforeach
-
             </ul>
         </div>
         <!-- Sidebar -->
