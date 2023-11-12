@@ -20,7 +20,7 @@ class FiscalCalendarController extends Controller
      */
     public function create()
     {
-        //
+        return view('fiscal-calendar.create');
     }
 
     /**
