@@ -192,22 +192,33 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="decimal_precision" class="form-label">@lang('Precision')</label>
-                                    <input id="decimal_precision" class="form-control @error('decimal_precision') is-invalid @enderror" type="text" name="decimal_precision" value="{{ old('decimal_precision') }}" placeholder="@lang('Type Your Currency Precision')">
-                                    @error('decimal_precision')
+                                    <label for="decimal_cost" class="form-label">@lang('No of Decimals - Cost') <b class="ambitious-crimson">*</b></label>
+                                    <input id="decimal_cost" class="form-control @error('decimal_cost') is-invalid @enderror" type="number" name="decimal_cost" value="{{ old('decimal_cost') }}" placeholder="@lang('Type Your No of Decimals - Cost')" required>
+                                    @error('decimal_cost')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="decimal_mark" class="form-label">@lang('Decimal Mark')</label>
-                                    <input id="decimal_mark" class="form-control @error('decimal_mark') is-invalid @enderror" type="text" name="decimal_mark" value="{{ old('decimal_mark') }}" placeholder="@lang('Type Your Currency Decimal Mark')">
-                                    @error('decimal_mark')
+                                    <label for="decimal_price" class="form-label">@lang('No of Decimals - Price') <b class="ambitious-crimson">*</b></label>
+                                    <input id="decimal_price" class="form-control @error('decimal_price') is-invalid @enderror" type="text" name="decimal_price" value="{{ old('decimal_price') }}" placeholder="@lang('Type Your No of Decimals - Price')" required>
+                                    @error('decimal_price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="decimal_general" class="form-label">@lang('No of Decimals - General') <b class="ambitious-crimson">*</b></label>
+                                    <input id="decimal_general" class="form-control @error('decimal_general') is-invalid @enderror" type="text" name="decimal_general" value="{{ old('decimal_general') }}" placeholder="@lang('Type Your No of Decimals - General')" required>
+                                    @error('decimal_general')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -428,8 +439,6 @@
                     data: 'code=' + $(this).val(),
                     success: function(data) {
                         $('#currency_name').val(data.name);
-                        $('#decimal_precision').val(data.precision);
-                        $('#decimal_mark').val(data.decimal_mark);
                         $('#currency_symbol').val(data.symbol);
                         $('#currency_symbol_first').trigger('change');
                     }

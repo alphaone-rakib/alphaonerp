@@ -31,6 +31,7 @@ class CompanyController extends Controller
     {
         $countriesList = DB::table('countries')->pluck('name', 'id');
         $currencies = config('money');
+        $currencies = $currencies['currencies'];
         $getLang = $this->getLang();
         $timezone = $this->timeZones();
         return view('companies.create', compact('countriesList', 'currencies', 'timezone', 'getLang'));
@@ -85,7 +86,8 @@ class CompanyController extends Controller
         $json = new \stdClass();
         $code = request('code');
         if ($code) {
-            $currency = config('money.' . $code);
+            $currency = config('money');
+            $currency = $currency['currencies'][$code];
             $currency['rate'] = isset($currency['rate']) ? $currency['rate'] : null;
             $currency['currency_symbol_first'] = $currency['symbol_first'] ? 1 : 0;
             $json = (object) $currency;
@@ -111,8 +113,8 @@ class CompanyController extends Controller
             'company_address_two' => ['nullable', 'string'],
             'currency_code' => ['required', 'string'],
             'currency_name' => ['required', 'string'],
-            'decimal_precision' => ['nullable', 'string'],
-            'decimal_mark' => ['nullable', 'string'],
+            // 'decimal_precision' => ['nullable', 'string'],
+            // 'decimal_mark' => ['nullable', 'string'],
             'currency_symbol' => ['required', 'string'],
             'currency_symbol_first' => ['required', 'string'],
             'federal_id' => ['nullable', 'string'],
@@ -198,16 +200,16 @@ class CompanyController extends Controller
                 'key' => 'general.currency_name',
                 'value' => $request->input('currency_name'),
             ],
-            [
-                'company_id' => $company->id,
-                'key' => 'general.decimal_precision',
-                'value' => $request->input('decimal_precision'),
-            ],
-            [
-                'company_id' => $company->id,
-                'key' => 'general.currency_decimal_mark',
-                'value' => $request->input('decimal_mark'),
-            ],
+            // [
+            //     'company_id' => $company->id,
+            //     'key' => 'general.decimal_precision',
+            //     'value' => $request->input('decimal_precision'),
+            // ],
+            // [
+            //     'company_id' => $company->id,
+            //     'key' => 'general.currency_decimal_mark',
+            //     'value' => $request->input('decimal_mark'),
+            // ],
             [
                 'company_id' => $company->id,
                 'key' => 'general.currency_symbol',
@@ -346,8 +348,8 @@ class CompanyController extends Controller
             'company_address_two' => ['nullable', 'string'],
             'currency_code' => ['required', 'string'],
             'currency_name' => ['required', 'string'],
-            'decimal_precision' => ['nullable', 'string'],
-            'decimal_mark' => ['nullable', 'string'],
+            // 'decimal_precision' => ['nullable', 'string'],
+            // 'decimal_mark' => ['nullable', 'string'],
             'currency_symbol' => ['required', 'string'],
             'currency_symbol_first' => ['required', 'string'],
             'federal_id' => ['nullable', 'string'],
@@ -424,13 +426,13 @@ class CompanyController extends Controller
                 ->update(['value' => $request->input('currency_code')]);
 
 
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.decimal_precision')
-                ->update(['value' => $request->input('decimal_precision')]);
+            // DB::table('settings')->where('company_id', $company->id)
+            //     ->where('key', 'general.decimal_precision')
+            //     ->update(['value' => $request->input('decimal_precision')]);
 
-            DB::table('settings')->where('company_id', $company->id)
-                ->where('key', 'general.currency_decimal_mark')
-                ->update(['value' => $request->input('decimal_mark')]);
+            // DB::table('settings')->where('company_id', $company->id)
+            //     ->where('key', 'general.currency_decimal_mark')
+            //     ->update(['value' => $request->input('decimal_mark')]);
 
             DB::table('settings')->where('company_id', $company->id)
                 ->where('key', 'general.currency_symbol')

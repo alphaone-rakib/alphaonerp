@@ -2,15 +2,15 @@
 
 return [
 
-    // 'defaults' => [
+    'defaults' => [
 
-    //     'currency'  => env('MONEY_DEFAULTS_CURRENCY', 'USD'),
+        'currency'  => env('MONEY_DEFAULTS_CURRENCY', 'USD'),
 
-    //     'convert'   => env('MONEY_DEFAULTS_CONVERT', true),
+        'convert'   => env('MONEY_DEFAULTS_CONVERT', true),
 
-    // ],
+    ],
 
-    // 'currencies' => [
+    'currencies' => [
 
         'AED' => [
             'name'                => 'UAE Dirham',
@@ -1815,6 +1815,6 @@ return [
             'decimal_mark'        => '.',
             'thousands_separator' => ',',
         ],
-    // ],
+    ],
 
 ];
