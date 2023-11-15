@@ -82,11 +82,11 @@ $userId = auth()->user()->id;
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if($c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar') active @endif" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                    <a class="nav-link menu-link @if($c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year') active @endif" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="mdi mdi-cog"></i> <span>@lang('Settings')
                         </span>
                     </a>
-                    <div class="collapse menu-dropdown @if($c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar') show @endif" id="sidebarApps">
+                    <div class="collapse menu-dropdown @if($c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year') show @endif" id="sidebarApps">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('business-role.index') }}" class="nav-link @if($c == 'business-role') active @endif">@lang('Business Role')
