@@ -7,7 +7,7 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1') @lang('Plant') @endslot
-        @slot('title') @lang('Create Plant')  @endslot
+        @slot('title') @lang('Edit Plant')  @endslot
     @endcomponent
     <div class="row">
         <div class="col-lg-12">
