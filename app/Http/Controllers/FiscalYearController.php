@@ -65,7 +65,8 @@ class FiscalYearController extends Controller
      */
     public function show(FiscalYear $fiscalYear)
     {
-        //
+        $months = $this->months();
+        return view('fiscal-year.show', compact('months', 'fiscalYear'));
     }
 
     /**
@@ -73,7 +74,8 @@ class FiscalYearController extends Controller
      */
     public function edit(FiscalYear $fiscalYear)
     {
-        //
+        $months = $this->months();
+        return view('fiscal-year.edit', compact('fiscalYear', 'months'));
     }
 
     /**
@@ -81,7 +83,18 @@ class FiscalYearController extends Controller
      */
     public function update(Request $request, FiscalYear $fiscalYear)
     {
-        //
+        $request->validate([
+            'fiscal_year_id' => ['required', 'string'],
+            'fiscal_year_name' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'fiscal_year_start' => ['required', 'string'],
+            'fiscal_year_end' => ['required', 'string'],
+            'number_periods' => ['required', 'string'],
+            'number_closing_periods' => ['required', 'string'],
+        ]);
+        $data = $request->only(['fiscal_year_id', 'fiscal_year_name', 'description', 'fiscal_year_start', 'fiscal_year_end', 'number_periods', 'number_closing_periods']);
+        $fiscalYear->update($data);
+        return redirect()->route('fiscal-year.index')->with('success', trans('Fiscal Year Updated Successfully'));
     }
 
     /**
@@ -89,6 +102,7 @@ class FiscalYearController extends Controller
      */
     public function destroy(FiscalYear $fiscalYear)
     {
-        //
+        $fiscalYear->delete();
+        return redirect()->route('fiscal-year.index')->with('success', trans('Fiscal Year Deleted Successfully'));
     }
 }
