@@ -196,13 +196,13 @@
                                         @if(isset($company->fiscal_calendar))
                                             <tr>
                                                 <th class="ps-0 col-md-4" scope="row">Fiscal Calendar</th>
-                                                <td class="text-muted">{{ $company->fiscal_calendar }}</td>
+                                                <td class="text-muted">{{ $fiscal_calendar[$company->fiscal_calendar] }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->production_calendar))
                                             <tr>
                                                 <th class="ps-0 col-md-4" scope="row">Production Calendar</th>
-                                                <td class="text-muted">{{ $company->production_calendar }}</td>
+                                                <td class="text-muted">{{ $production_calendar[$company->production_calendar] }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->date_format))

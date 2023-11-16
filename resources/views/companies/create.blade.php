@@ -287,22 +287,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="language" class="form-label">@lang('default language') <b class="ambitious-crimson">*</b></label>
-                                    <select id="language" class="form-control @error('company_email') is-invalid @enderror" select2 name="language" required>
-                                        @php
-                                            $defaultLang = env('LOCALE_LANG', 'en');
-                                        @endphp
-                                        <option value="">@lang('select language')</option>
-                                        @foreach($getLang as $key => $value)
-                                            <option value="{{ $key }}" {{ old('language', $defaultLang) == $key ? 'selected' : '' }} >{{ $value }}</option>
+                                    <label for="fiscal_calendar" class="form-label">@lang('Fiscal Calendar') <b class="ambitious-crimson">*</b></label>
+                                    <select id="fiscal_calendar" class="form-control select2 @error('fiscal_calendar') is-invalid @enderror" name="fiscal_calendar" required>
+                                        <option value="">@lang('Select Fiscal Calendar')</option>
+                                        @foreach($fiscal_calendar as $key => $value)
+                                            <option value="{{ $key }}" {{ old('fiscal_calendar') == $key ? 'selected' : '' }} >{{ $value }}</option>
                                         @endforeach
                                     </select>
-
-
-
-
-                                    <label for="fiscal_calendar" class="form-label">@lang('Fiscal Calendar')</label>
-                                    <input id="fiscal_calendar" class="form-control @error('fiscal_calendar') is-invalid @enderror" type="text" name="fiscal_calendar" value="{{ old('fiscal_calendar') }}">
                                     @error('fiscal_calendar')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -310,10 +301,16 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="production_calendar" class="form-label">@lang('Production Calendar')</label>
-                                    <input id="production_calendar" class="form-control @error('production_calendar') is-invalid @enderror" type="text" name="production_calendar" value="{{ old('production_calendar') }}">
+                                    <label for="production_calendar" class="form-label">@lang('Production Calendar') <b class="ambitious-crimson">*</b></label>
+                                    <select id="production_calendar" class="form-control select2 @error('production_calendar') is-invalid @enderror" name="production_calendar" required>
+                                        <option value="">@lang('Select Production Calendar')</option>
+                                        @foreach($production_calendar as $key => $value)
+                                            <option value="{{ $key }}" {{ old('production_calendar') == $key ? 'selected' : '' }} >{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('production_calendar')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

@@ -10,6 +10,7 @@ use App\Models\ApplicationSetting;
 use App\Models\FiscalCalendar;
 use App\Models\FiscalYear;
 use App\Models\Plant;
+use App\Models\ProductionCalendar;
 use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
@@ -33,12 +34,12 @@ class CompanyController extends Controller
     {
         $countriesList = DB::table('countries')->pluck('name', 'id');
         $fiscal_calendar = FiscalCalendar::orderBy('fiscal_calendar_name')->pluck('fiscal_calendar_name', 'fiscal_calendar_id');
-        $fiscal_year = FiscalYear::orderBy('fiscal_year_name')->pluck('fiscal_year_name', 'fiscal_year_id');
+        $production_calendar = ProductionCalendar::orderBy('production_calendar_name')->pluck('production_calendar_name', 'production_calendar_id');
         $currencies = config('money');
         $currencies = $currencies['currencies'];
         $getLang = $this->getLang();
         $timezone = $this->timeZones();
-        return view('companies.create', compact('countriesList', 'currencies', 'timezone', 'getLang', 'fiscal_calendar', 'fiscal_year'));
+        return view('companies.create', compact('countriesList', 'currencies', 'timezone', 'getLang', 'fiscal_calendar', 'production_calendar'));
     }
 
     private function filter(Request $request)
@@ -126,8 +127,8 @@ class CompanyController extends Controller
             'currency_symbol_first' => ['required', 'string'],
             'federal_id' => ['nullable', 'string'],
             'tax_id' => ['nullable', 'string'],
-            'fiscal_calendar' => ['nullable', 'string'],
-            'production_calendar' => ['nullable', 'string'],
+            'fiscal_calendar' => ['required', 'string'],
+            'production_calendar' => ['required', 'string'],
             'language' => ['required', 'string'],
             'date_format' => ['required', 'string'],
             'date_separator' => ['required', 'string'],
@@ -333,11 +334,12 @@ class CompanyController extends Controller
         $city = $cityName->name;
         $lang = $getLang[$company->language];
 
-        $fiscal_calendar = FiscalCalendar::orderBy('fiscal_calendar_name')->pluck('fiscal_calendar_name', 'fiscal_calendar_id');
         $fiscal_year = FiscalYear::orderBy('fiscal_year_name')->pluck('fiscal_year_name', 'fiscal_year_id');
+        $fiscal_calendar = FiscalCalendar::orderBy('fiscal_calendar_name')->pluck('fiscal_calendar_name', 'fiscal_calendar_id');
+        $production_calendar = ProductionCalendar::orderBy('production_calendar_name')->pluck('production_calendar_name', 'production_calendar_id');
 
 
-        return view('companies.show', compact('company', 'country', 'state', 'city', 'getLang', 'lang', 'fiscal_calendar', 'fiscal_year'));
+        return view('companies.show', compact('company', 'country', 'state', 'city', 'getLang', 'lang', 'fiscal_calendar', 'fiscal_year', 'production_calendar'));
     }
 
     /**
@@ -352,9 +354,10 @@ class CompanyController extends Controller
         $getLang = $this->getLang();
         $timezone = $this->timeZones();
         $plants = Plant::where('enabled', 1)->pluck('name', 'id');
-        $fiscal_calendar = FiscalCalendar::orderBy('fiscal_calendar_name')->pluck('fiscal_calendar_name', 'fiscal_calendar_id');
         $fiscal_year = FiscalYear::orderBy('fiscal_year_name')->pluck('fiscal_year_name', 'fiscal_year_id');
-        return view('companies.edit', compact('countriesList', 'currencies', 'timezone', 'getLang', 'company', 'plants', 'fiscal_calendar', 'fiscal_year'));
+        $fiscal_calendar = FiscalCalendar::orderBy('fiscal_calendar_name')->pluck('fiscal_calendar_name', 'fiscal_calendar_id');
+        $production_calendar = ProductionCalendar::orderBy('production_calendar_name')->pluck('production_calendar_name', 'production_calendar_id');
+        return view('companies.edit', compact('countriesList', 'currencies', 'timezone', 'getLang', 'company', 'plants', 'fiscal_calendar', 'fiscal_year', 'production_calendar'));
     }
 
     /**
@@ -385,8 +388,8 @@ class CompanyController extends Controller
             'currency_symbol_first' => ['required', 'string'],
             'federal_id' => ['nullable', 'string'],
             'tax_id' => ['nullable', 'string'],
-            'fiscal_calendar' => ['nullable', 'string'],
-            'production_calendar' => ['nullable', 'string'],
+            'fiscal_calendar' => ['required', 'string'],
+            'production_calendar' => ['required', 'string'],
             'language' => ['required', 'string'],
             'date_format' => ['required', 'string'],
             'date_separator' => ['required', 'string'],
