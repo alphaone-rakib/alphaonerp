@@ -192,6 +192,33 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="currency_symbol" class="form-label">@lang('Symbol') <b class="ambitious-crimson">*</b></label>
+                                    <input id="currency_symbol" class="form-control @error('currency_symbol') is-invalid @enderror" type="text" name="currency_symbol" value="{{ old('currency_symbol') }}" placeholder="@lang('Type Your Currency Symbol')" required>
+                                    @error('currency_symbol')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="currency_symbol_first" class="form-label">@lang('Symbol Position') <b class="ambitious-crimson">*</b></label>
+                                    <select id="currency_symbol_first" class="form-control @error('currency_symbol_first') is-invalid @enderror" select2 name="currency_symbol_first" required>
+                                        <option value="1" {{ old('currency_symbol_first') == 1 ? 'selected' : '' }}>@lang('Before Amount')</option>
+                                        <option value="0" {{ old('currency_symbol_first') == 0 ? 'selected' : '' }}>@lang('After Amount')</option>
+                                    </select>
+                                    @error('currency_symbol_first')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="decimal_cost" class="form-label">@lang('No of Decimals - Cost') <b class="ambitious-crimson">*</b></label>
@@ -219,33 +246,6 @@
                                     <label for="decimal_general" class="form-label">@lang('No of Decimals - General') <b class="ambitious-crimson">*</b></label>
                                     <input id="decimal_general" class="form-control @error('decimal_general') is-invalid @enderror" type="text" name="decimal_general" value="{{ old('decimal_general') }}" placeholder="@lang('Type Your No of Decimals - General')" required>
                                     @error('decimal_general')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="currency_symbol" class="form-label">@lang('Symbol') <b class="ambitious-crimson">*</b></label>
-                                    <input id="currency_symbol" class="form-control @error('currency_symbol') is-invalid @enderror" type="text" name="currency_symbol" value="{{ old('currency_symbol') }}" placeholder="@lang('Type Your Currency Symbol')" required>
-                                    @error('currency_symbol')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="currency_symbol_first" class="form-label">@lang('Symbol Position') <b class="ambitious-crimson">*</b></label>
-                                    <select id="currency_symbol_first" class="form-control @error('currency_symbol_first') is-invalid @enderror" select2 name="currency_symbol_first" required>
-                                        <option value="1" {{ old('currency_symbol_first') == 1 ? 'selected' : '' }}>@lang('Before Amount')</option>
-                                        <option value="0" {{ old('currency_symbol_first') == 0 ? 'selected' : '' }}>@lang('After Amount')</option>
-                                    </select>
-                                    @error('currency_symbol_first')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -287,6 +287,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label for="language" class="form-label">@lang('default language') <b class="ambitious-crimson">*</b></label>
+                                    <select id="language" class="form-control @error('company_email') is-invalid @enderror" select2 name="language" required>
+                                        @php
+                                            $defaultLang = env('LOCALE_LANG', 'en');
+                                        @endphp
+                                        <option value="">@lang('select language')</option>
+                                        @foreach($getLang as $key => $value)
+                                            <option value="{{ $key }}" {{ old('language', $defaultLang) == $key ? 'selected' : '' }} >{{ $value }}</option>
+                                        @endforeach
+                                    </select>
+
+
+
+
                                     <label for="fiscal_calendar" class="form-label">@lang('Fiscal Calendar')</label>
                                     <input id="fiscal_calendar" class="form-control @error('fiscal_calendar') is-invalid @enderror" type="text" name="fiscal_calendar" value="{{ old('fiscal_calendar') }}">
                                     @error('fiscal_calendar')

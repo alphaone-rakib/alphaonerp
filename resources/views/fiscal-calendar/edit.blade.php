@@ -59,19 +59,31 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="fiscal_calendar_start" class="form-label">@lang('Fiscal Calendar Start') <b class="ambitious-crimson">*</b></label>
-                                    <input id="fiscal_calendar_start" class="form-control @error('fiscal_calendar_start') is-invalid @enderror" type="text" name="fiscal_calendar_start" value="{{ old('fiscal_calendar_start', $fiscalCalendar->fiscal_calendar_start) }}">
+                                    <label for="fiscal_calendar_start" class="form-label">@lang('Start') <b class="ambitious-crimson">*</b></label>
+                                    <select id="fiscal_calendar_start" class="form-control @error('fiscal_calendar_start') is-invalid @enderror select2" name="fiscal_calendar_start" required>
+                                        <option value="">@lang('Select Start')</option>
+                                        @foreach($months as $key => $value)
+                                        <option value="{{ $key }}" {{ old('fiscal_calendar_start', $fiscalCalendar->fiscal_calendar_start) == $key ? 'selected' : '' }} >{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('fiscal_calendar_start')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="fiscal_calendar_end" class="form-label">@lang('Fiscal Calendar End') <b class="ambitious-crimson">*</b></label>
-                                    <input id="fiscal_calendar_end" class="form-control @error('fiscal_calendar_end') is-invalid @enderror" type="text" name="fiscal_calendar_end" value="{{ old('fiscal_calendar_end', $fiscalCalendar->fiscal_calendar_end) }}">
+                                    <label for="fiscal_calendar_end" class="form-label">@lang('End') <b class="ambitious-crimson">*</b></label>
+                                    <select id="fiscal_calendar_end" class="form-control @error('fiscal_calendar_end') is-invalid @enderror select2" name="fiscal_calendar_end" required>
+                                        <option value="">@lang('Select Start')</option>
+                                        @foreach($months as $key => $value)
+                                        <option value="{{ $key }}" {{ old('fiscal_calendar_end', $fiscalCalendar->fiscal_calendar_end) == $key ? 'selected' : '' }} >{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('fiscal_calendar_end')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

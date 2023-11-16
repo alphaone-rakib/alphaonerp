@@ -12,8 +12,9 @@ class FiscalCalendarController extends Controller
      */
     public function index(Request $request)
     {
+        $months = $this->months();
         $data = $this->filter($request)->paginate(10)->withQueryString();
-        return view('fiscal-calendar.index', compact('data'));
+        return view('fiscal-calendar.index', compact('data', 'months'));
     }
 
     private function filter(Request $request)
@@ -34,7 +35,8 @@ class FiscalCalendarController extends Controller
      */
     public function create()
     {
-        return view('fiscal-calendar.create');
+        $months = $this->months();
+        return view('fiscal-calendar.create', compact('months'));
     }
 
     /**
@@ -65,7 +67,8 @@ class FiscalCalendarController extends Controller
      */
     public function show(FiscalCalendar $fiscalCalendar)
     {
-        return view('fiscal-calendar.show', compact('fiscalCalendar'));
+        $months = $this->months();
+        return view('fiscal-calendar.show', compact('fiscalCalendar', 'months'));
     }
 
     /**
@@ -73,7 +76,8 @@ class FiscalCalendarController extends Controller
      */
     public function edit(FiscalCalendar $fiscalCalendar)
     {
-        return view('fiscal-calendar.edit', compact('fiscalCalendar'));
+        $months = $this->months();
+        return view('fiscal-calendar.edit', compact('fiscalCalendar', 'months'));
     }
 
     /**

@@ -66,10 +66,10 @@
                         <table class="table table-striped compact table-width" id="laravel_datatable">
                             <thead class="text-muted">
                                 <tr>
-                                    <th>@lang('Fiscal Calendar Id')</th>
-                                    <th>@lang('Fiscal Calendar Name')</th>
-                                    <th>@lang('Fiscal Calendar Start')</th>
-                                    <th>@lang('Fiscal Calendar End')</th>
+                                    <th>@lang('Calendar Id')</th>
+                                    <th>@lang('Calendar Name')</th>
+                                    <th>@lang('Start')</th>
+                                    <th>@lang('End')</th>
                                     <th width='20%'>@lang('Settings')</th>
                                 </tr>
                             </thead>
@@ -78,8 +78,8 @@
                                 <tr>
                                     <td>{{ $item->fiscal_calendar_id }}</td>
                                     <td>{{ $item->fiscal_calendar_name }}</td>
-                                    <td>{{ Carbon\Carbon::parse($item->fiscal_calendar_start."-2023")->format('d F') }}</td>
-                                    <td>{{ Carbon\Carbon::parse($item->fiscal_calendar_end."-2023")->format('d F') }}</td>
+                                    <td>{{ $months[$item->fiscal_calendar_start] }}</td>
+                                    <td>{{ $months[$item->fiscal_calendar_end] }}</td>
                                     <td>
                                         <a href=" {{ route('fiscal-calendar.show', $item) }}" type="button" class="btn btn-outline-info waves-effect waves-light shadow-none">@lang('View')</a>&nbsp;&nbsp;
                                         <a href=" {{ route('fiscal-calendar.edit', $item) }}" type="button" class="btn btn-outline-warning waves-effect waves-light shadow-none">@lang('Edit')</a>&nbsp;&nbsp;

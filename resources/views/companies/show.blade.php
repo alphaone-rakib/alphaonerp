@@ -121,26 +121,14 @@
                                     <tbody>
                                         @if(isset($company->currency_code))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Code</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Code')</th>
                                                 <td class="text-muted">{{ $company->currency_code }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->currency_name))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Currency Name</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Currency Name')</th>
                                                 <td class="text-muted">{{ $company->currency_name }}</td>
-                                            </tr>
-                                        @endif
-                                        @if(isset($company->decimal_precision))
-                                            <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Precision</th>
-                                                <td class="text-muted">{{ $company->decimal_precision }}</td>
-                                            </tr>
-                                        @endif
-                                        @if(isset($company->currency_decimal_mark))
-                                            <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Decimal Mark</th>
-                                                <td class="text-muted">{{ $company->currency_decimal_mark }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->currency_symbol))
@@ -157,6 +145,24 @@
                                                 @else
                                                     <td class="text-muted">@lang('Before Amount')</td>
                                                 @endif
+                                            </tr>
+                                        @endif
+                                        @if(isset($company->decimal_cost))
+                                            <tr>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('No of Decimals - Cost')</th>
+                                                <td class="text-muted">{{ $company->decimal_cost }}</td>
+                                            </tr>
+                                        @endif
+                                        @if(isset($company->decimal_price))
+                                            <tr>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('No of Decimals - Price')</th>
+                                                <td class="text-muted">{{ $company->decimal_price }}</td>
+                                            </tr>
+                                        @endif
+                                        @if(isset($company->decimal_general))
+                                            <tr>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('No of Decimals - General')</th>
+                                                <td class="text-muted">{{ $company->decimal_general }}</td>
                                             </tr>
                                         @endif
                                     </tbody>

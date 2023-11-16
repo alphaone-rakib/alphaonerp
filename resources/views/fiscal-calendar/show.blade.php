@@ -21,26 +21,26 @@
                             <tbody>
                                 <tr>
                                     @if (isset($fiscalCalendar->fiscal_calendar_id))
-                                        <th class="ps-0 col-md-2" scope="row">@lang('Fiscal Calendar Id')</th>
+                                        <th class="ps-0 col-md-2" scope="row">@lang('Calendar Id')</th>
                                         <td class="col-md-4 text-muted">{{ $fiscalCalendar->fiscal_calendar_id }}</td>
                                     @endif
                                 </tr>
                                 <tr>
                                     @if (isset($fiscalCalendar->fiscal_calendar_name))
-                                        <th class="ps-0 col-md-2" scope="row">@lang('Fiscal Calendar Name')</th>
+                                        <th class="ps-0 col-md-2" scope="row">@lang('Calendar Name')</th>
                                         <td class="col-md-4 text-muted">{{ $fiscalCalendar->fiscal_calendar_name }}</td>
                                     @endif
                                 </tr>
                                 <tr>
                                     @if (isset($fiscalCalendar->fiscal_calendar_start))
-                                        <th class="ps-0 col-md-2" scope="row">@lang('Fiscal Calendar Start')</th>
-                                        <td class="col-md-4 text-muted">{{ Carbon\Carbon::parse($fiscalCalendar->fiscal_calendar_start."-2023")->format('d F') }}</td>
+                                        <th class="ps-0 col-md-2" scope="row">@lang('Start')</th>
+                                        <td class="col-md-4 text-muted">{{ $months[$fiscalCalendar->fiscal_calendar_start] }}</td>
                                     @endif
                                 </tr>
                                 <tr>
                                     @if (isset($fiscalCalendar->fiscal_calendar_end))
-                                        <th class="ps-0 col-md-2" scope="row">@lang('Fiscal Calendar End')</th>
-                                        <td class="col-md-4 text-muted">{{ Carbon\Carbon::parse($fiscalCalendar->fiscal_calendar_end."-2023")->format('d F') }}</td>
+                                        <th class="ps-0 col-md-2" scope="row">@lang('End')</th>
+                                        <td class="col-md-4 text-muted">{{ $months[$fiscalCalendar->fiscal_calendar_end] }}</td>
                                     @endif
                                 </tr>
                                 <tr>
