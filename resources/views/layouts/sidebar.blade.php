@@ -82,6 +82,27 @@ $userId = auth()->user()->id;
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link @if($c == 'customer-group' || $c == 'customer') active @endif" href="#salesModule" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="salesModule">
+                        <i class="mdi mdi-point-of-sale"></i>
+                        <span>@lang('Sales Module')</span>
+                    </a>
+                    <div class="collapse menu-dropdown @if($c == 'customer-group' || $c == 'customer') show @endif" id="salesModule">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('customer.index') }}" class="nav-link @if($c == 'customer') active @endif">
+                                    @lang('Customer')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('customer-group.index') }}" class="nav-link @if($c == 'customer-group') active @endif">
+                                    @lang('Customer Group')
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link @if($c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar') active @endif" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="mdi mdi-cog"></i> <span>@lang('Settings')
                         </span>

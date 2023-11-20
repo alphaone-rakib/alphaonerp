@@ -40,6 +40,8 @@ class Controller extends BaseController
             'application-settings' => 'Application Configuration',
             'fiscal-calendar' => 'Fiscal Calendar',
             'fiscal-year' => 'Fiscal Year',
+            'customer-group' => 'Customer Group',
+            'customer' => 'Customer',
         );
     }
 
