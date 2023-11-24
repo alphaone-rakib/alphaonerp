@@ -267,11 +267,8 @@
                                                     <label for="ship_city" class="form-label">@lang('Ship City')</label>
                                                     <select id="ship_city" class="form-control @error('ship_city') is-invalid @enderror select2" name="ship_city">
                                                         <option value="">@lang('Select Ship City')</option>
-                                                        @foreach($countriesList as $key => $value)
-                                                        <option value="{{ $key }}" {{ old('city') == $key ? 'selected' : '' }} >{{ $value }}</option>
-                                                        @endforeach
                                                     </select>
-                                                    @error('city')
+                                                    @error('ship_city')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -348,6 +345,8 @@
                     let phone = $("#phone").val();
                     let fax = $("#fax").val();
                     let country = $("#country").val();
+                    let state = $("#state").val();
+                    let city = $("#city").val();
                     if ($('#same_as_customer_info').is(":checked")) {
 
                         $("#ship_address_one").val(address_one);
@@ -356,6 +355,8 @@
                         $("#ship_phone").val(phone);
                         $("#ship_fax").val(fax);
                         $("#ship_country").select2().val(country).trigger("change");
+                        $("#ship_state").select2().val(state).trigger("change");
+                        $("#ship_city").select2().val(city).trigger("change");
 
                     } else {
 
@@ -365,6 +366,8 @@
                         $("#ship_phone").val('');
                         $("#ship_fax").val('');
                         $("#ship_country").select2().val('').trigger("change");
+                        $("#ship_state").select2().val('').trigger("change");
+                        $("#ship_city").select2().val('').trigger("change");
                     }
                 });
                 $('.dropify').dropify();
@@ -396,9 +399,80 @@
                         }
                     });
                 });
+
+                $('#ship_country').on('change', function(){
+                    if ($('#same_as_customer_info').is(":checked")) {
+                        let countryId = $("#ship_country").val();
+                        
+                        
+                        if(countryId){
+                            $.ajax({
+                                url: '{{ url('company/selectedStateData') }}',
+                                type:"GET",
+                                dataType: 'JSON',
+                                data:{countryId:countryId},
+                                success:function(html){
+                                    if(html){
+                                        $("#ship_state").empty();
+                                        $("#ship_city").empty();
+                                        $("#ship_state").append('<option>{{ __('Select Ship State') }}</option>');
+                                        $("#ship_city").append('<option>{{ __('Select Ship City') }}</option>');
+                                        $.each(html.states,function(key,value){
+                                            let state = $("#state").val();
+                                            let ship_state_selected = ((key == state) ? 'selected' : '');
+                                            $("#ship_state").append('<option value="'+key+'" '+ship_state_selected+'>'+value+'</option>');
+                                        });
+                                        $.each(html.cities,function(key,value){
+                                            let city = $("#city").val();
+                                            let ship_city_selected = ((key == city) ? 'selected' : '');
+                                            $("#ship_city").append('<option value="'+key+'" '+ship_city_selected+'>'+value+'</option>');
+                                        });
+                                    } else {
+                                        $("#ship_state").empty();
+                                        $("#ship_city").empty();
+                                    }
+                                }
+                            });
+                        } else {
+                            $('#ship_state').html('<option value="">{{ __('Select Country First') }}</option>');
+                            $('#ship_city').html('<option value="">{{ __('Select State First') }}</option>');
+                        }
+                    } else {
+                        var countryId = $(this).val();
+                        if(countryId){
+                            $.ajax({
+                                url: '{{ url('company/selectedStateData') }}',
+                                type:"GET",
+                                dataType: 'JSON',
+                                data:{countryId:countryId},
+                                success:function(html){
+                                    if(html){
+                                        $("#ship_state").empty();
+                                        $("#ship_city").empty();
+                                        $("#ship_state").append('<option>{{ __('Select Ship State') }}</option>');
+                                        $("#ship_city").append('<option>{{ __('Select Ship City') }}</option>');
+                                        $.each(html.states,function(key,value){
+                                            $("#ship_state").append('<option value="'+key+'">'+value+'</option>');
+                                        });
+                                        $.each(html.cities,function(key,value){
+                                            $("#ship_city").append('<option value="'+key+'">'+value+'</option>');
+                                        });
+                                    } else {
+                                        $("#ship_state").empty();
+                                        $("#ship_city").empty();
+                                    }
+                                }
+                            });
+                        } else {
+                            $('#ship_state').html('<option value="">{{ __('Select Country First') }}</option>');
+                            $('#ship_city').html('<option value="">{{ __('Select State First') }}</option>');
+                        }
+                    }
+                });
     
                 $('#country').on('change', function(){
                     var countryId = $(this).val();
+                    $("#ship_country").select2().val(countryId).trigger("change");
                     if(countryId){
                         $.ajax({
                             url: '{{ url('company/selectedStateData') }}',
@@ -410,23 +484,33 @@
                                 if(html){
                                     $("#state").empty();
                                     $("#city").empty();
+                                    $("#ship_state").empty();
+                                    $("#ship_city").empty();
                                     $("#state").append('<option>{{ __('Select State') }}</option>');
+                                    $("#ship_state").append('<option>{{ __('Select Ship State') }}</option>');
                                     $("#city").append('<option>{{ __('Select City') }}</option>');
+                                    $("#ship_city").append('<option>{{ __('Select Ship City') }}</option>');
                                     $.each(html.states,function(key,value){
                                         $("#state").append('<option value="'+key+'">'+value+'</option>');
+                                        $("#ship_state").append('<option value="'+key+'">'+value+'</option>');
                                     });
                                     $.each(html.cities,function(key,value){
                                         $("#city").append('<option value="'+key+'">'+value+'</option>');
+                                        $("#ship_city").append('<option value="'+key+'">'+value+'</option>');
                                     });
                                 }else{
                                     $("#state").empty();
                                     $("#city").empty();
+                                    $("#ship_state").empty();
+                                    $("#ship_city").empty();
                                 }
                             }
                         });
                     } else {
                         $('#state').html('<option value="">{{ __('Select Country First') }}</option>');
+                        $('#ship_state').html('<option value="">{{ __('Select Country First') }}</option>');
                         $('#city').html('<option value="">{{ __('Select State First') }}</option>');
+                        $('#ship_city').html('<option value="">{{ __('Select State First') }}</option>');
                     }
                 });
             });
