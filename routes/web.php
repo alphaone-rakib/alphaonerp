@@ -157,6 +157,21 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'user.accountAction'
     ]);
 
+    Route::put('/customer/{id}/shippingUpdate', [
+        'uses' => 'App\Http\Controllers\CustomerController@shippingUpdate',
+        'as' => 'customer.shippingUpdate'
+    ]);
+
+    Route::put('/customer/{id}/billUpdate', [
+        'uses' => 'App\Http\Controllers\CustomerController@billUpdate',
+        'as' => 'customer.billUpdate'
+    ]);
+
+    Route::put('/customer/{id}/accountUpdate', [
+        'uses' => 'App\Http\Controllers\CustomerController@accountUpdate',
+        'as' => 'customer.accountUpdate'
+    ]);
+
     Route::resources([
         'company' => App\Http\Controllers\CompanyController::class,
         'company-configuration' => App\Http\Controllers\CompanyConfigurationController::class,
