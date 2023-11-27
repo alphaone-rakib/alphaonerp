@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Customer;
+use App\Models\CustomerGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -102,7 +104,16 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        $countryName = DB::table('countries')->where('id', $customer->country)->first();
+        $stateName = DB::table('states')->where('id', $customer->state)->first();
+        $cityName = DB::table('cities')->where('id', $customer->city)->first();
+
+        $shipCountryName = DB::table('countries')->where('id', $customer->ship_country)->first();
+        $shipStateName = DB::table('states')->where('id', $customer->ship_state)->first();
+        $shipCityName = DB::table('cities')->where('id', $customer->ship_city)->first();
+
+        // dd($shipCountryName);
+        return view('customer.show', compact('customer', 'countryName', 'stateName', 'cityName', 'shipCountryName', 'shipStateName', 'shipCityName'));
     }
 
     /**
@@ -116,7 +127,12 @@ class CustomerController extends Controller
         $stateName = DB::table('states')->where('id', $customer->state)->first();
         $cityName = DB::table('cities')->where('id', $customer->city)->first();
 
-        return view('customer.edit', compact('customer', 'countriesList', 'countryName', 'stateName', 'cityName'));
+        $currencies = config('money');
+        $currencies = $currencies['currencies'];
+
+        $customerGroupList = CustomerGroup::pluck('group_name', 'id');
+
+        return view('customer.edit', compact('currencies', 'customerGroupList', 'customer', 'countriesList', 'countryName', 'stateName', 'cityName'));
     }
 
     /**
@@ -139,7 +155,96 @@ class CustomerController extends Controller
         ]);
         $data = $request->only(['name', 'address_one', 'address_two', 'country', 'state', 'city', 'zip_code', 'phone', 'fax', 'email', 'url']);
         $customer->update($data);
-        return redirect()->route('customer.index')->with('success', trans('Customer Updated Successfully'));
+        return redirect()->route('customer.index')->with('success', trans('Customer Info Updated Successfully'));
+    }
+
+    public function shippingUpdate(Request $request, string $id)
+    {
+        $request->validate([
+            'ship_address_one' => ['nullable', 'string'],
+            'ship_address_two' => ['nullable', 'string'],
+            'ship_country' => ['required', 'string'],
+            'ship_state' => ['required', 'string'],
+            'ship_city' => ['nullable', 'string'],
+            'ship_zip_code' => ['nullable', 'string'],
+            'ship_phone' => ['nullable', 'string'],
+            'ship_fax' => ['nullable', 'string']
+        ]);
+        $data = $request->only(['ship_address_one', 'ship_address_two', 'ship_country', 'ship_state', 'ship_city', 'ship_zip_code', 'ship_phone', 'ship_fax']);
+        $customer = Customer::find($id);
+        $customer->update($data);
+        return redirect()->route('customer.index')->with('success', trans('Customer Ship Info Updated Successfully'));
+    }
+
+    public function billUpdate(Request $request, string $id)
+    {
+        $request->validate([
+            'bill_currency_id' => ['nullable', 'string'],
+            'bill_customer_group_id' => ['nullable', 'string'],
+            'bill_payment_method_id' => ['required', 'string'],
+            'bill_federal_id' => ['required', 'string'],
+            'bill_terms_id' => ['nullable', 'string'],
+            'bill_terms_type' => ['nullable', 'string'],
+            'bill_ship_via' => ['nullable', 'string'],
+            'bill_fob' => ['nullable', 'string'],
+            'bill_tax_id' => ['nullable', 'string']
+        ]);
+        $data = $request->only(['bill_currency_id', 'bill_customer_group_id', 'bill_payment_method_id', 'bill_federal_id', 'bill_terms_id', 'bill_terms_type', 'bill_ship_via', 'bill_fob', 'bill_tax_id']);
+        $customer = Customer::find($id);
+        $customer->update($data);
+        return redirect()->route('customer.index')->with('success', trans('Customer Bill Info Updated Successfully'));
+    }
+
+    public function accountUpdate(Request $request, string $id)
+    {
+        $request->validate([
+            'contact_name' => ['nullable', 'string'],
+            'contact_title' => ['nullable', 'string'],
+            'contact_email' => ['nullable', 'string'],
+            'contact_phone' => ['nullable', 'string'],
+            'contact_cell_phone' => ['nullable', 'string'],
+            'billing' => ['nullable', 'string'],
+            'purchasing' => ['nullable', 'string'],
+            'shipping' => ['nullable', 'string'],
+        ]);
+        DB::beginTransaction();
+        try {
+
+            $customer = Customer::find($id);
+            $data = $request->only(['contact_name', 'contact_title', 'contact_email', 'contact_phone', 'contact_cell_phone']);
+
+            if (isset($request->billing) && !empty($request->billing)) {
+                if ($request->billing == "1") {
+                    $data['billing'] = "1";
+                }
+            } else {
+                $data['billing'] = "0";
+            }
+
+            if (isset($request->purchasing) && !empty($request->purchasing)) {
+                if ($request->purchasing == "1") {
+                    $data['purchasing'] = "1";
+                }
+            } else {
+                $data['purchasing'] = "0";
+            }
+
+            if (isset($request->shipping) && !empty($request->shipping)) {
+                if ($request->shipping == "1") {
+                    $data['shipping'] = "1";
+                }
+            } else {
+                $data['shipping'] = "0";
+            }
+
+            $customer->update($data);
+
+            DB::commit();
+            return redirect()->route('customer.index')->with('success', trans('Customer Contact Info Updated Successfully'));
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e);
+        }
     }
 
     /**

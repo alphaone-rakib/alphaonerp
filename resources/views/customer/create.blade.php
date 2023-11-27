@@ -486,10 +486,10 @@
                                     $("#city").empty();
                                     $("#ship_state").empty();
                                     $("#ship_city").empty();
-                                    $("#state").append('<option>{{ __('Select State') }}</option>');
-                                    $("#ship_state").append('<option>{{ __('Select Ship State') }}</option>');
-                                    $("#city").append('<option>{{ __('Select City') }}</option>');
-                                    $("#ship_city").append('<option>{{ __('Select Ship City') }}</option>');
+                                    $("#state").append('<option value="">{{ __('Select State') }}</option>');
+                                    $("#ship_state").append('<option value="">{{ __('Select Ship State') }}</option>');
+                                    $("#city").append('<option value="">{{ __('Select City') }}</option>');
+                                    $("#ship_city").append('<option value="">{{ __('Select Ship City') }}</option>');
                                     $.each(html.states,function(key,value){
                                         $("#state").append('<option value="'+key+'">'+value+'</option>');
                                         $("#ship_state").append('<option value="'+key+'">'+value+'</option>');
