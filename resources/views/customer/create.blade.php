@@ -319,6 +319,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card border card-border-info">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">@lang('Ptoto')</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input id="logo" class="dropify" name="logo" value="{{ old('logo') }}" type="file" data-allowed-file-extensions="png jpg jpeg" data-max-file-size="5120K" />
+                                                <p>@lang('Max Size: 5MB, Allowed Format: png jpg jpeg')</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg"/>

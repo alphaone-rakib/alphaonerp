@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_groups', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->string('group_id')->nullable();
             $table->string('group_name')->nullable();

@@ -49,4 +49,9 @@ class Customer extends Model
         'purchasing',
         'shipping'
     ];
+
+    public function customerGroup()
+    {
+        return $this->belongsTo(CustomerGroup::class);
+    }
 }

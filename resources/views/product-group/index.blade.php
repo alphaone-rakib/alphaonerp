@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') @lang('Customer Group')  @endsection
+@section('title') @lang('Product Group')  @endsection
 @section('css')
 <!--datatable css-->
 <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
@@ -10,19 +10,19 @@
 @endsection
 @section('content')
     @component('components.breadcrumb')
-        @slot('li_1') @lang('Customer Group') @endslot
-        @slot('title') @lang('Customer Group List')  @endslot
+        @slot('li_1') @lang('Product Group') @endslot
+        @slot('title') @lang('Product Group List')  @endslot
     @endcomponent
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">@lang('Customer Group List')</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">@lang('Product Group List')</h4>
                     <div class="flex-shrink-0">
                         <button class="btn btn-outline btn-soft-primary shadow-none" data-bs-toggle="collapse" href="#filter"><span class="mdi mdi-filter"></span> @lang('Filter')</button>
                     </div>
                     <div class="flex-shrink-0">
-                        <a href="{{ route('customer-group.create') }}" class="btn btn-outline btn-soft-info shadow-none ml-1">+ @lang('Add Customer Group')</a>
+                        <a href="{{ route('product-group.create') }}" class="btn btn-outline btn-soft-info shadow-none ml-1">+ @lang('Add Product Group')</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -34,16 +34,16 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <div class="form-group">
-                                                <label>@lang('Group Id')</label>
-                                                <input type="text" name="group_id" class="form-control" value="{{ request()->group_id }}" placeholder="@lang('Search With Group Id')">
+                                                <label>@lang('Product Id')</label>
+                                                <input type="text" name="group_id" class="form-control" value="{{ request()->group_id }}" placeholder="@lang('Search With Product Id')">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <div class="form-group">
-                                                <label>@lang('Group Name')</label>
-                                                <input type="text" name="group_name" class="form-control" value="{{ request()->group_name }}" placeholder="@lang('Search With Group Name')">
+                                                <label>@lang('Product Name')</label>
+                                                <input type="text" name="group_name" class="form-control" value="{{ request()->group_name }}" placeholder="@lang('Search With Product Name')">
                                             </div>
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                         <div class="mb-3">
                                             <button type="submit" class="btn btn-info">Submit</button>
                                             @if(request()->isFilterActive)
-                                                <a href="{{ route('customer-group.index') }}" class="btn btn-soft-secondary ml-1">Clear</a>
+                                                <a href="{{ route('product-group.index') }}" class="btn btn-soft-secondary ml-1">Clear</a>
                                             @endif
                                         </div>
                                     </div>
@@ -68,8 +68,6 @@
                                 <tr>
                                     <th>@lang('Group Id')</th>
                                     <th>@lang('Group Name')</th>
-                                    <th>@lang('Total Customers')</th>
-                                    <th>@lang('Discount Percentage Rate')</th>
                                     <th width='25%'>@lang('Settings')</th>
                                 </tr>
                             </thead>
@@ -78,12 +76,10 @@
                                 <tr>
                                     <td>{{ $item->group_id }}</td>
                                     <td>{{ $item->group_name }}</td>
-                                    <td>{{ $item->customers()->count() }}</td>
-                                    <td>{{ $item->percentage_rate." %" }}</td>
                                     <td>
-                                        <a href=" {{ route('customer-group.show', $item) }}" type="button" class="btn btn-outline-info waves-effect waves-light shadow-none">@lang('View')</a>&nbsp;&nbsp;
-                                        <a href=" {{ route('customer-group.edit', $item) }}" type="button" class="btn btn-outline-warning waves-effect waves-light shadow-none">@lang('Edit')</a>&nbsp;&nbsp;
-                                        <a href="#" data-href="{{ route('customer-group.destroy', $item) }}" class="btn btn-outline-danger waves-effect waves-light shadow-none" data-bs-toggle="modal" data-bs-target="#myModal">@lang('Delete')</a>
+                                        <a href=" {{ route('product-group.show', $item) }}" type="button" class="btn btn-outline-info waves-effect waves-light shadow-none">@lang('View')</a>&nbsp;&nbsp;
+                                        <a href=" {{ route('product-group.edit', $item) }}" type="button" class="btn btn-outline-warning waves-effect waves-light shadow-none">@lang('Edit')</a>&nbsp;&nbsp;
+                                        <a href="#" data-href="{{ route('product-group.destroy', $item) }}" class="btn btn-outline-danger waves-effect waves-light shadow-none" data-bs-toggle="modal" data-bs-target="#myModal">@lang('Delete')</a>
                                     </td>
                                 </tr>
                                 @endforeach

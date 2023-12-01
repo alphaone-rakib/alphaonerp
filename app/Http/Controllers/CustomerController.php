@@ -50,6 +50,17 @@ class CustomerController extends Controller
     {
         $this->validation($request);
 
+        $logoUrl = "";
+        if ($request->hasFile('logo')) {
+            $this->validate($request, [
+                'logo' => 'image|mimes:png,jpg,jpeg'
+            ]);
+            $logo = $request->logo;
+            $logoNewName = time() . $logo->getClientOriginalName();
+            $logo->move('uploads/customer', $logoNewName);
+            $logoUrl = 'uploads/customer/' . $logoNewName;
+        }
+
         if (isset($request->same_as_customer_info) && !empty($request->same_as_customer_info)) {
             Customer::create([
                 'name' => $request->input('name'),
@@ -63,6 +74,7 @@ class CustomerController extends Controller
                 'fax' => $request->input('fax'),
                 'email' => $request->input('email'),
                 'url' => $request->input('url'),
+                'logo' => $logoUrl,
                 'ship_address_one' => $request->input('address_one'),
                 'ship_address_two' => $request->input('address_two'),
                 'ship_country' => $request->input('country'),
@@ -85,6 +97,7 @@ class CustomerController extends Controller
                 'fax' => $request->input('fax'),
                 'email' => $request->input('email'),
                 'url' => $request->input('url'),
+                'logo' => $logoUrl,
                 'ship_address_one' => $request->input('ship_address_one'),
                 'ship_address_two' => $request->input('ship_address_two'),
                 'ship_country' => $request->input('ship_country'),
@@ -112,8 +125,12 @@ class CustomerController extends Controller
         $shipStateName = DB::table('states')->where('id', $customer->ship_state)->first();
         $shipCityName = DB::table('cities')->where('id', $customer->ship_city)->first();
 
-        // dd($shipCountryName);
-        return view('customer.show', compact('customer', 'countryName', 'stateName', 'cityName', 'shipCountryName', 'shipStateName', 'shipCityName'));
+        $currencies = config('money');
+        $currencies = $currencies['currencies'];
+
+        $customerGroupList = CustomerGroup::pluck('group_name', 'id');
+
+        return view('customer.show', compact('customerGroupList', 'currencies', 'customer', 'countryName', 'stateName', 'cityName', 'shipCountryName', 'shipStateName', 'shipCityName'));
     }
 
     /**
@@ -153,7 +170,23 @@ class CustomerController extends Controller
             'email' => ['nullable', 'string'],
             'url' => ['nullable', 'string']
         ]);
+        $logoUrl = "";
+        if ($request->hasFile('logo')) {
+
+            $this->validate($request, [
+                'logo' => 'image|mimes:png,jpg,jpeg'
+            ]);
+
+            $logo = $request->logo;
+            $logoNewName = time() . $logo->getClientOriginalName();
+            $logo->move('uploads/customer', $logoNewName);
+            $logoUrl = 'uploads/customer/' . $logoNewName;
+        }
+
         $data = $request->only(['name', 'address_one', 'address_two', 'country', 'state', 'city', 'zip_code', 'phone', 'fax', 'email', 'url']);
+        if ($logoUrl != "") {
+            $data['logo'] = $logoUrl;
+        }
         $customer->update($data);
         return redirect()->route('customer.index')->with('success', trans('Customer Info Updated Successfully'));
     }
@@ -181,8 +214,8 @@ class CustomerController extends Controller
         $request->validate([
             'bill_currency_id' => ['nullable', 'string'],
             'bill_customer_group_id' => ['nullable', 'string'],
-            'bill_payment_method_id' => ['required', 'string'],
-            'bill_federal_id' => ['required', 'string'],
+            'bill_payment_method_id' => ['nullable', 'string'],
+            'bill_federal_id' => ['nullable', 'string'],
             'bill_terms_id' => ['nullable', 'string'],
             'bill_terms_type' => ['nullable', 'string'],
             'bill_ship_via' => ['nullable', 'string'],

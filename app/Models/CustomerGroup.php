@@ -17,4 +17,9 @@ class CustomerGroup extends Model
         'description',
         'percentage_rate'
     ];
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class, 'bill_customer_group_id');
+    }
 }

@@ -197,6 +197,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="url" class="form-label">@lang('Ptoto')</label>
+                                        <input id="logo" class="dropify" name="logo" value="{{ old('logo') }}" type="file" data-allowed-file-extensions="png jpg jpeg" data-max-file-size="5120K" />
+                                        <small id="name" class="form-text text-muted">@lang('Leave Blank For Remain Unchanged')</small>
+                                        <p>@lang('Max Size: 5MB, Allowed Format: png jpg jpeg')</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />

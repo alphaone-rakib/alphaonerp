@@ -82,11 +82,11 @@ $userId = auth()->user()->id;
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if($c == 'customer-group' || $c == 'customer') active @endif" href="#salesModule" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="salesModule">
+                    <a class="nav-link menu-link @if($c == 'customer-group' || $c == 'customer' || $c == 'product-group') active @endif" href="#salesModule" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="salesModule">
                         <i class="mdi mdi-point-of-sale"></i>
                         <span>@lang('Sales Module')</span>
                     </a>
-                    <div class="collapse menu-dropdown @if($c == 'customer-group' || $c == 'customer') show @endif" id="salesModule">
+                    <div class="collapse menu-dropdown @if($c == 'customer-group' || $c == 'customer' || $c == 'product-group') show @endif" id="salesModule">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('customer.index') }}" class="nav-link @if($c == 'customer') active @endif">
@@ -96,6 +96,11 @@ $userId = auth()->user()->id;
                             <li class="nav-item">
                                 <a href="{{ route('customer-group.index') }}" class="nav-link @if($c == 'customer-group') active @endif">
                                     @lang('Customer Group')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('product-group.index') }}" class="nav-link @if($c == 'product-group') active @endif">
+                                    @lang('Product Group')
                                 </a>
                             </li>
                         </ul>
