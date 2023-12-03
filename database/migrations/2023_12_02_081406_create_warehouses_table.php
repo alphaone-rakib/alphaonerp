@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('business_roles', function (Blueprint $table) {
+        Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->string('role_id')->nullable();
+            $table->string('warehouse_id')->nullable();
+            $table->string('code')->nullable();
             $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->text('description')->nullable();
-            $table->boolean('enabled')->default(1);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('business_roles');
+        Schema::dropIfExists('warehouses');
     }
 };

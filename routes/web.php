@@ -173,6 +173,7 @@ Route::group(['middleware' => ['auth']], function () {
     ]);
 
     Route::resources([
+        'group' => App\Http\Controllers\GroupController::class,
         'company' => App\Http\Controllers\CompanyController::class,
         'company-configuration' => App\Http\Controllers\CompanyConfigurationController::class,
         'plant' => App\Http\Controllers\PlantController::class,

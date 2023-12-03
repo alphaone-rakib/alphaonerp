@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('business_roles', function (Blueprint $table) {
+        Schema::create('revisions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->string('role_id')->nullable();
-            $table->string('name')->nullable();
-            $table->text('description')->nullable();
-            $table->boolean('enabled')->default(1);
+            $table->string('revision_id')->nullable();
+            $table->string('revision_name')->nullable();
+            $table->string('revision_description')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('business_roles');
+        Schema::dropIfExists('revisions');
     }
 };

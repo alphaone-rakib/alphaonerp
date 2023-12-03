@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('business_roles', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->string('role_id')->nullable();
-            $table->string('name')->nullable();
-            $table->text('description')->nullable();
-            $table->boolean('enabled')->default(1);
+            $table->string('group_id')->nullable();
+            $table->string('group_name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('sales_site')->nullable();
+            $table->string('warranty')->nullable();
+            $table->string('planner')->nullable();
+            $table->string('tax_category')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('business_roles');
+        Schema::dropIfExists('groups');
     }
 };
