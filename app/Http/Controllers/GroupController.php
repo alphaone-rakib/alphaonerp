@@ -71,7 +71,7 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        return view('group.show', compact('group'));
+        return view('groups.show', compact('group'));
     }
 
     /**
@@ -79,7 +79,7 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        return view('group.edit', compact('group'));
+        return view('groups.edit', compact('group'));
     }
 
     /**
