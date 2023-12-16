@@ -5,17 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Revision extends Model
+class PartClass extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
         'company_id',
-        'revision_id',
-        'revision_name',
-        'revision_description',
-        'effective_date',
-        'approved'
+        'class_name',
+        'class_description',
+        'class_buyer'
     ];
+
+    public function buyer()
+    {
+        return $this->belongsTo(Buyer::class, 'class_buyer');
+    }
 }

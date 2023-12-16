@@ -16,11 +16,15 @@ return new class extends Migration
             $table->bigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->string('warehouse_id')->nullable();
-            $table->string('code')->nullable();
-            $table->string('name')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
             $table->text('description')->nullable();
+            $table->string('name')->nullable();
+            $table->string('address_one')->nullable();
+            $table->string('address_two')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('country')->nullable();
+            $table->string('manager_name')->nullable();
             $table->timestamps();
         });
     }

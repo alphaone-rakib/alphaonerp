@@ -172,6 +172,21 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'customer.accountUpdate'
     ]);
 
+    Route::put('/part-master/{id}/revisionTabUpdate', [
+        'uses' => 'App\Http\Controllers\PartMasterController@revisionTabUpdate',
+        'as' => 'part-master.revisionTabUpdate'
+    ]);
+
+    Route::put('/part-master/{id}/plantTabUpdate', [
+        'uses' => 'App\Http\Controllers\PartMasterController@plantTabUpdate',
+        'as' => 'part-master.plantTabUpdate'
+    ]);
+
+    Route::put('/part-master/{id}/warehouseTabUpdate', [
+        'uses' => 'App\Http\Controllers\PartMasterController@warehouseTabUpdate',
+        'as' => 'part-master.warehouseTabUpdate'
+    ]);
+
     Route::resources([
         'group' => App\Http\Controllers\GroupController::class,
         'company' => App\Http\Controllers\CompanyController::class,
@@ -186,5 +201,8 @@ Route::group(['middleware' => ['auth']], function () {
         'customer-group' => App\Http\Controllers\CustomerGroupController::class,
         'customer' => App\Http\Controllers\CustomerController::class,
         'product-group' => App\Http\Controllers\ProductGroupController::class,
+        'buyer' => App\Http\Controllers\BuyerController::class,
+        'part-class' => App\Http\Controllers\PartClassController::class,
+        'part-master' => App\Http\Controllers\PartMasterController::class,
     ]);
 });

@@ -13313,7 +13313,7 @@ span.flatpickr-weekday {
 }
 
 .auth-one-bg {
-    background-image: url(../images/auth-one-bg.jpg);
+    /* background-image: url(../images/auth-one-bg.jpg); */
     background-position: 50%;
     background-size: cover
 }

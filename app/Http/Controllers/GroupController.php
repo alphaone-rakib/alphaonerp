@@ -46,10 +46,10 @@ class GroupController extends Controller
             'group_id' => ['required', 'string'],
             'group_name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'sales_site' => ['nullable', 'string'],
-            'warranty' => ['nullable', 'string'],
-            'planner' => ['nullable', 'string'],
-            'tax_category' => ['nullable', 'string'],
+            'sales_site' => ['required', 'string'],
+            'warranty' => ['required', 'string'],
+            'planner' => ['required', 'string'],
+            'tax_category' => ['required', 'string'],
         ]);
 
         Group::create([
@@ -91,10 +91,10 @@ class GroupController extends Controller
             'group_id' => ['required', 'string'],
             'group_name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'sales_site' => ['nullable', 'string'],
-            'warranty' => ['nullable', 'string'],
-            'planner' => ['nullable', 'string'],
-            'tax_category' => ['nullable', 'string'],
+            'sales_site' => ['required', 'string'],
+            'warranty' => ['required', 'string'],
+            'planner' => ['required', 'string'],
+            'tax_category' => ['required', 'string'],
         ]);
 
         $data = $request->only(['group_id', 'group_name', 'description', 'sales_site', 'warranty', 'planner', 'tax_category']);

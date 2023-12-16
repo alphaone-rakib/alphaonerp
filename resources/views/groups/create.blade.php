@@ -58,8 +58,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="sales_site" class="form-label">@lang('Sales Site')</label>
-                                    <select id="sales_site" class="form-control select2 @error('sales_site') is-invalid @enderror" name="sales_site">
+                                    <label for="sales_site" class="form-label">@lang('Sales Site') <b class="ambitious-crimson">*</b></label>
+                                    <select id="sales_site" class="form-control select2 @error('sales_site') is-invalid @enderror" name="sales_site" required>
                                         <option value="">{{ __('Select Sales Site') }}</option>
                                         <option value="chicago" {{ old('sales_site') == "chicago" ? 'selected' : '' }}>{{ __('Chicago') }}</option>
                                         <option value="evanston" {{ old('sales_site') == "evanston" ? 'selected' : '' }}>{{ __('Evanston') }}</option>
@@ -76,8 +76,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="warranty" class="form-label">@lang('Warranty')</label>
-                                    <select id="warranty" class="form-control select2 @error('warranty') is-invalid @enderror" name="warranty">
+                                    <label for="warranty" class="form-label">@lang('Warranty') <b class="ambitious-crimson">*</b></label>
+                                    <select id="warranty" class="form-control select2 @error('warranty') is-invalid @enderror" name="warranty" required>
                                         <option value="">{{ __('Select Warranty') }}</option>
                                         <option value="12_month_warranty" {{ old('warranty') == "12_month_warranty" ? 'selected' : '' }}>{{ __('12 Month Warranty') }}</option>
                                         <option value="2_year_material_misc" {{ old('warranty') == "2_year_material_misc" ? 'selected' : '' }}>{{ __('2 Year, Material/Misc') }}</option>
@@ -93,8 +93,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="planner" class="form-label">@lang('Planner')</label>
-                                    <select id="planner" class="form-control select2 @error('planner') is-invalid @enderror" name="planner">
+                                    <label for="planner" class="form-label">@lang('Planner') <b class="ambitious-crimson">*</b></label>
+                                    <select id="planner" class="form-control select2 @error('planner') is-invalid @enderror" name="planner" required>
                                         <option value="">{{ __('Select Planner') }}</option>
                                         <option value="brian_howard" {{ old('planner') == "brian_howard" ? 'selected' : '' }}>{{ __('Brian Howard') }}</option>
                                         <option value="fred_grandy" {{ old('planner') == "fred_grandy" ? 'selected' : '' }}>{{ __('Fred Grandy') }}</option>
@@ -111,8 +111,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="tax_category" class="form-label">@lang('Tax Category')</label>
-                                    <select id="tax_category" class="form-control select2 @error('tax_category') is-invalid @enderror" name="tax_category">
+                                    <label for="tax_category" class="form-label">@lang('Tax Category') <b class="ambitious-crimson">*</b></label>
+                                    <select id="tax_category" class="form-control select2 @error('tax_category') is-invalid @enderror" name="tax_category" required>
                                         <option value="">{{ __('Select Tax Category') }}</option>
                                         <option value="pnp_tax_cat" {{ old('tax_category') == "pnp_tax_cat" ? 'selected' : '' }}>{{ __('PNP Tax Cat') }}</option>
                                         <option value="products" {{ old('tax_category') == "products" ? 'selected' : '' }}>{{ __('Products') }}</option>

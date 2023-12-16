@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('revisions', function (Blueprint $table) {
+        Schema::create('bins', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->string('revision_id')->nullable();
-            $table->string('revision_name')->nullable();
-            $table->string('revision_description')->nullable();
-            $table->string('effective_date')->nullable();
-            $table->string('approved')->nullable();
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
+            $table->string('zone')->nullable();
+            $table->string('squence')->nullable();
+            $table->string('inactive')->nullable();
+            $table->string('non_nettable')->nullable();
+            $table->string('portable')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('revisions');
+        Schema::dropIfExists('bins');
     }
 };

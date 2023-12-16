@@ -69,4 +69,14 @@ class PartMaster extends Model
         'warehouse_calculate_value',
         'warehouse_value_tolerance'
     ];
+
+    public function partClass()
+    {
+        return $this->belongsTo(PartClass::class, 'class_id');
+    }
+
+    public function partGroup()
+    {
+        return $this->belongsTo(Group::class, 'group_id');
+    }
 }

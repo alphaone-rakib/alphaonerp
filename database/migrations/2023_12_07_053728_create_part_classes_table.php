@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('revisions', function (Blueprint $table) {
+        Schema::create('part_classes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->string('revision_id')->nullable();
-            $table->string('revision_name')->nullable();
-            $table->string('revision_description')->nullable();
-            $table->string('effective_date')->nullable();
-            $table->string('approved')->nullable();
+            $table->string('class_name')->nullable();
+            $table->text('class_description')->nullable();
+            $table->bigInteger('class_buyer')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('revisions');
+        Schema::dropIfExists('part_classes');
     }
 };

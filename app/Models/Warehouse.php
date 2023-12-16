@@ -13,10 +13,14 @@ class Warehouse extends Model
         'user_id',
         'company_id',
         'warehouse_id',
-        'code',
+        'description',
         'name',
-        'phone',
-        'email',
-        'description'
+        'address_one',
+        'address_two',
+        'city',
+        'state',
+        'zip_code',
+        'country',
+        'manager_name'
     ];
 }
