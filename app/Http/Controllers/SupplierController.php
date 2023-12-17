@@ -10,9 +10,23 @@ class SupplierController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data = $this->filter($request)->paginate(10)->withQueryString();
+        return view('supplier.index', compact('data'));
+    }
+
+    private function filter(Request $request)
+    {
+        $query = Supplier::latest();
+
+        if ($request->supplier_id)
+            $query->where('supplier_id', 'like', '%' . $request->supplier_id . '%');
+
+        if ($request->name)
+            $query->where('name', 'like', '%' . $request->name . '%');
+
+        return $query;
     }
 
     /**
@@ -20,7 +34,10 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        $currencies = config('money');
+        $currencies = $currencies['currencies'];
+        $getLang = $this->getLang();
+        return view('supplier.create', compact('currencies', 'getLang'));
     }
 
     /**
@@ -28,7 +45,23 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'supplier_id' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'currency_id' => ['required', 'string'],
+            'language_id' => ['required', 'string'],
+            'tax_region' => ['nullable', 'string'],
+            'tax_description' => ['nullable', 'string'],
+            'group' => ['required', 'string'],
+            'terms' => ['required', 'string'],
+            'ship_via' => ['required', 'string'],
+            'payment_method' => ['required', 'string'],
+            'fob' => ['required', 'string'],
+        ]);
+        $data = $request->only(['supplier_id', 'name', 'currency_id', 'language_id', 'tax_region', 'tax_description', 'group', 'terms', 'ship_via', 'payment_method', 'fob']);
+        $data['user_id'] = auth()->user()->id;
+        Supplier::create($data);
+        return redirect()->route('supplier.index')->with('success', trans('Supplier Added Successfully'));
     }
 
     /**
@@ -36,7 +69,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+        return view('supplier.show', compact('supplier'));
     }
 
     /**
@@ -44,7 +77,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view('supplier.edit', compact('supplier'));
     }
 
     /**

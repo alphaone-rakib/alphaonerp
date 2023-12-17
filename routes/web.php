@@ -205,5 +205,6 @@ Route::group(['middleware' => ['auth']], function () {
         'part-class' => App\Http\Controllers\PartClassController::class,
         'part-master' => App\Http\Controllers\PartMasterController::class,
         'bin' => App\Http\Controllers\BinController::class,
+        'supplier' => App\Http\Controllers\SupplierController::class,
     ]);
 });
