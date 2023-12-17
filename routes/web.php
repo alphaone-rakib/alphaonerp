@@ -204,5 +204,6 @@ Route::group(['middleware' => ['auth']], function () {
         'buyer' => App\Http\Controllers\BuyerController::class,
         'part-class' => App\Http\Controllers\PartClassController::class,
         'part-master' => App\Http\Controllers\PartMasterController::class,
+        'bin' => App\Http\Controllers\BinController::class,
     ]);
 });
