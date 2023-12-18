@@ -69,7 +69,10 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        return view('supplier.show', compact('supplier'));
+        $currencies = config('money');
+        $currencies = $currencies['currencies'];
+        $getLang = $this->getLang();
+        return view('supplier.show', compact('supplier', 'currencies', 'getLang'));
     }
 
     /**
@@ -77,7 +80,10 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        return view('supplier.edit', compact('supplier'));
+        $currencies = config('money');
+        $currencies = $currencies['currencies'];
+        $getLang = $this->getLang();
+        return view('supplier.edit', compact('supplier', 'currencies', 'getLang'));
     }
 
     /**
@@ -85,7 +91,23 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $request->validate([
+            'supplier_id' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'currency_id' => ['required', 'string'],
+            'language_id' => ['required', 'string'],
+            'tax_region' => ['nullable', 'string'],
+            'tax_description' => ['nullable', 'string'],
+            'group' => ['required', 'string'],
+            'terms' => ['required', 'string'],
+            'ship_via' => ['required', 'string'],
+            'payment_method' => ['required', 'string'],
+            'fob' => ['required', 'string'],
+        ]);
+        $data = $request->only(['supplier_id', 'name', 'currency_id', 'language_id', 'tax_region', 'tax_description', 'group', 'terms', 'ship_via', 'payment_method', 'fob']);
+        $data['user_id'] = auth()->user()->id;
+        $supplier->update($data);
+        return redirect()->route('supplier.index')->with('success', trans('Supplier Updated Successfully'));
     }
 
     /**
@@ -93,6 +115,7 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+        return redirect()->route('supplier.index')->with('success', trans('Supplier Deleted Successfully'));
     }
 }
