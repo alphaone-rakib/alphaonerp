@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bin;
 use App\Models\Group;
 use App\Models\Plant;
 use App\Models\Buyer;
 use App\Models\PartClass;
+use App\Models\Revision;
 use App\Models\PartMaster;
+use App\Models\Supplier;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -126,7 +130,12 @@ class PartMasterController extends Controller
         $partClass = PartClass::orderBy('class_name')->pluck('class_name', 'id');
         $plants = Plant::where('enabled', 1)->pluck('name', 'id');
         $buyers = Buyer::orderBy('id')->get();
-        return view('part-master.edit', compact('groups', 'partClass', 'plants', 'buyers', 'partMaster'));
+        $revision = Revision::orderBy('revision_name')->pluck('revision_name', 'id');
+        $warehouse = Warehouse::orderBy('name')->pluck('name', 'id');
+        $supplier = Supplier::orderBy('name')->pluck('name', 'id');
+        $bin = Bin::orderBy('name')->pluck('name', 'id');
+        // dd($revision);
+        return view('part-master.edit', compact('groups', 'partClass', 'plants', 'buyers', 'partMaster', 'revision', 'warehouse', 'supplier', 'bin'));
     }
 
     /**
@@ -215,7 +224,9 @@ class PartMasterController extends Controller
             'approved' => ['nullable', 'string']
         ]);
 
-        $data = $request->only(['revision_name', 'revision_description', 'effective_date']);
+        $data = $request->only(['revision_description', 'effective_date']);
+        $data['revision_id'] = $request->revision_name;
+        $data['revision_name'] = Revision::find($request->revision_name)->revision_name;
         $data['user_id'] = auth()->user()->id;
         if ($request->approved) {
             $data['approved'] = $request->approved;

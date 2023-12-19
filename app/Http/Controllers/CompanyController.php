@@ -328,10 +328,10 @@ class CompanyController extends Controller
         $stateName = DB::table('states')->where('id', $company->state)->first();
         $cityName = DB::table('cities')->where('id', $company->city)->first();
 
+        $country = isset($countryName->name) ? $countryName->name : "N/A";
+        $state = isset($stateName->name) ? $stateName->name : "N/A";
+        $city = isset($cityName->name) ? $cityName->name : "N/A";
 
-        $country = $countryName->name;
-        $state = $stateName->name;
-        $city = $cityName->name;
         $lang = $getLang[$company->language];
 
         $fiscal_year = FiscalYear::orderBy('fiscal_year_name')->pluck('fiscal_year_name', 'fiscal_year_id');

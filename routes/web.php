@@ -187,6 +187,10 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'part-master.warehouseTabUpdate'
     ]);
 
+
+    Route::get('/revision/getData', [App\Http\Controllers\RevisionController::class, 'getData'])->name('revision.getData');
+    Route::get('/warehouse/getData', [App\Http\Controllers\WarehouseController::class, 'getData'])->name('warehouse.getData');
+
     Route::resources([
         'group' => App\Http\Controllers\GroupController::class,
         'company' => App\Http\Controllers\CompanyController::class,
@@ -206,5 +210,7 @@ Route::group(['middleware' => ['auth']], function () {
         'part-master' => App\Http\Controllers\PartMasterController::class,
         'bin' => App\Http\Controllers\BinController::class,
         'supplier' => App\Http\Controllers\SupplierController::class,
+        'warehouse' => App\Http\Controllers\WarehouseController::class,
+        'revision' => App\Http\Controllers\RevisionController::class,
     ]);
 });

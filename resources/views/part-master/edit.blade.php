@@ -326,10 +326,16 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
+                                    
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="revision_name" class="form-label">@lang('Revision Name') <b class="ambitious-crimson">*</b></label>
-                                            <input id="revision_name"  class="form-control @error('revision_name') is-invalid @enderror" type="text" name="revision_name" value="{{ old('revision_name', $partMaster->revision_name) }}" placeholder="@lang('Type Your Revision Name')" required>
+                                            <select id="revision_name" class="form-control select2 @error('revision_name') is-invalid @enderror" name="revision_name" required>
+                                                <option value="">@lang('Select Revision')</option>
+                                                @foreach($revision as $key => $value)
+                                                <option value="{{ $key }}" {{ old('revision_name', $partMaster->revision_name) == $key ? 'selected' : '' }} >{{ ucwords($value)}}</option>
+                                                @endforeach
+                                            </select>
                                             @error('revision_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -424,7 +430,12 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="plant_warehouse" class="form-label">@lang('Warehouse') <b class="ambitious-crimson">*</b></label>
-                                                <input id="plant_warehouse"  class="form-control @error('plant_warehouse') is-invalid @enderror" type="text" name="plant_warehouse" value="{{ old('plant_warehouse', $partMaster->plant_warehouse) }}" placeholder="@lang('Type Your Warehouse')" required>
+                                                <select id="plant_warehouse" class="form-control select2 @error('plant_warehouse') is-invalid @enderror" name="plant_warehouse" required>
+                                                    <option value="">@lang('Select Warehouse')</option>
+                                                    @foreach($warehouse as $key => $value)
+                                                    <option value="{{ $key }}" {{ old('plant_warehouse', $partMaster->plant_warehouse) == $key ? 'selected' : '' }} >{{ ucwords($value)}}</option>
+                                                    @endforeach
+                                                </select>
                                                 @error('plant_warehouse')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -507,8 +518,13 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="plant_purchase_supplier" class="form-label">@lang('Supplier') <b class="ambitious-crimson">*</b></label>
-                                                <input id="plant_purchase_supplier"  class="form-control @error('plant_purchase_supplier') is-invalid @enderror" type="text" name="plant_purchase_supplier" value="{{ old('plant_purchase_supplier', $partMaster->plant_purchase_supplier) }}" placeholder="@lang('Type Your Purchasing Supplier')" required>
-                                                @error('plant_purchase_supplier')
+                                                <select id="plant_purchase_supplier" class="form-control select2 @error('plant_purchase_supplier') is-invalid @enderror" name="plant_purchase_supplier" required>
+                                                    <option value="">@lang('Select Supplier')</option>
+                                                    @foreach($supplier as $key => $value)
+                                                    <option value="{{ $key }}" {{ old('plant_purchase_supplier', $partMaster->plant_purchase_supplier) == $key ? 'selected' : '' }} >{{ ucwords($value)}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('plant_purchase_buyer')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -614,7 +630,12 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="warehouse_name" class="form-label">@lang('Warehouse') <b class="ambitious-crimson">*</b></label>
-                                                <input id="warehouse_name"  class="form-control @error('warehouse_name') is-invalid @enderror" type="text" name="warehouse_name" value="{{ old('warehouse_name', $partMaster->warehouse_name) }}" placeholder="@lang('Type Your Warehouse')" required>
+                                                <select id="warehouse_name" class="form-control select2 @error('warehouse_name') is-invalid @enderror" name="warehouse_name" required>
+                                                    <option value="">@lang('Select Warehouse')</option>
+                                                    @foreach($warehouse as $key => $value)
+                                                    <option value="{{ $key }}" {{ old('warehouse_name', $partMaster->warehouse_name) == $key ? 'selected' : '' }} >{{ ucwords($value)}}</option>
+                                                    @endforeach
+                                                </select>
                                                 @error('warehouse_name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -625,7 +646,12 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="warehouse_primary_bin" class="form-label">@lang('Primary BIN')</label>
-                                                <input id="warehouse_primary_bin"  class="form-control @error('warehouse_primary_bin') is-invalid @enderror" type="text" name="warehouse_primary_bin" value="{{ old('warehouse_primary_bin', $partMaster->warehouse_primary_bin) }}" placeholder="@lang('Type Your Warehouse Primary BIN')">
+                                                <select id="warehouse_primary_bin" class="form-control select2 @error('warehouse_primary_bin') is-invalid @enderror" name="warehouse_primary_bin" required>
+                                                    <option value="">@lang('Select Bin')</option>
+                                                    @foreach($bin as $key => $value)
+                                                    <option value="{{ $key }}" {{ old('warehouse_primary_bin', $partMaster->warehouse_primary_bin) == $key ? 'selected' : '' }} >{{ ucwords($value)}}</option>
+                                                    @endforeach
+                                                </select>
                                                 @error('warehouse_primary_bin')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -882,6 +908,42 @@
                 enableTime: false,
                 dateFormat: "d-m-y"
             });
+
+            $('#revision_name').change(function() {
+                let revision_id = $("#revision_name").val();
+                $.ajax({
+                    url: '{{ route('revision.getData') }}',
+                    type: 'GET',
+                    dataType: 'JSON',
+                    data: 'id=' + revision_id,
+                    success: function(data) {
+                        $('#revision_description').val(data.revision_description);
+                        $('#effective_date').val(data.effective_date);
+                        if(data.approved == "1") {
+                            $('#approved').attr('checked', true);
+                        } else {
+                            $('#approved').attr('checked', false);
+                        }
+                    }
+                });
+            });
+
+            $('#warehouse_name').change(function() {
+                let warehouse_id = $("#warehouse_name").val();
+
+                $.ajax({
+                    url: '{{ route('warehouse.getData') }}',
+                    type: 'GET',
+                    dataType: 'JSON',
+                    data: 'id=' + warehouse_id,
+                    success: function(data) {
+                        $('#warehouse_description').val(data.description);
+                    }
+                });
+
+            });
+
+            
         });
     </script>
 @endsection

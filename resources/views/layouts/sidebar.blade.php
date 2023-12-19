@@ -82,20 +82,15 @@ $userId = auth()->user()->id;
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if($c == 'customer-group' || $c == 'customer' || $c == 'product-group') active @endif" href="#salesModule" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="salesModule">
+                    <a class="nav-link menu-link @if($c == 'customer' || $c == 'product-group' || $c == 'part-master') active @endif" href="#salesModule" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="salesModule">
                         <i class="mdi mdi-point-of-sale"></i>
-                        <span>@lang('Sales Module')</span>
+                        <span>@lang('Sales Management')</span>
                     </a>
-                    <div class="collapse menu-dropdown @if($c == 'customer-group' || $c == 'customer' || $c == 'product-group') show @endif" id="salesModule">
+                    <div class="collapse menu-dropdown @if($c == 'customer' || $c == 'product-group' || $c == 'part-master') show @endif" id="salesModule">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('customer.index') }}" class="nav-link @if($c == 'customer') active @endif">
-                                    @lang('Customer')
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('customer-group.index') }}" class="nav-link @if($c == 'customer-group') active @endif">
-                                    @lang('Customer Group')
+                                <a href="{{ route('part-master.index') }}" class="nav-link @if($c == 'part-master') active @endif">
+                                    @lang('Part Master')
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -103,17 +98,118 @@ $userId = auth()->user()->id;
                                     @lang('Product Group')
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('customer.index') }}" class="nav-link @if($c == 'customer') active @endif">
+                                    @lang('Customer')
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if($c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar') active @endif" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
-                        <i class="mdi mdi-cog"></i> <span>@lang('Settings')
+                    <a class="nav-link menu-link" href="#serviceManagement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="serviceManagement">
+                        <i class="mdi mdi-lifebuoy"></i>
+                        <span>@lang('Service Management')</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="serviceManagement">
+                        <ul class="nav nav-sm flex-column">
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#productionManagement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="productionManagement">
+                        <i class="mdi mdi-sitemap"></i>
+                        <span>@lang('Production Management')</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="productionManagement">
+                        <ul class="nav nav-sm flex-column">
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#materialManagement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="materialManagement">
+                        <i class="mdi mdi-palette-swatch"></i>
+                        <span>@lang('Material Management')</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="materialManagement">
+                        <ul class="nav nav-sm flex-column">
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#financialManagement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="financialManagement">
+                        <i class="mdi mdi-finance"></i>
+                        <span>@lang('Financial Management')</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="financialManagement">
+                        <ul class="nav nav-sm flex-column">
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link @if($c == 'customer-group'|| $c == 'group' || $c == 'bin' || $c == 'warehouse' || $c =='part-class' || $c == 'buyer' || $c == 'supplier' || $c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar' || $c =='revision') active @endif" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="mdi mdi-cog"></i> <span>@lang('System Management')
                         </span>
                     </a>
-                    <div class="collapse menu-dropdown @if($c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar') show @endif" id="sidebarApps">
+                    <div class="collapse menu-dropdown @if($c == 'customer-group' || $c =='group' || $c == 'bin' || $c == 'warehouse' || $c == 'part-class' || $c == 'buyer' || $c == 'supplier' || $c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar' || $c =='revision') show @endif" id="sidebarApps">
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#sidebarSalesModuleSetup" class="nav-link @if($c == 'customer-group' || $c == 'group' || $c == 'bin' || $c =='warehouse' || $c == 'part-class' || $c == 'supplier' || $c == 'buyer' || $c =='revision') active @endif" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSalesModuleSetup">@lang('Sales Module Setup')
+
+                                </a>
+                                <div class="collapse menu-dropdown @if($c == 'customer-group' || $c =='group' || $c == 'bin' || $c == 'warehouse' || $c == 'part-class' || $c == 'supplier' || $c == 'buyer' || $c =='revision') show @endif" id="sidebarSalesModuleSetup">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="{{ route('customer-group.index') }}" class="nav-link @if($c == 'customer-group') active @endif">@lang('Customer Group')
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('supplier.index') }}" class="nav-link @if($c == 'supplier') active @endif">@lang('Supplier')
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('buyer.index') }}" class="nav-link @if($c == 'buyer') active @endif">@lang('Buyer')
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#sidebarPartMasterSetup" class="nav-link @if($c == 'part-class' || $c == 'group' || $c == 'bin' || $c == 'warehouse' || $c =='revision') active @endif" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPartMasterSetup">@lang('Part Master Setup')
+
+                                            </a>
+                                            <div class="collapse menu-dropdown @if($c == 'part-class' || $c =='group' || $c == 'bin' || $c == 'warehouse' || $c =='revision') show @endif" id="sidebarPartMasterSetup">
+                                                <ul class="nav nav-sm flex-column">
+                                                    <li class="nav-item">
+                                                        <a href="{{ route('part-class.index') }}" class="nav-link @if($c == 'part-class') active @endif">@lang('Part Class')
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a href="{{ route('group.index') }}" class="nav-link @if($c == 'group') active @endif">@lang('Part Group')
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a href="{{ route('warehouse.index') }}" class="nav-link @if($c == 'warehouse') active @endif">@lang('Warehouse')
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="{{ route('revision.index') }}" class="nav-link @if($c == 'revision') active @endif">@lang('Revision')
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="{{ route('bin.index') }}" class="nav-link @if($c == 'bin') active @endif">@lang('Bin')
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{ route('business-role.index') }}" class="nav-link @if($c == 'business-role') active @endif">@lang('Business Role')
                                 </a>
