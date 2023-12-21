@@ -89,6 +89,10 @@ class BuyerController extends Controller
      */
     public function destroy(Buyer $buyer)
     {
+        $partMasterCount = $buyer->part_master()->count();
+        if ($partMasterCount > 0) {
+            return redirect()->route('buyer.index')->with('error', trans('This Buyer Have Part Master Entry, First Delete the Part Master !'));
+        }
         $buyer->delete();
         return redirect()->route('buyer.index')->withSuccess(trans('Your Buyer Has Been Deleted Successfully'));
     }

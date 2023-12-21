@@ -20,4 +20,9 @@ class Bin extends Model
         'non_nettable',
         'portable'
     ];
+
+    public function part_master()
+    {
+        return $this->hasMany(PartMaster::class, 'warehouse_primary_bin');
+    }
 }

@@ -80,6 +80,11 @@ class CustomerGroupController extends Controller
      */
     public function destroy(CustomerGroup $customerGroup)
     {
+        $customerCount = $customerGroup->customers()->count();
+        if ($customerCount > 0) {
+            return redirect()->route('customer-group.index')->with('error', trans('This Group Have Customer, First Delete the Customer !'));
+        }
+
         $customerGroup->delete();
         return redirect()->route('customer-group.index')->with('success', trans('Customer Group Deleted Successfully'));
     }

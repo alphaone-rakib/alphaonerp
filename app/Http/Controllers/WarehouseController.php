@@ -129,6 +129,10 @@ class WarehouseController extends Controller
      */
     public function destroy(Warehouse $warehouse)
     {
+        $partMasterCount = $warehouse->part_master()->count();
+        if ($partMasterCount > 0) {
+            return redirect()->route('warehouse.index')->with('error', trans('This Warehouse Have Part Master, First Delete the Part Master !'));
+        }
         $warehouse->delete();
         return redirect()->route('warehouse.index')->with('success', trans('Warehouse Deleted Successfully'));
     }

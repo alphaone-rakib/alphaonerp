@@ -29,4 +29,9 @@ class Buyer extends Model
         $fNameLetter = $fName[0];
         return $fNameLetter . $this->l_name;
     }
+
+    public function part_master()
+    {
+        return $this->hasMany(PartMaster::class, 'plant_purchase_buyer');
+    }
 }

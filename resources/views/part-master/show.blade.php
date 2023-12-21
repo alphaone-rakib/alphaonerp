@@ -291,7 +291,7 @@
                                                         <tr>
                                                             @if (isset($partMaster->plant_warehouse))
                                                                 <th class="ps-0 col-md-3" scope="row">@lang('Warehouse')</th>
-                                                                <td class="text-muted">{{ $partMaster->plant_warehouse }}</td>
+                                                                <td class="text-muted">{{ $partMaster->warehouse->name }}</td>
                                                             @endif
                                                             @if (isset($partMaster->plant_costing_method))
                                                                 <th class="ps-0 col-md-3" scope="row">@lang('Costing Method')</th>
@@ -349,11 +349,11 @@
                                                         <tr>
                                                             @if (isset($partMaster->plant_purchase_buyer))
                                                                 <th class="ps-0 col-md-3" scope="row">@lang('Buyer')</th>
-                                                                <td class="text-muted">{{ $buyers[$partMaster->plant_purchase_buyer]->f_name." ".$buyers[$partMaster->plant_purchase_buyer]->l_name }}</td>
+                                                                <td class="text-muted">{{ $partMaster->buyer->f_name." ".$partMaster->buyer->l_name }}</td>
                                                             @endif
                                                             @if (isset($partMaster->plant_purchase_supplier))
                                                                 <th class="ps-0 col-md-3" scope="row">@lang('Supplier')</th>
-                                                                <td class="text-muted">{{ $partMaster->plant_purchase_supplier }}</td>
+                                                                <td class="text-muted">{{ $partMaster->supplier->name }}</td>
                                                             @endif
                                                         </tr>
                                                         <tr>

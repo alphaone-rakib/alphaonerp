@@ -79,4 +79,19 @@ class PartMaster extends Model
     {
         return $this->belongsTo(Group::class, 'group_id');
     }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class, 'warehouse_name');
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'plant_purchase_supplier');
+    }
+
+    public function buyer()
+    {
+        return $this->belongsTo(Buyer::class, 'plant_purchase_buyer');
+    }
 }

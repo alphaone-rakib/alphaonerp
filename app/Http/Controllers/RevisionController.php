@@ -110,7 +110,11 @@ class RevisionController extends Controller
      */
     public function destroy(Revision $revision)
     {
+        $partMasterCount = $revision->part_master()->count();
+        if ($partMasterCount > 0) {
+            return redirect()->route('revision.index')->with('error', trans('This Revision Have Part Master, First Delete the Part Master !'));
+        }
         $revision->delete();
-        return redirect()->route('bin.index')->with('success', trans('Group Deleted Successfully'));
+        return redirect()->route('revision.index')->with('success', trans('Revision Deleted Successfully'));
     }
 }

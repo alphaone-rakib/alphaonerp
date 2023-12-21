@@ -18,4 +18,9 @@ class Revision extends Model
         'effective_date',
         'approved'
     ];
+
+    public function part_master()
+    {
+        return $this->hasMany(PartMaster::class, 'revision_id');
+    }
 }

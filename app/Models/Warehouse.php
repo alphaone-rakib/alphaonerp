@@ -23,4 +23,9 @@ class Warehouse extends Model
         'country',
         'manager_name'
     ];
+
+    public function part_master()
+    {
+        return $this->hasMany(PartMaster::class, 'warehouse_name');
+    }
 }

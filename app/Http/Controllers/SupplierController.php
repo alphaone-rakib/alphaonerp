@@ -115,6 +115,10 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
+        $partMasterCount = $supplier->part_master()->count();
+        if ($partMasterCount > 0) {
+            return redirect()->route('supplier.index')->with('error', trans('This Supplier Have Part Master Entry, First Delete the Part Master !'));
+        }
         $supplier->delete();
         return redirect()->route('supplier.index')->with('success', trans('Supplier Deleted Successfully'));
     }

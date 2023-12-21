@@ -20,4 +20,9 @@ class Group extends Model
         'planner',
         'tax_category'
     ];
+
+    public function part_master()
+    {
+        return $this->hasMany(PartMaster::class, 'group_id');
+    }
 }

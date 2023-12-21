@@ -125,6 +125,10 @@ class BinController extends Controller
      */
     public function destroy(Bin $bin)
     {
+        $partMasterCount = $bin->part_master()->count();
+        if ($partMasterCount > 0) {
+            return redirect()->route('bin.index')->with('error', trans('This Bin Have Part Master, First Delete the Part Master !'));
+        }
         $bin->delete();
         return redirect()->route('bin.index')->with('success', trans('Group Deleted Successfully'));
     }

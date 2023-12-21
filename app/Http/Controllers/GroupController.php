@@ -107,6 +107,10 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
+        $partMasterCount = $group->part_master()->count();
+        if ($partMasterCount > 0) {
+            return redirect()->route('group.index')->with('error', trans('This Part Group Have Part Master, First Delete the Part Master !'));
+        }
         $group->delete();
         return redirect()->route('group.index')->with('success', trans('Group Deleted Successfully'));
     }

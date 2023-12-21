@@ -333,7 +333,7 @@
                                             <select id="revision_name" class="form-control select2 @error('revision_name') is-invalid @enderror" name="revision_name" required>
                                                 <option value="">@lang('Select Revision')</option>
                                                 @foreach($revision as $key => $value)
-                                                <option value="{{ $key }}" {{ old('revision_name', $partMaster->revision_name) == $key ? 'selected' : '' }} >{{ ucwords($value)}}</option>
+                                                <option value="{{ $key }}" {{ old('revision_name', $partMaster->revision_id) == $key ? 'selected' : '' }} >{{ ucwords($value)}}</option>
                                                 @endforeach
                                             </select>
                                             @error('revision_name')

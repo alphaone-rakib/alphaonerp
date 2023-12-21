@@ -21,4 +21,9 @@ class PartClass extends Model
     {
         return $this->belongsTo(Buyer::class, 'class_buyer');
     }
+
+    public function part_master()
+    {
+        return $this->hasMany(PartMaster::class, 'class_id');
+    }
 }

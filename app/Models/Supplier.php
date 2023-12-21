@@ -25,4 +25,9 @@ class Supplier extends Model
         'payment_method',
         'fob'
     ];
+
+    public function part_master()
+    {
+        return $this->hasMany(PartMaster::class, 'plant_purchase_supplier');
+    }
 }

@@ -76,7 +76,11 @@ class PartClassController extends Controller
      */
     public function update(Request $request, PartClass $partClass)
     {
-        //
+        $this->validation($request);
+        $data = $request->only(['class_name', 'class_description', 'class_buyer']);
+        $data['user_id'] = auth()->user()->id;
+        $partClass->update($data);
+        return redirect()->route('part-class.index')->with('success', trans('Part Class Edit Successfully'));
     }
 
     /**
@@ -84,7 +88,12 @@ class PartClassController extends Controller
      */
     public function destroy(PartClass $partClass)
     {
-        //
+        $partMasterCount = $partClass->part_master()->count();
+        if ($partMasterCount > 0) {
+            return redirect()->route('part-class.index')->with('error', trans('This Part Class Have Part Master, First Delete the Part Master !'));
+        }
+        $partClass->delete();
+        return redirect()->route('part-class.index')->with('success', trans('Part Class Deleted Successfully'));
     }
 
     private function validation(Request $request)
