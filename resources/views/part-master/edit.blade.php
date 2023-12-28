@@ -315,9 +315,9 @@
                                     </div>
                                 </fieldset>
                                 <div class="card-body ps-0 pe-0">
-                                    <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
+                                    <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg" />
                                     <a href="{{ route('dashboard.index') }}"
-                                        class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                                 </div>
                             </form>
                         </div>
@@ -385,9 +385,9 @@
                                     </div>
                                 </div>
                                 <div class="card-body ps-0 pe-0">
-                                    <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg pl-0" />
+                                    <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg pl-0" />
                                     <a href="{{ route('dashboard.index') }}"
-                                        class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                                 </div>
                             </form>
                         </div>
@@ -613,9 +613,9 @@
                                     </div>
                                 </fieldset>
                                 <div class="card-body ps-0 pe-0">
-                                    <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg pl-0" />
+                                    <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg pl-0" />
                                     <a href="{{ route('dashboard.index') }}"
-                                        class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                                 </div>
                             </form>
                         </div>
@@ -874,9 +874,9 @@
                                 </fieldset>
                                 <br>
                                 <div class="card-body ps-0 pe-0">
-                                    <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg pl-0" />
+                                    <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg pl-0" />
                                     <a href="{{ route('dashboard.index') }}"
-                                        class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                                 </div>
                             </form>
                         </div>

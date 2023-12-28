@@ -57,7 +57,7 @@ class ApplicationSettingController extends Controller
             $favicon->move('img/', $favicon_new_name);
         }
 
-        return redirect()->route('application-settings')->withSuccess(trans('common.application settings has updated'));
+        return redirect()->route('application-settings.index')->withSuccess(trans('Application Settings Has Updated'));
     }
 
     /**

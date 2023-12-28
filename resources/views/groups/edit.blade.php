@@ -131,7 +131,7 @@
                     </div>
                     <div class="card-footer">
                         <input type="submit" value="@lang('Update')" class="btn btn-info btn-lg"/>
-                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                     </div>
                 </div>
             </form>

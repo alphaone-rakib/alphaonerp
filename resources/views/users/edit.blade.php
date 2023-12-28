@@ -104,7 +104,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="address_one" class="form-label">@lang('Address One')</label>
-                                            <textarea id="address_one" class="form-control" name="address_one" rows="3" placeholder="@lang('common.enter your address')">{{ $user->address_one }}</textarea>
+                                            <textarea id="address_one" class="form-control" name="address_one" rows="3" placeholder="@lang('Enter Your Address')">{{ $user->address_one }}</textarea>
                                             @error('address_one')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -115,7 +115,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="address_two" class="form-label">@lang('Address Two')</label>
-                                            <textarea id="address_two" class="form-control" name="address_two" rows="3" placeholder="@lang('common.enter your address')">{{ $user->address_two }}</textarea>
+                                            <textarea id="address_two" class="form-control" name="address_two" rows="3" placeholder="@lang('Enter Your Address')">{{ $user->address_two }}</textarea>
                                             @error('address_two')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -222,12 +222,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="language" class="form-label">@lang('common.default language')</label>
+                                            <label for="language" class="form-label">@lang('Default Language')</label>
                                             <select id="language" class="form-control @error('company_email') is-invalid @enderror" data-choices name="language">
                                                 @php
                                                     $defaultLang = env('LOCALE_LANG', 'en');
                                                 @endphp
-                                                <option value="">@lang('common.select language')</option>
+                                                <option value="">@lang('Select Language')</option>
                                                 @foreach($getLang as $key => $value)
                                                     <option value="{{ $key }}" {{ old('language', $user->language) == $key ? 'selected' : '' }} >{{ $value }}</option>
                                                 @endforeach
@@ -242,8 +242,8 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
-                                <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg" />
+                                <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                             </div>
                         </form>
                     </div>
@@ -276,8 +276,8 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
-                                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg" />
+                                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                                     </div>
                                 </div>
                             </div>
@@ -324,8 +324,8 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
-                                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg" />
+                                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                                     </div>
                                 </div>
                             </div>
@@ -385,8 +385,8 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <input type="submit" value="@lang('common.submit')" class="btn btn-info btn-lg" />
-                                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('common.cancel')</a>
+                                        <input type="submit" value="@lang('Submit')" class="btn btn-info btn-lg" />
+                                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning btn-lg float-end">@lang('Cancel')</a>
                                     </div>
                                 </div>
                             </div>
