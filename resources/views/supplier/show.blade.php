@@ -43,14 +43,14 @@
                                 @if (isset($supplier->currency_id))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('Currency :') {{ $currencies[$supplier->currency_id]['name'] }}</label>
+                                            <label class="form-label">@lang('Currency') : {{ $currencies[$supplier->currency_id]['name'] }}</label>
                                         </div>
                                     </div>
                                 @endif
                                 @if (isset($supplier->language_id))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('Language :') {{ $getLang[$supplier->language_id] }}</label>
+                                            <label class="form-label">@lang('Language') : {{ $getLang[$supplier->language_id] }}</label>
                                         </div>
                                     </div>
                                 @endif
@@ -63,14 +63,14 @@
                                 @if (isset($supplier->tax_region))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('Tax Region :') {{ ucwords(str_replace("_"," ",$supplier->tax_region)) }}</label>
+                                            <label class="form-label">@lang('Tax Region') : {{ ucwords(str_replace("_"," ",$supplier->tax_region)) }}</label>
                                         </div>
                                     </div>
                                 @endif
                                 @if (isset($supplier->tax_description))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('Tax Description :') {{ ucwords(str_replace("_"," ",$supplier->tax_description)) }}</label>
+                                            <label class="form-label">@lang('Tax Description') : {{ ucwords(str_replace("_"," ",$supplier->tax_description)) }}</label>
                                         </div>
                                     </div>
                                 @endif
@@ -83,35 +83,35 @@
                                 @if (isset($supplier->group))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('Group :') {{ ucwords(str_replace("_"," ",$supplier->group)) }}</label>
+                                            <label class="form-label">@lang('Group') : {{ ucwords(str_replace("_"," ",$supplier->group)) }}</label>
                                         </div>
                                     </div>
                                 @endif
                                 @if (isset($supplier->terms))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('Terms :') {{ ucwords(str_replace("_"," ",$supplier->terms)) }}</label>
+                                            <label class="form-label">@lang('Terms') : {{ ucwords(str_replace("_"," ",$supplier->terms)) }}</label>
                                         </div>
                                     </div>
                                 @endif
                                 @if (isset($supplier->ship_via))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('Ship Via :') {{ ucwords(str_replace("_"," ",$supplier->ship_via)) }}</label>
+                                            <label class="form-label">@lang('Ship Via') : {{ ucwords(str_replace("_"," ",$supplier->ship_via)) }}</label>
                                         </div>
                                     </div>
                                 @endif
                                 @if (isset($supplier->payment_method))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('Payment Method :') {{ ucwords(str_replace("_"," ",$supplier->payment_method)) }}</label>
+                                            <label class="form-label">@lang('Payment Method') : {{ ucwords(str_replace("_"," ",$supplier->payment_method)) }}</label>
                                         </div>
                                     </div>
                                 @endif
                                 @if (isset($supplier->fob))
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">@lang('FOB :') {{ ucwords(str_replace("_"," ",$supplier->fob)) }}</label>
+                                            <label class="form-label">@lang('FOB') : {{ ucwords(str_replace("_"," ",$supplier->fob)) }}</label>
                                         </div>
                                     </div>
                                 @endif

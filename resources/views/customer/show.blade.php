@@ -407,25 +407,25 @@
                                                             <tr>
                                                                 <th class="ps-0 col-md-4" scope="row">@lang('Billing')</th>
                                                                 @if(isset($customer->billing) && $customer->billing == 1)
-                                                                    <td class="text-muted">{{ "Enable" }}</td>
+                                                                    <td class="text-muted">@lang('Enable')</td>
                                                                 @else
-                                                                    <td class="text-muted">{{ "Disable" }}</td>
+                                                                    <td class="text-muted">@lang('Disable')</td>
                                                                 @endif
                                                             </tr>
                                                             <tr>
                                                                 <th class="ps-0 col-md-4" scope="row">@lang('Purchasing')</th>
                                                                 @if(isset($customer->purchasing) && $customer->purchasing == 1)
-                                                                    <td class="text-muted">{{ "Enable" }}</td>
+                                                                    <td class="text-muted">@lang('Enable')</td>
                                                                 @else
-                                                                    <td class="text-muted">{{ "Disable" }}</td>
+                                                                    <td class="text-muted">@lang('Disable')</td>
                                                                 @endif
                                                             </tr>
                                                             <tr>
                                                                 <th class="ps-0 col-md-4" scope="row">@lang('Shipping')</th>
                                                                 @if(isset($customer->shipping) && $customer->shipping == 1)
-                                                                    <td class="text-muted">{{ "Enable" }}</td>
+                                                                    <td class="text-muted">@lang('Enable')</td>
                                                                 @else
-                                                                    <td class="text-muted">{{ "Disable" }}</td>
+                                                                    <td class="text-muted">@lang('Disable')</td>
                                                                 @endif
                                                             </tr>
                                                         </tbody>

@@ -7,7 +7,7 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1') @lang('Supplier') @endslot
-        @slot('title') @lang('Create Supplier')  @endslot
+        @slot('title') @lang('Edit Supplier')  @endslot
     @endcomponent
     <div class="row">
         <div class="col-lg-12">

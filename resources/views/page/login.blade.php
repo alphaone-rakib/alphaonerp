@@ -31,7 +31,7 @@
                             <div class="text-center mt-2">
                                 <img src="{{ URL::asset('assets/images/login/1.jpeg') }}" class="img-fluid" alt="Girl in a jacket" >
                                 {{-- <h5 class="text-primary">Welcome Back !</h5> --}}
-                                <p class="text-muted">Sign in to start your session</p>
+                                {{-- <p class="text-muted">Sign in to start your session</p> --}}
                             </div>
                             <div class="p-2 mt-4">
                                 <form action="{{ route('login') }}" method="POST">
@@ -60,10 +60,10 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
                                         <label class="form-check-label" for="auth-remember-check">Remember me</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="mt-4">
                                         <button class="btn btn-success w-100" type="submit">Sign In</button>
                                     </div>

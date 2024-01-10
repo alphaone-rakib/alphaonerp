@@ -22,7 +22,7 @@
 
                         </div>
                         <h5 class="fs-16 mb-1">{{ $company->name }}</h5>
-                        <p class="text-muted mb-0">Phone :  {{ $company->phone }}</p>
+                        <p class="text-muted mb-0">@lang('Phone') :  {{ $company->phone }}</p>
                     </div>
                 </div>
             </div>
@@ -34,25 +34,25 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#basicInformationDetails" role="tab">
                                 <i class="fas fa-home"></i>
-                                Basic Information
+                                @lang('Basic Information')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#baseCurrencyDetails" role="tab">
                                 <i class="far fa-user"></i>
-                                Base Currency
+                                @lang('Base Currency')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#taxInformationDetails" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Tax Information
+                                @lang('Tax Information')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#baseCalendarMiscSettings" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Base Calendar & Misc Settings
+                                @lang('Base Calendar & Misc Settings')
                             </a>
                         </li>
                     </ul>
@@ -65,49 +65,49 @@
                                     <tbody>
                                         @if(isset($company->fax))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Fax</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Fax')</th>
                                                 <td class="text-muted">{{ $company->fax }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->url))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">URL</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('URL')</th>
                                                 <td class="text-muted">{{ $company->url }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->country))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Country</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Country')</th>
                                                 <td class="text-muted">{{ $country }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->state))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">State</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('State')</th>
                                                 <td class="text-muted">{{ $state }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->city))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">City</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('City')</th>
                                                 <td class="text-muted">{{ $city }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->zip_code))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Zip Code</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Zip Code')</th>
                                                 <td class="text-muted">{{ $company->zip_code }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->company_address_one))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Address One</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Address One')</th>
                                                 <td class="text-muted">{{ $company->company_address_one }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->company_address_one))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Address Two</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Address Two')</th>
                                                 <td class="text-muted">{{ $company->company_address_two }}</td>
                                             </tr>
                                         @endif
@@ -133,13 +133,13 @@
                                         @endif
                                         @if(isset($company->currency_symbol))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Symbol</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Symbol')</th>
                                                 <td class="text-muted">{{ $company->currency_symbol }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->currency_symbol_first))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Symbol Position</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Symbol Position')</th>
                                                 @if($company->currency_symbol_first == "0")
                                                     <td class="text-muted">@lang('After Amount')</td>
                                                 @else
@@ -175,13 +175,13 @@
                                     <tbody>
                                         @if(isset($company->federal_id))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Federal ID</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Federal ID')</th>
                                                 <td class="text-muted">{{ $company->federal_id }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->tax_id))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Tax ID</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Tax ID')</th>
                                                 <td class="text-muted">{{ $company->tax_id }}</td>
                                             </tr>
                                         @endif
@@ -195,31 +195,31 @@
                                     <tbody>
                                         @if(isset($company->fiscal_calendar))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Fiscal Calendar</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Fiscal Calendar')</th>
                                                 <td class="text-muted">{{ $fiscal_calendar[$company->fiscal_calendar] }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->production_calendar))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Production Calendar</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Production Calendar')</th>
                                                 <td class="text-muted">{{ $production_calendar[$company->production_calendar] }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->date_format))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Date Format</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Date Format')</th>
                                                 <td class="text-muted">{{ $company->date_format }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->date_separator))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Date Separator</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Date Separator')</th>
                                                 <td class="text-muted">{{ ucFirst($company->date_separator) }}</td>
                                             </tr>
                                         @endif
                                         @if(isset($company->time_format))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Time Format</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Time Format')</th>
                                                 @if($company->time_format == "H")
                                                     <td class="text-muted">@lang('24-Hour Format')</td>
                                                 @else
@@ -229,17 +229,17 @@
                                         @endif
                                         @if(isset($company->time_decorations))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Time Decorations</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Time Decorations')</th>
                                                 @if($company->time_decorations == "A")
-                                                    <td class="text-muted">Uppercase (AM or PM)</td>
+                                                    <td class="text-muted">@lang('Uppercase (AM or PM)')</td>
                                                 @else
-                                                    <td class="text-muted">Lowercase (am or pm)</td>
+                                                    <td class="text-muted">@lang('Lowercase (am or pm)')</td>
                                                 @endif
                                             </tr>
                                         @endif
                                         @if(isset($company->language))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Default Language</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Default Language')</th>
                                                 <td class="text-muted">{{ $lang }}</td>
                                             </tr>
                                         @endif

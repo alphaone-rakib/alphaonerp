@@ -16,7 +16,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Company List</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">@lang('Company List')</h4>
                     <div class="flex-shrink-0">
                         <button class="btn btn-outline btn-soft-primary shadow-none" data-bs-toggle="collapse" href="#filter"><span class="mdi mdi-filter"></span> @lang('Filter')</button>
                     </div>
@@ -50,9 +50,9 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mb-3">
-                                            <button type="submit" class="btn btn-info">Submit</button>
+                                            <button type="submit" class="btn btn-info">@lang('Submit')</button>
                                             @if(request()->isFilterActive)
-                                                <a href="{{ route('company.index') }}" class="btn btn-soft-secondary ml-1">Clear</a>
+                                                <a href="{{ route('company.index') }}" class="btn btn-soft-secondary ml-1">@lang('Clear')</a>
                                             @endif
                                         </div>
                                     </div>

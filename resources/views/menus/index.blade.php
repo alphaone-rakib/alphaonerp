@@ -55,9 +55,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <button type="submit" class="btn btn-info">Submit</button>
+                                        <button type="submit" class="btn btn-info">@lang('Submit')</button>
                                         @if(request()->isFilterActive)
-                                            <a href="{{ route('menu.index') }}" class="btn btn-secondary">Clear</a>
+                                            <a href="{{ route('menu.index') }}" class="btn btn-secondary">@lang('Clear')</a>
                                         @endif
                                     </div>
                                 </div>

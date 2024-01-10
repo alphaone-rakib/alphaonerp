@@ -47,9 +47,9 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-info">Submit</button>
+                                        <button type="submit" class="btn btn-info">@lang('Submit')</button>
                                         @if(request()->isFilterActive)
-                                        <a href="{{ route('company.index') }}" class="btn btn-soft-secondary ml-1">Clear</a>
+                                        <a href="{{ route('company.index') }}" class="btn btn-soft-secondary ml-1">@lang('Clear')</a>
                                         @endif
                                     </div>
                                 </div>

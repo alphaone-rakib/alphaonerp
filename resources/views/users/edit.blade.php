@@ -256,8 +256,8 @@
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-8">
                                         <div class="mt-4 mt-lg-0">
-                                            <h5 class="fs-14 mb-1">Assign Business Profile</h5>
-                                            <p class="text-muted">Select One or More Business Profile To The User</p>
+                                            <h5 class="fs-14 mb-1">@lang('Assign Business Profile')</h5>
+                                            <p class="text-muted">@lang('Select One or More Business Profile To The User')</p>
                                             <select required multiple="multiple" name="assign_business_role[]" id="multiselect-header">
                                                 @foreach($roleNames as $key => $value)
                                                     <option value="{{ $key }}" @if(in_array($key, $roles)) selected @endif>{{ $value }}</option>

@@ -69,7 +69,7 @@
                                             @php
                                                 $defaultLang = env('LOCALE_LANG', 'en');
                                             @endphp
-                                            <option value="">@lang('select language')</option>
+                                            <option value="">@lang('Select Language')</option>
                                             @foreach($getLang as $key => $value)
                                                 <option value="{{ $key }}" {{ old('language_id', $defaultLang) == $key ? 'selected' : '' }} >{{ $value }}</option>
                                             @endforeach

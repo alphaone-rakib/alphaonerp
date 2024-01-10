@@ -26,9 +26,9 @@
                                     @endif
                                     <th class="ps-0 col-md-2" scope="row">@lang('Inactive')</th>
                                     @if(isset($bin->inactive) && $bin->inactive == 1)
-                                        <td class="col-md-4 text-muted">{{ "Enable" }}</td>
+                                        <td class="col-md-4 text-muted">@lang('Enable')</td>
                                     @else
-                                        <td class="col-md-4 text-muted">{{ "Disable" }}</td>
+                                        <td class="col-md-4 text-muted">@lang('Disable')</td>
                                     @endif
                                 </tr>
                                 <tr>
@@ -38,9 +38,9 @@
                                     @endif
                                     <th class="ps-0 col-md-2" scope="row">@lang('Non-Nettable')</th>
                                     @if(isset($bin->non_nettable) && $bin->non_nettable == 1)
-                                        <td class="col-md-4 text-muted">{{ "Enable" }}</td>
+                                        <td class="col-md-4 text-muted">@lang('Enable')</td>
                                     @else
-                                        <td class="col-md-4 text-muted">{{ "Disable" }}</td>
+                                        <td class="col-md-4 text-muted">@lang('Disable')</td>
                                     @endif
                                 </tr>
                                 <tr>
@@ -50,9 +50,9 @@
                                     @endif
                                     <th class="ps-0 col-md-2" scope="row">@lang('Portable')</th>
                                     @if(isset($bin->portable) && $bin->portable == 1)
-                                        <td class="col-md-4 text-muted">{{ "Enable" }}</td>
+                                        <td class="col-md-4 text-muted">@lang('Enable')</td>
                                     @else
-                                        <td class="col-md-4 text-muted">{{ "Disable" }}</td>
+                                        <td class="col-md-4 text-muted">@lang('Disable')</td>
                                     @endif
                                 </tr>
                                 <tr>

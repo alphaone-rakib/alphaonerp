@@ -16,7 +16,7 @@
                 @method('PUT')
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">@lang('Buyer Create Information')</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">@lang('Buyer Edit Information')</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">

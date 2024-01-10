@@ -37,7 +37,7 @@ $userId = auth()->user()->id;
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="menu-title"><span>@lang('translation.menu')</span></li>
+                <li class="menu-title"><span>@lang('Menu')</span></li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link @if($c == 'dashboard') active @endif" href="{{ route('dashboard.index') }}">

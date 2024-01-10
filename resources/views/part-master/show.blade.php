@@ -400,7 +400,7 @@
                                                                 <td class="text-muted">{{ $partMaster->plant_manufacture_blackflush }}</td>
                                                             @endif
                                                             @if (isset($partMaster->plant_manufacture_re_order_max))
-                                                                <th class="ps-0 col-md-3" scope="row">@lang('Re-Order  Max')</th>
+                                                                <th class="ps-0 col-md-3" scope="row">@lang('Re-Order Max')</th>
                                                                 <td class="text-muted">{{ $partMaster->plant_manufacture_re_order_max }}</td>
                                                             @endif
                                                         </tr>

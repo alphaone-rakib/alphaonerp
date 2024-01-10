@@ -24,61 +24,61 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#companyDetailsTab" role="tab">
                                 <i class="fas fa-home"></i>
-                                Company Details
+                                @lang('Company Details')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#salesTab" role="tab">
                                 <i class="far fa-user"></i>
-                                Sales
+                                @lang('Sales')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#purchaseTab" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Purchase
+                                @lang('Purchase')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#inventoryTab" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Inventory
+                                @lang('Inventory')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#logisticTab" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Logistic
+                                @lang('Logistic')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#productionTab" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Production
+                                @lang('Production')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#serviceTab" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Service
+                                @lang('Service')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#projectTab" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Project
+                                @lang('Project')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#humanResourceTab" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Human Resource
+                                @lang('Human Resource')
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#financeTab" role="tab">
                                 <i class="far fa-envelope"></i>
-                                Finance
+                                @lang('Finance')
                             </a>
                         </li>
                     </ul>
@@ -91,61 +91,61 @@
                                     <tbody>
                                         @if (isset($company->name))
                                         <tr>
-                                            <th class="ps-0 col-md-4" scope="row">Company Name</th>
+                                            <th class="ps-0 col-md-4" scope="row">@lang('Company Name')</th>
                                             <td class="text-muted">{{ $company->name }}</td>
                                         </tr>
                                         @endif
                                         @if (isset($company->phone))
                                         <tr>
-                                            <th class="ps-0 col-md-4" scope="row">Phone</th>
+                                            <th class="ps-0 col-md-4" scope="row">@lang('Phone')</th>
                                             <td class="text-muted">{{ $company->phone }}</td>
                                         </tr>
                                         @endif
                                         @if (isset($company->country))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Country</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Country')</th>
                                                 <td class="text-muted">{{ $country }}</td>
                                             </tr>
                                         @endif
                                         @if (isset($company->state))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">State</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('State')</th>
                                                 <td class="text-muted">{{ $state }}</td>
                                             </tr>
                                         @endif
                                         @if (isset($company->city))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">City</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('City')</th>
                                                 <td class="text-muted">{{ $city }}</td>
                                             </tr>
                                         @endif
                                         @if (isset($company->zip_code))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Zip Code</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Zip Code')</th>
                                                 <td class="text-muted">{{ $company->zip_code }}</td>
                                             </tr>
                                         @endif
                                         @if (isset($company->company_address_one))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Address One</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Address One')</th>
                                                 <td class="text-muted">{{ $company->company_address_one }}</td>
                                             </tr>
                                         @endif
                                         @if (isset($company->company_address_one))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Address Two</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Address Two')</th>
                                                 <td class="text-muted">{{ $company->company_address_two }}</td>
                                             </tr>
                                         @endif
                                         @if (isset($company->fax))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">Fax</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('Fax')</th>
                                                 <td class="text-muted">{{ $company->fax }}</td>
                                             </tr>
                                         @endif
                                         @if (isset($company->url))
                                             <tr>
-                                                <th class="ps-0 col-md-4" scope="row">URL</th>
+                                                <th class="ps-0 col-md-4" scope="row">@lang('URL')</th>
                                                 <td class="text-muted">{{ $company->url }}</td>
                                             </tr>
                                         @endif
