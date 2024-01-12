@@ -55,19 +55,34 @@ $userId = auth()->user()->id;
                     </a>
                     <div class="collapse menu-dropdown @if($c == 'customer' || $c == 'product-group' || $c == 'part-master') show @endif" id="salesModule">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('part-master.index') }}" class="nav-link @if($c == 'part-master') active @endif">
                                     @lang('Part Master')
                                 </a>
                             </li>
-                            {{-- <li class="nav-item">
-                                <a href="{{ route('product-group.index') }}" class="nav-link @if($c == 'product-group') active @endif">
-                                    @lang('Product Group')
-                                </a>
-                            </li> --}}
                             <li class="nav-item">
                                 <a href="{{ route('customer.index') }}" class="nav-link @if($c == 'customer') active @endif">
                                     @lang('Customer')
+                                </a>
+                            </li> --}}
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Case Managment')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Quote Managment')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Demand Managment')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Order Management')
                                 </a>
                             </li>
                         </ul>
@@ -81,6 +96,21 @@ $userId = auth()->user()->id;
                     </a>
                     <div class="collapse menu-dropdown" id="serviceManagement">
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Expense Management')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Maintenance Management')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Field Service')
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -92,6 +122,31 @@ $userId = auth()->user()->id;
                     </a>
                     <div class="collapse menu-dropdown" id="productionManagement">
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Job Management')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Scheduling')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Engineering')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Material Requirement Planning')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Quality Assurance')
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -103,6 +158,21 @@ $userId = auth()->user()->id;
                     </a>
                     <div class="collapse menu-dropdown" id="materialManagement">
                         <ul class="nav nav-sm flex-column">
+                            <a href="#" class="nav-link">
+                                @lang('Inventory Management')
+                            </a>
+                            <a href="#" class="nav-link">
+                                @lang('Shipping / Receiving')
+                            </a>
+                            <a href="#" class="nav-link">
+                                @lang('Purchase Management')
+                            </a>
+                            <a href="#" class="nav-link">
+                                @lang('Purchase Contracts Management')
+                            </a>
+                            <a href="#" class="nav-link">
+                                @lang('Supplier Relationship Management')
+                            </a>
                         </ul>
                     </div>
                 </li>
@@ -114,16 +184,66 @@ $userId = auth()->user()->id;
                     </a>
                     <div class="collapse menu-dropdown" id="financialManagement">
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Project Management')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Accounts Receivable')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Accounts Payable')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Currency Management')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Cash Management')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('General Ledger')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Multi-Site')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Payroll')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Rebates, Promotions and Royalties')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    @lang('Asset Management')
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if($c == 'company' || $c == 'company-configuration' || $c == 'customer-group'|| $c == 'plant' || $c == 'group' || $c == 'bin' || $c == 'warehouse' || $c =='part-class' || $c == 'buyer' || $c == 'supplier' || $c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar' || $c =='revision') active @endif" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                    <a class="nav-link menu-link @if($c == 'company' || $c == 'company-configuration' || $c == 'customer-group'|| $c == 'plant' || $c == 'group' || $c == 'bin' || $c == 'warehouse' || $c =='part-class' || $c == 'buyer' || $c == 'supplier' || $c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar' || $c =='revision' || $c == 'customer') active @endif" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="mdi mdi-cog"></i> <span>@lang('System Management')
                         </span>
                     </a>
-                    <div class="collapse menu-dropdown @if($c == 'company' || $c == 'company-configuration' || $c == 'customer-group' || $c == 'plant' || $c == 'user' || $c =='group' || $c == 'bin' || $c == 'warehouse' || $c == 'part-class' || $c == 'buyer' || $c == 'supplier' || $c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar' || $c =='revision') show @endif" id="sidebarApps">
+                    <div class="collapse menu-dropdown @if($c == 'company' || $c == 'company-configuration' || $c == 'customer-group' || $c == 'plant' || $c == 'user' || $c =='group' || $c == 'bin' || $c == 'warehouse' || $c == 'part-class' || $c == 'buyer' || $c == 'supplier' || $c == 'application-settings' || $c == 'menu' || $c == 'business-role' || $c == 'fiscal-calendar' || $c == 'fiscal-year' || $c == 'production-calendar' || $c =='revision' || $c == 'customer') show @endif" id="sidebarApps">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('plant.index') }}" class="nav-link @if($c == 'plant') active @endif">@lang('Plant')
@@ -152,10 +272,10 @@ $userId = auth()->user()->id;
                             </li>
 
                             <li class="nav-item">
-                                <a href="#sidebarSalesModuleSetup" class="nav-link @if($c == 'customer-group' || $c == 'group' || $c == 'bin' || $c =='warehouse' || $c == 'part-class' || $c == 'supplier' || $c == 'buyer' || $c =='revision') active @endif" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSalesModuleSetup">@lang('Sales Module Setup')
+                                <a href="#sidebarSalesModuleSetup" class="nav-link @if($c == 'customer-group' || $c == 'group' || $c == 'bin' || $c =='warehouse' || $c == 'part-class' || $c == 'supplier' || $c == 'buyer' || $c =='revision' || $c == 'customer') active @endif" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSalesModuleSetup">@lang('Sales Module Setup')
 
                                 </a>
-                                <div class="collapse menu-dropdown @if($c == 'customer-group' || $c =='group' || $c == 'bin' || $c == 'warehouse' || $c == 'part-class' || $c == 'supplier' || $c == 'buyer' || $c =='revision') show @endif" id="sidebarSalesModuleSetup">
+                                <div class="collapse menu-dropdown @if($c == 'customer-group' || $c =='group' || $c == 'bin' || $c == 'warehouse' || $c == 'part-class' || $c == 'supplier' || $c == 'buyer' || $c =='revision' || $c == 'customer') show @endif" id="sidebarSalesModuleSetup">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
                                             <a href="{{ route('customer-group.index') }}" class="nav-link @if($c == 'customer-group') active @endif">@lang('Customer Group')
@@ -167,6 +287,10 @@ $userId = auth()->user()->id;
                                         </li>
                                         <li class="nav-item">
                                             <a href="{{ route('buyer.index') }}" class="nav-link @if($c == 'buyer') active @endif">@lang('Buyer')
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('customer.index') }}" class="nav-link @if($c == 'customer') active @endif">@lang('Customer')
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -211,22 +335,10 @@ $userId = auth()->user()->id;
                                 <a href="{{ route('menu.index') }}" class="nav-link @if($c == 'menu') active @endif">@lang('Menu')
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('fiscal-calendar.index') }}" class="nav-link @if($c == 'fiscal-calendar') active @endif">@lang('Fiscal Calendar')
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('production-calendar.index') }}" class="nav-link @if($c == 'production-calendar') active @endif">@lang('Production Calendar')
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('fiscal-year.index') }}" class="nav-link @if($c == 'fiscal-year') active @endif">@lang('Fiscal Year')
-                                </a>
-                            </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('application-settings.index') }}" class="nav-link @if($c == 'application-settings') active @endif">@lang('Application Settings')
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </li>
