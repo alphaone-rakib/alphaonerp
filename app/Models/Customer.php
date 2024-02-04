@@ -54,4 +54,9 @@ class Customer extends Model
     {
         return $this->belongsTo(CustomerGroup::class);
     }
+
+    public function oenTimeShipTos()
+    {
+        return $this->hasMany(OneTimeShipTo::class);
+    }
 }

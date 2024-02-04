@@ -208,9 +208,11 @@ Route::group(['middleware' => ['auth']], function () {
         'buyer' => App\Http\Controllers\BuyerController::class,
         'part-class' => App\Http\Controllers\PartClassController::class,
         'part-master' => App\Http\Controllers\PartMasterController::class,
+        'quote' => App\Http\Controllers\QuoteController::class,
         'bin' => App\Http\Controllers\BinController::class,
         'supplier' => App\Http\Controllers\SupplierController::class,
         'warehouse' => App\Http\Controllers\WarehouseController::class,
         'revision' => App\Http\Controllers\RevisionController::class,
+        'one-time-ship-to' => App\Http\Controllers\OneTimeShipToController::class,
     ]);
 });
