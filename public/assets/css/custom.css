@@ -35,3 +35,7 @@
     border: 1px dashed #ccc;
     border-radius: 10px;
 }
+
+.custom_heading {
+    font-size: 1rem;
+}

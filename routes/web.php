@@ -191,28 +191,30 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/revision/getData', [App\Http\Controllers\RevisionController::class, 'getData'])->name('revision.getData');
     Route::get('/warehouse/getData', [App\Http\Controllers\WarehouseController::class, 'getData'])->name('warehouse.getData');
 
+    Route::get('/quote/selectedSoldCustomerId', [App\Http\Controllers\QuoteController::class, 'selectedSoldCustomerId'])->name('quote.selectedSoldCustomerId');
+
     Route::resources([
-        'group' => App\Http\Controllers\GroupController::class,
-        'company' => App\Http\Controllers\CompanyController::class,
-        'company-configuration' => App\Http\Controllers\CompanyConfigurationController::class,
-        'plant' => App\Http\Controllers\PlantController::class,
-        'menu' => App\Http\Controllers\MenuController::class,
-        'business-role' => App\Http\Controllers\BusinessRoleController::class,
-        'user' => App\Http\Controllers\UserController::class,
-        'fiscal-calendar' => App\Http\Controllers\FiscalCalendarController::class,
-        'fiscal-year' => App\Http\Controllers\FiscalYearController::class,
-        'production-calendar' => App\Http\Controllers\ProductionCalendarController::class,
-        'customer-group' => App\Http\Controllers\CustomerGroupController::class,
-        'customer' => App\Http\Controllers\CustomerController::class,
-        'product-group' => App\Http\Controllers\ProductGroupController::class,
-        'buyer' => App\Http\Controllers\BuyerController::class,
-        'part-class' => App\Http\Controllers\PartClassController::class,
-        'part-master' => App\Http\Controllers\PartMasterController::class,
-        'quote' => App\Http\Controllers\QuoteController::class,
         'bin' => App\Http\Controllers\BinController::class,
+        'menu' => App\Http\Controllers\MenuController::class,
+        'user' => App\Http\Controllers\UserController::class,
+        'buyer' => App\Http\Controllers\BuyerController::class,
+        'group' => App\Http\Controllers\GroupController::class,
+        'plant' => App\Http\Controllers\PlantController::class,
+        'quote' => App\Http\Controllers\QuoteController::class,
+        'company' => App\Http\Controllers\CompanyController::class,
+        'revision' => App\Http\Controllers\RevisionController::class,
+        'customer' => App\Http\Controllers\CustomerController::class,
         'supplier' => App\Http\Controllers\SupplierController::class,
         'warehouse' => App\Http\Controllers\WarehouseController::class,
-        'revision' => App\Http\Controllers\RevisionController::class,
+        'part-class' => App\Http\Controllers\PartClassController::class,
+        'fiscal-year' => App\Http\Controllers\FiscalYearController::class,
+        'part-master' => App\Http\Controllers\PartMasterController::class,
+        'product-group' => App\Http\Controllers\ProductGroupController::class,
+        'business-role' => App\Http\Controllers\BusinessRoleController::class,
+        'customer-group' => App\Http\Controllers\CustomerGroupController::class,
         'one-time-ship-to' => App\Http\Controllers\OneTimeShipToController::class,
+        'fiscal-calendar' => App\Http\Controllers\FiscalCalendarController::class,
+        'production-calendar' => App\Http\Controllers\ProductionCalendarController::class,
+        'company-configuration' => App\Http\Controllers\CompanyConfigurationController::class,
     ]);
 });

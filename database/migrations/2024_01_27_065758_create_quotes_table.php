@@ -16,8 +16,11 @@ return new class extends Migration
             $table->bigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->string('quote_entry')->nullable();
+            $table->string('sold_to_customer_id')->nullable();
             $table->string('sold_to_customer_name_address')->nullable();
             $table->boolean('one_time_ship_address')->default(0);
+            $table->string('one_time_ship_id')->nullable();
+            $table->string('ship_to_customer_id')->nullable();
             $table->string('ship_to_customer_name_address')->nullable();
             $table->string('bill_to_customer')->nullable();
             $table->string('bill_to_po')->nullable();
@@ -32,6 +35,7 @@ return new class extends Migration
             $table->string('best_case')->nullable();
             $table->string('worst_case')->nullable();
             $table->string('confidence')->nullable();
+            $table->string('rating')->nullable();
             $table->double('gross_value', 15, 2)->nullable();
             $table->string('discount_percentage')->nullable();
             $table->double('discount_value', 15, 2)->nullable();
