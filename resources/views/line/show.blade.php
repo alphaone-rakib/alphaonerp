@@ -139,10 +139,7 @@
                                     @endif
                                 </tr>
                             </tbody>
-                            
                         </table>
-                        
-                        
                     </div>
                     <br>
                     <div class="row mb-3">

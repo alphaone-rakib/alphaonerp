@@ -49,11 +49,11 @@ $userId = auth()->user()->id;
                 @if(auth()->user()->id == "1")
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if($c == 'customer' || $c == 'product-group' || $c == 'part-master') active @endif" href="#salesModule" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="salesModule">
+                    <a class="nav-link menu-link @if($c == 'one-time-ship-to' || $c == 'line' || $c == 'quote' ||$c == 'customer' || $c == 'product-group' || $c == 'part-master') active @endif" href="#salesModule" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="salesModule">
                         <i class="mdi mdi-point-of-sale"></i>
                         <span>@lang('Sales Management')</span>
                     </a>
-                    <div class="collapse menu-dropdown @if($c == 'customer' || $c == 'product-group' || $c == 'part-master') show @endif" id="salesModule">
+                    <div class="collapse menu-dropdown @if($c == 'one-time-ship-to' || $c == 'line' || $c == 'quote' || $c == 'customer' || $c == 'product-group' || $c == 'part-master') show @endif" id="salesModule">
                         <ul class="nav nav-sm flex-column">
                             {{-- <li class="nav-item">
                                 <a href="{{ route('part-master.index') }}" class="nav-link @if($c == 'part-master') active @endif">
@@ -66,13 +66,23 @@ $userId = auth()->user()->id;
                                 </a>
                             </li> --}}
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    @lang('Case Managment')
+                                <a href="{{ route('line.index') }}" class="nav-link @if($c == 'line') active @endif">
+                                    @lang('Line')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('quote.index') }}" class="nav-link @if($c == 'quote') active @endif">
+                                    @lang('Quote Managment')
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('one-time-ship-to.index') }}" class="nav-link @if($c == 'one-time-ship-to') active @endif">
+                                    @lang('One Time Ship To')
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    @lang('Quote Managment')
+                                    @lang('Case Managment')
                                 </a>
                             </li>
                             <li class="nav-item">

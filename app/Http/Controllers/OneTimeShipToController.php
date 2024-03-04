@@ -75,7 +75,11 @@ class OneTimeShipToController extends Controller
      */
     public function show(OneTimeShipTo $oneTimeShipTo)
     {
-        //
+        $countryName = DB::table('countries')->where('id', $oneTimeShipTo->country)->first();
+        $stateName = DB::table('states')->where('id', $oneTimeShipTo->state)->first();
+        $cityName = DB::table('cities')->where('id', $oneTimeShipTo->city)->first();
+
+        return view('one_time_ship.show', compact('countryName', 'stateName', 'cityName', 'oneTimeShipTo'));
     }
 
     /**
@@ -84,7 +88,8 @@ class OneTimeShipToController extends Controller
     public function edit(OneTimeShipTo $oneTimeShipTo)
     {
         $customers = Customer::orderBy('name')->pluck('name', 'id');
-        return view('one_time_ship.edit', compact('oneTimeShipTo', 'customers'));
+        $countriesList = DB::table('countries')->pluck('name', 'id');
+        return view('one_time_ship.edit', compact('oneTimeShipTo', 'customers', 'countriesList'));
     }
 
     /**
@@ -92,7 +97,11 @@ class OneTimeShipToController extends Controller
      */
     public function update(Request $request, OneTimeShipTo $oneTimeShipTo)
     {
-        //
+        $this->validation($request, $oneTimeShipTo->id);
+
+        $data = $request->only(['contact', 'name', 'save_as', 'address_one', 'address_two', 'customer_id', 'ship_to', 'country', 'state', 'city', 'postal_code', 'phone', 'fax', 'tax_id', 'tax_liability']);
+        $oneTimeShipTo->update($data);
+        return redirect()->route('one-time-ship-to.index')->with('success', trans('One Time Ship To Edit Successfully'));
     }
 
     /**
