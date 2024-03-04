@@ -94,4 +94,9 @@ class PartMaster extends Model
     {
         return $this->belongsTo(Buyer::class, 'plant_purchase_buyer');
     }
+
+    public function line()
+    {
+        return $this->hasMany(Line::class);
+    }
 }

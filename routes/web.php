@@ -193,6 +193,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/quote/selectedSoldCustomerId', [App\Http\Controllers\QuoteController::class, 'selectedSoldCustomerId'])->name('quote.selectedSoldCustomerId');
 
+    Route::get('/line/selectedPartMasterId', [App\Http\Controllers\LineController::class, 'selectedPartMasterId'])->name('line.selectedPartMasterId');
+
     Route::resources([
         'bin' => App\Http\Controllers\BinController::class,
         'menu' => App\Http\Controllers\MenuController::class,
@@ -209,6 +211,7 @@ Route::group(['middleware' => ['auth']], function () {
         'part-class' => App\Http\Controllers\PartClassController::class,
         'fiscal-year' => App\Http\Controllers\FiscalYearController::class,
         'part-master' => App\Http\Controllers\PartMasterController::class,
+        'line' => App\Http\Controllers\LineController::class,
         'product-group' => App\Http\Controllers\ProductGroupController::class,
         'business-role' => App\Http\Controllers\BusinessRoleController::class,
         'customer-group' => App\Http\Controllers\CustomerGroupController::class,
