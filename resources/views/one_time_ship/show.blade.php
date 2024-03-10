@@ -16,6 +16,8 @@
             <img src="{{ URL::asset('assets/images/profile-bg.jpg') }}" class="profile-wid-img" alt="">
         </div>
     </div> --}}
+    <br>
+    <br>
     <div class="row">
         <div class="col-xxl-12">
             <div class="card mt-xxl-n5">

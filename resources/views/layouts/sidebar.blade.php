@@ -76,6 +76,11 @@ $userId = auth()->user()->id;
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('part-master.index') }}" class="nav-link @if($c == 'part-master') active @endif">
+                                    @lang('Part Master')
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('one-time-ship-to.index') }}" class="nav-link @if($c == 'one-time-ship-to') active @endif">
                                     @lang('One Time Ship To')
                                 </a>

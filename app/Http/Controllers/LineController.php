@@ -111,7 +111,10 @@ class LineController extends Controller
      */
     public function edit(Line $line)
     {
-        //
+        $customers = Customer::orderBy('name')->pluck('name', 'id');
+        $pGroups = ProductGroup::orderBy('group_name')->pluck('group_name', 'id');
+        $partMaster = PartMaster::orderBy('part_number')->get();
+        return view('line.edit', compact('partMaster', 'customers', 'pGroups', 'line'));
     }
 
     /**
@@ -119,7 +122,15 @@ class LineController extends Controller
      */
     public function update(Request $request, Line $line)
     {
-        //
+        $this->validation($request, $line->id);
+
+        $data = $request->only(['part_id', 'description', 'customer_id', 'order_quantity', 'order_quantity_type', 'excepted_quantity', 'excepted_quantity_type', 'best_case_percentage', 'worst_case_percentage', 'confidence_percentage', 'price_per', 'unit_price', 'discount_percentage', 'discount_value', 'price_group', 'pricing_quantity', 'pricing_quantity_type', 'extended_price', 'potential', 'misc_charges', 'tax', 'total', 'best_case_value', 'worst_case_value', 'excepted_value']);
+        $data['user_id'] = auth()->user()->id;
+
+        DB::transaction(function () use ($data, $line) {
+            $line->update($data);
+        });
+        return redirect()->route('line.index')->with('success', trans('Line Update Successfully'));
     }
 
     /**
@@ -129,5 +140,36 @@ class LineController extends Controller
     {
         $line->delete();
         return redirect()->route('line.index')->with('success', trans('Line Deleted Successfully'));
+    }
+
+    private function validation(Request $request, $id = 0)
+    {
+        $request->validate([
+            'part_id' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'customer_id' => ['required', 'string'],
+            'order_quantity' => ['nullable', 'string'],
+            'order_quantity_type' => ['nullable', 'string'],
+            'excepted_quantity' => ['required', 'string'],
+            'excepted_quantity_type' => ['nullable', 'string'],
+            'best_case_percentage' => ['nullable', 'string'],
+            'worst_case_percentage' => ['nullable', 'string'],
+            'confidence_percentage' => ['nullable', 'string'],
+            'price_per' => ['nullable', 'string'],
+            'unit_price' => ['required', 'string'],
+            'discount_percentage' => ['nullable', 'string'],
+            'discount_value' => ['nullable', 'string'],
+            'price_group' => ['nullable', 'string'],
+            'pricing_quantity' => ['nullable', 'string'],
+            'pricing_quantity_type' => ['nullable', 'string'],
+            'extended_price' => ['nullable', 'string'],
+            'potential' => ['nullable', 'string'],
+            'misc_charges' => ['nullable', 'string'],
+            'tax' => ['nullable', 'string'],
+            'total' => ['required', 'string'],
+            'best_case_value' => ['nullable', 'string'],
+            'worst_case_value' => ['nullable', 'string'],
+            'excepted_value' => ['nullable', 'string'],
+        ]);
     }
 }
