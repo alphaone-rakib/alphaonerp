@@ -140,7 +140,10 @@ class QuoteController extends Controller
      */
     public function edit(Quote $quote)
     {
-        //
+        $customers = Customer::orderBy('name')->get();
+        $oneTimeShipData = OneTimeShipTo::orderBy('name')->get();
+        $countriesList = DB::table('countries')->pluck('name', 'id');
+        return view('quotes.edit', compact('customers', 'countriesList', 'oneTimeShipData', 'quote'));
     }
 
     /**

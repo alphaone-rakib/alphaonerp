@@ -709,5 +709,5 @@
             });
 
         });
-        </script>
+    </script>
 @endsection
